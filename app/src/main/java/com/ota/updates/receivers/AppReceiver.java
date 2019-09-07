@@ -35,7 +35,6 @@ import android.util.Log;
 import com.ota.updates.OtaUpdates;
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
-import com.ota.updates.activities.AddonActivity;
 import com.ota.updates.activities.AvailableActivity;
 import com.ota.updates.tasks.LoadUpdateManifest;
 import com.ota.updates.utils.Constants;
@@ -71,37 +70,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants{
 				}
 			}
 
-			if (isAddonDownload) {
-				DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-				DownloadManager.Query query = new DownloadManager.Query();
-				query.setFilterById(id);
-				Cursor cursor = downloadManager.query(query);
 
-				// it shouldn't be empty, but just in case
-				if (!cursor.moveToFirst()) {
-					if (DEBUGGING)
-						Log.e(TAG, "Addon Download Empty row");
-					return;
-				}
-
-				int statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-				if (DownloadManager.STATUS_SUCCESSFUL != cursor.getInt(statusIndex)) {
-					if (DEBUGGING)
-						Log.w(TAG, "Download Failed");
-					Log.d(TAG, "Removing Addon download with id " + keyForAddonDownload);
-					OtaUpdates.removeAddonDownload(keyForAddonDownload);
-					AddonActivity.AddonsArrayAdapter.updateProgress(keyForAddonDownload, 0, true);
-					AddonActivity.AddonsArrayAdapter.updateButtons(keyForAddonDownload, false);
-					return;
-				} else {
-					if (DEBUGGING)
-						Log.v(TAG, "Download Succeeded");
-					Log.d(TAG, "Removing Addon download with id " + keyForAddonDownload);
-					OtaUpdates.removeAddonDownload(keyForAddonDownload);
-					AddonActivity.AddonsArrayAdapter.updateButtons(keyForAddonDownload, true);
-					return;
-				}
-			} else {
 				if (DEBUGGING)
 					Log.v(TAG, "Receiving " + mRomDownloadID);
 
@@ -146,7 +115,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants{
 					}
 					return;
 				}
-			}
+
 		}
 
 		if (action.equals(DownloadManager.ACTION_NOTIFICATION_CLICKED)) {

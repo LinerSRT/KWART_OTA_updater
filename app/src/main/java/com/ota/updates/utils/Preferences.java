@@ -128,48 +128,7 @@ public class Preferences implements Constants{
 		}
 	}
 
-	public static int getTheme(Context context) {
-		boolean isLollipop = Utils.isLollipop();
-		switch(getCurrentTheme(context))
-		{
-		case 0:
-			return R.style.Theme_RagnarLight;
-		case 1:
-			// Lollipop doesn't have a DarkActionBar theme
-			if (isLollipop) {
-				return R.style.Theme_RagnarLight;
-			} else {
-				return R.style.Theme_RagnarLight_DarkActionBar;
-			}
-		case 2:
-			return R.style.Theme_RagnarDark;
-		default:
-			if (isLollipop) {
-				return R.style.Theme_RagnarLight;
-			} else {
-				return R.style.Theme_RagnarDark;
-			}
-		}
-	}
 
-	public static int getSettingsTheme(Context context)
-    {       
-        switch(getCurrentTheme(context))
-        {
-        case 0:
-            return R.style.Theme_RagnarLight_Settings;
-        case 1:
-            return R.style.Theme_RagnarLight_DarkActionBar_Settings;
-        case 2:
-            return R.style.Theme_RagnarDark_Settings;
-        default:
-        	if (Utils.isLollipop()) {
-        		return R.style.Theme_RagnarLight_Settings;
-        	} else {
-        		return R.style.Theme_RagnarDark_Settings;
-        	}
-        }
-    }
 
 	public static String getIgnoredRelease(Context context) {
 		return getPrefs(context).getString(IGNORE_RELEASE_VERSION, "0");

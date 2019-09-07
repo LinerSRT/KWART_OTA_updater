@@ -16,26 +16,13 @@
 -->
 <resources>
 
-    <declare-styleable name="Theme.Ragnar">
-        <attr name="helpIcon" format="reference" />
-        <attr name="moreIconWidget" format="reference" />
-        <attr name="settingsIcon" format="reference" />
-        <attr name="changelogIcon" format="reference" />
-        <attr name="downloadIcon" format="reference" />
-		<attr name="addonsIcon" format="reference" />
-        <attr name="backgroundSelector" format="reference" />
-        <attr name="separator" format="reference" />
-        <attr name="browserIcon" format="reference" />
-        <attr name="donateIcon" format="reference" />
-        <attr name="checkIcon" format="reference" />
-        <attr name="noUpdateAvailable" format="color" />
-        <attr name="updateAvailable" format="color" />
-        <attr name="colorHoloBlue" format="color" />
-        <attr name="cardStyle" format="reference" />
-        <attr name="cardBackground" format="color" />
-        <attr name="textColorPrimary" format="color" />
-        <attr name="textColorSecondary" format="color" />
-        <attr name="proRibbon" format="reference" />
+    <declare-styleable name="OTATheme">
+        <attr name="backgroundColor" format="color"/>
+        <attr name="backgroundColorDark" format="color"/>
+        <attr name="textColor" format="color" />
+        <attr name="textColorDark" format="color" />
+        <attr name="colorPrimary" format="color" />
+        <attr name="colorPrimaryDark" format="color" />
     </declare-styleable>
 
 </resources>

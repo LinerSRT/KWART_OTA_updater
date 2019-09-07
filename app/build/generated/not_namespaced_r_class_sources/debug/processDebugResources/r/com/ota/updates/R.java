@@ -19,45 +19,23 @@ public final class R {
   }
   public static final class attr {
     /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
+     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
+     * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int addonsIcon=0x7f020000;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int backgroundRippleSelector=0x7f020001;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int backgroundSelector=0x7f020002;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int browserIcon=0x7f020003;
+    public static final int backgroundColor=0x7f020000;
     /**
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int cardBackground=0x7f020004;
+    public static final int backgroundColorDark=0x7f020001;
     /**
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int cardBackgroundColor=0x7f020005;
+    public static final int cardBackgroundColor=0x7f020002;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -65,7 +43,7 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int cardCornerRadius=0x7f020006;
+    public static final int cardCornerRadius=0x7f020003;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -73,7 +51,7 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int cardElevation=0x7f020007;
+    public static final int cardElevation=0x7f020004;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -81,56 +59,29 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int cardMaxElevation=0x7f020008;
+    public static final int cardMaxElevation=0x7f020005;
     /**
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      */
-    public static final int cardPreventCornerOverlap=0x7f020009;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int cardStyle=0x7f02000a;
+    public static final int cardPreventCornerOverlap=0x7f020006;
     /**
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      */
-    public static final int cardUseCompatPadding=0x7f02000b;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int changelogIcon=0x7f02000c;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int checkIcon=0x7f02000d;
+    public static final int cardUseCompatPadding=0x7f020007;
     /**
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int colorHoloBlue=0x7f02000e;
+    public static final int colorPrimary=0x7f020008;
     /**
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int colorPrimary=0x7f02000f;
-    /**
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     */
-    public static final int colorPrimaryDark=0x7f020010;
+    public static final int colorPrimaryDark=0x7f020009;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -138,7 +89,7 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int contentPadding=0x7f020011;
+    public static final int contentPadding=0x7f02000a;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -146,7 +97,7 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int contentPaddingBottom=0x7f020012;
+    public static final int contentPaddingBottom=0x7f02000b;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -154,7 +105,7 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int contentPaddingLeft=0x7f020013;
+    public static final int contentPaddingLeft=0x7f02000c;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -162,7 +113,7 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int contentPaddingRight=0x7f020014;
+    public static final int contentPaddingRight=0x7f02000d;
     /**
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -170,153 +121,52 @@ public final class R {
      * sp (scaled pixels based on preferred font size), in (inches), and
      * mm (millimeters).
      */
-    public static final int contentPaddingTop=0x7f020015;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int donateIcon=0x7f020016;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int downloadIcon=0x7f020017;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int helpIcon=0x7f020018;
+    public static final int contentPaddingTop=0x7f02000e;
     /**
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int materialAccent=0x7f020019;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int menuTheme=0x7f02001a;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int moreIconWidget=0x7f02001b;
+    public static final int textColor=0x7f02000f;
     /**
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
-    public static final int noUpdateAvailable=0x7f02001c;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int proRibbon=0x7f02001d;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int separator=0x7f02001e;
-    /**
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     */
-    public static final int settingsIcon=0x7f02001f;
-    /**
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     */
-    public static final int textColorPrimary=0x7f020020;
-    /**
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     */
-    public static final int textColorSecondary=0x7f020021;
-    /**
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     */
-    public static final int updateAvailable=0x7f020022;
+    public static final int textColorDark=0x7f020010;
   }
   public static final class color {
-    public static final int accent_material_dark=0x7f030000;
-    public static final int accent_material_light=0x7f030001;
-    public static final int black=0x7f030002;
-    public static final int card_background_holo_dark=0x7f030003;
-    public static final int card_background_holo_light=0x7f030004;
-    public static final int card_background_material_dark=0x7f030005;
-    public static final int card_background_material_light=0x7f030006;
-    public static final int cardview_dark_background=0x7f030007;
-    public static final int cardview_light_background=0x7f030008;
-    public static final int cardview_shadow_end_color=0x7f030009;
-    public static final int cardview_shadow_start_color=0x7f03000a;
-    public static final int dark_grey=0x7f03000b;
-    public static final int grey=0x7f03000c;
-    public static final int holo_blue_bright=0x7f03000d;
-    public static final int holo_blue_dark=0x7f03000e;
-    public static final int holo_blue_light=0x7f03000f;
-    public static final int holo_green_dark=0x7f030010;
-    public static final int holo_green_light=0x7f030011;
-    public static final int holo_orange_dark=0x7f030012;
-    public static final int holo_orange_light=0x7f030013;
-    public static final int holo_purple=0x7f030014;
-    public static final int holo_red_dark=0x7f030015;
-    public static final int holo_red_light=0x7f030016;
-    public static final int material_background_dark=0x7f030017;
-    public static final int material_background_light=0x7f030018;
-    public static final int material_blue_grey_800=0x7f030019;
-    public static final int material_blue_grey_900=0x7f03001a;
-    public static final int material_blue_grey_950=0x7f03001b;
-    public static final int material_cyan_500=0x7f03001c;
-    public static final int material_deep_teal_200=0x7f03001d;
-    public static final int material_deep_teal_500=0x7f03001e;
-    public static final int material_light_green_200=0x7f03001f;
-    public static final int material_light_green_500=0x7f030020;
-    public static final int material_primary=0x7f030021;
-    public static final int material_primary_dark=0x7f030022;
-    public static final int material_red_200=0x7f030023;
-    public static final int material_red_500=0x7f030024;
-    public static final int primary_text_material_dark=0x7f030025;
-    public static final int primary_text_material_light=0x7f030026;
-    public static final int ripple_material_dark=0x7f030027;
-    public static final int ripple_material_light=0x7f030028;
-    public static final int secondary_text_material_dark=0x7f030029;
-    public static final int secondary_text_material_light=0x7f03002a;
-    public static final int separator_dark=0x7f03002b;
-    public static final int separator_light=0x7f03002c;
-    public static final int white=0x7f03002d;
+    public static final int accent_color=0x7f030000;
+    public static final int accent_color_dark=0x7f030001;
+    public static final int background=0x7f030002;
+    public static final int backgroundColorDark=0x7f030003;
+    public static final int backgroundColorDarkSecond=0x7f030004;
+    public static final int backgroundColorLight=0x7f030005;
+    public static final int backgroundColorLightSecond=0x7f030006;
+    public static final int background_dark=0x7f030007;
+    public static final int background_sdark=0x7f030008;
+    public static final int blue_accent=0x7f030009;
+    public static final int blue_accent_dark=0x7f03000a;
+    public static final int cardview_dark_background=0x7f03000b;
+    public static final int cardview_light_background=0x7f03000c;
+    public static final int cardview_shadow_end_color=0x7f03000d;
+    public static final int cardview_shadow_start_color=0x7f03000e;
+    public static final int dark_accent=0x7f03000f;
+    public static final int green_accent_color=0x7f030010;
+    public static final int green_accent_color_dark=0x7f030011;
+    public static final int red_accent_color=0x7f030012;
+    public static final int red_accent_color_dark=0x7f030013;
+    public static final int text_color=0x7f030014;
+    public static final int text_highlight=0x7f030015;
+    public static final int text_white=0x7f030016;
+    public static final int white=0x7f030017;
   }
   public static final class dimen {
     public static final int card_view_radius=0x7f040000;
     public static final int cardview_compat_inset_shadow=0x7f040001;
     public static final int cardview_default_elevation=0x7f040002;
     public static final int cardview_default_radius=0x7f040003;
-    public static final int preference_child_padding_side=0x7f040004;
-    public static final int preference_icon_minWidth=0x7f040005;
-    public static final int preference_item_padding_inner=0x7f040006;
-    public static final int preference_item_padding_side=0x7f040007;
-    public static final int preference_widget_width=0x7f040008;
-    public static final int shadow_height=0x7f040009;
+    public static final int shadow_height=0x7f040004;
   }
   public static final class drawable {
     public static final int ab_bottom_solid_holo_dark=0x7f050000;
@@ -325,143 +175,91 @@ public final class R {
     public static final int ab_solid_holo_light=0x7f050003;
     public static final int ab_stacked_solid_holo_dark=0x7f050004;
     public static final int ab_stacked_solid_holo_light=0x7f050005;
-    public static final int card_material_background_dark=0x7f050006;
-    public static final int card_material_background_light=0x7f050007;
-    public static final int drawable_addon=0x7f050008;
-    public static final int drawable_check=0x7f050009;
-    public static final int drawable_donate=0x7f05000a;
-    public static final int drawable_download=0x7f05000b;
-    public static final int drawable_website=0x7f05000c;
-    public static final int holo_background_dark=0x7f05000d;
-    public static final int holo_background_light=0x7f05000e;
-    public static final int ic_about_dark=0x7f05000f;
-    public static final int ic_about_light=0x7f050010;
-    public static final int ic_action_close=0x7f050011;
-    public static final int ic_action_download=0x7f050012;
-    public static final int ic_addon=0x7f050013;
-    public static final int ic_addon_dark=0x7f050014;
-    public static final int ic_addon_light=0x7f050015;
-    public static final int ic_alert_dark=0x7f050016;
-    public static final int ic_changelog=0x7f050017;
-    public static final int ic_changelog_dark=0x7f050018;
-    public static final int ic_changelog_light=0x7f050019;
-    public static final int ic_check=0x7f05001a;
-    public static final int ic_check_dark=0x7f05001b;
-    public static final int ic_check_light=0x7f05001c;
-    public static final int ic_donate=0x7f05001d;
-    public static final int ic_donate_dark=0x7f05001e;
-    public static final int ic_donate_light=0x7f05001f;
-    public static final int ic_download=0x7f050020;
-    public static final int ic_download_dark=0x7f050021;
-    public static final int ic_download_light=0x7f050022;
-    public static final int ic_launcher=0x7f050023;
-    public static final int ic_notif=0x7f050024;
-    public static final int ic_settings_dark=0x7f050025;
-    public static final int ic_settings_light=0x7f050026;
-    public static final int ic_web_site_dark=0x7f050027;
-    public static final int ic_web_site_light=0x7f050028;
-    public static final int ic_website=0x7f050029;
-    public static final int list_focused_holo_dark=0x7f05002a;
-    public static final int list_focused_holo_light=0x7f05002b;
-    public static final int list_longpressed_holo_dark=0x7f05002c;
-    public static final int list_longpressed_holo_light=0x7f05002d;
-    public static final int list_pressed_dark=0x7f05002e;
-    public static final int list_pressed_holo_dark=0x7f05002f;
-    public static final int list_pressed_holo_light=0x7f050030;
-    public static final int list_selector_background_transition_holo_dark=0x7f050031;
-    public static final int list_selector_background_transition_holo_light=0x7f050032;
-    public static final int list_selector_disabled_holo_dark=0x7f050033;
-    public static final int list_selector_disabled_holo_light=0x7f050034;
-    public static final int list_selector_holo_dark=0x7f050035;
-    public static final int list_selector_holo_light=0x7f050036;
-    public static final int material_background_dark=0x7f050037;
-    public static final int material_background_light=0x7f050038;
-    public static final int pro_ribbon_dark=0x7f050039;
-    public static final int pro_ribbon_light=0x7f05003a;
-    public static final int ripple_selector_dark=0x7f05003b;
-    public static final int ripple_selector_light=0x7f05003c;
-    public static final int toolbar_dropshadow=0x7f05003d;
+    public static final int card_material_background_light=0x7f050006;
+    public static final int drawable_check=0x7f050007;
+    public static final int drawable_download=0x7f050008;
+    public static final int holo_background_dark=0x7f050009;
+    public static final int holo_background_light=0x7f05000a;
+    public static final int ic_about_dark=0x7f05000b;
+    public static final int ic_about_light=0x7f05000c;
+    public static final int ic_action_close=0x7f05000d;
+    public static final int ic_action_download=0x7f05000e;
+    public static final int ic_addon_dark=0x7f05000f;
+    public static final int ic_addon_light=0x7f050010;
+    public static final int ic_alert_dark=0x7f050011;
+    public static final int ic_changelog=0x7f050012;
+    public static final int ic_changelog_dark=0x7f050013;
+    public static final int ic_changelog_light=0x7f050014;
+    public static final int ic_check=0x7f050015;
+    public static final int ic_check_dark=0x7f050016;
+    public static final int ic_check_light=0x7f050017;
+    public static final int ic_donate=0x7f050018;
+    public static final int ic_donate_dark=0x7f050019;
+    public static final int ic_donate_light=0x7f05001a;
+    public static final int ic_download=0x7f05001b;
+    public static final int ic_download_dark=0x7f05001c;
+    public static final int ic_download_light=0x7f05001d;
+    public static final int ic_launcher=0x7f05001e;
+    public static final int ic_notif=0x7f05001f;
+    public static final int ic_settings_dark=0x7f050020;
+    public static final int ic_settings_light=0x7f050021;
+    public static final int ic_web_site_dark=0x7f050022;
+    public static final int ic_web_site_light=0x7f050023;
+    public static final int ic_website=0x7f050024;
+    public static final int list_focused_holo_dark=0x7f050025;
+    public static final int list_focused_holo_light=0x7f050026;
+    public static final int list_longpressed_holo_dark=0x7f050027;
+    public static final int list_longpressed_holo_light=0x7f050028;
+    public static final int list_pressed_dark=0x7f050029;
+    public static final int list_pressed_holo_dark=0x7f05002a;
+    public static final int list_pressed_holo_light=0x7f05002b;
+    public static final int list_selector_background_transition_holo_dark=0x7f05002c;
+    public static final int list_selector_background_transition_holo_light=0x7f05002d;
+    public static final int list_selector_disabled_holo_dark=0x7f05002e;
+    public static final int list_selector_disabled_holo_light=0x7f05002f;
+    public static final int list_selector_holo_dark=0x7f050030;
+    public static final int list_selector_holo_light=0x7f050031;
+    public static final int material_background_light=0x7f050032;
+    public static final int pro_ribbon_dark=0x7f050033;
+    public static final int pro_ribbon_light=0x7f050034;
+    public static final int ripple_selector_light=0x7f050035;
+    public static final int toolbar_dropshadow=0x7f050036;
   }
   public static final class id {
-    public static final int about_tv_changelog_summary=0x7f060000;
-    public static final int about_tv_changelog_title=0x7f060001;
-    public static final int about_tv_credits_summary=0x7f060002;
-    public static final int about_tv_credits_title=0x7f060003;
-    public static final int about_tv_donate_title=0x7f060004;
-    public static final int about_tv_version_summary=0x7f060005;
-    public static final int about_tv_version_title=0x7f060006;
-    public static final int addon_information=0x7f060007;
-    public static final int addon_links_box=0x7f060008;
-    public static final int bar_available_progress_bar=0x7f060009;
-    public static final int bar_main_progress_bar=0x7f06000a;
-    public static final int btn_main_changelog=0x7f06000b;
-    public static final int btn_main_settings=0x7f06000c;
-    public static final int cancel_button=0x7f06000d;
-    public static final int delete_button=0x7f06000e;
-    public static final int description=0x7f06000f;
-    public static final int download_button=0x7f060010;
-    public static final int layout_main_addons=0x7f060011;
-    public static final int layout_main_dev_donate_link=0x7f060012;
-    public static final int layout_main_dev_website=0x7f060013;
-    public static final int layout_main_no_update_available=0x7f060014;
-    public static final int layout_main_update_available=0x7f060015;
-    public static final int listview=0x7f060016;
-    public static final int main_tv_no_update_available_summary=0x7f060017;
-    public static final int main_tv_update_available_summary=0x7f060018;
-    public static final int main_tv_update_available_title=0x7f060019;
-    public static final int menu_available_cancel=0x7f06001a;
-    public static final int menu_available_check_md5=0x7f06001b;
-    public static final int menu_available_delete=0x7f06001c;
-    public static final int menu_available_download=0x7f06001d;
-    public static final int menu_available_install=0x7f06001e;
-    public static final int menu_changelog=0x7f06001f;
-    public static final int menu_settings=0x7f060020;
-    public static final int progress_bar=0x7f060021;
-    public static final int size=0x7f060022;
-    public static final int title=0x7f060023;
-    public static final int toolbar_about=0x7f060024;
-    public static final int toolbar_addons=0x7f060025;
-    public static final int toolbar_available_bottom=0x7f060026;
-    public static final int toolbar_available_top=0x7f060027;
-    public static final int toolbar_main=0x7f060028;
-    public static final int tv_available_changelog_content=0x7f060029;
-    public static final int tv_available_md5=0x7f06002a;
-    public static final int tv_available_progress_counter=0x7f06002b;
-    public static final int tv_available_romhut=0x7f06002c;
-    public static final int tv_available_update_name=0x7f06002d;
-    public static final int tv_main_android_version=0x7f06002e;
-    public static final int tv_main_rom_date=0x7f06002f;
-    public static final int tv_main_rom_developer=0x7f060030;
-    public static final int tv_main_rom_information=0x7f060031;
-    public static final int tv_main_rom_name=0x7f060032;
-    public static final int tv_main_rom_version=0x7f060033;
-    public static final int updatedOn=0x7f060034;
+    public static final int bar_available_progress_bar=0x7f060000;
+    public static final int bar_main_progress_bar=0x7f060001;
+    public static final int layout_main_dev_donate_link=0x7f060002;
+    public static final int layout_main_no_update_available=0x7f060003;
+    public static final int layout_main_update_available=0x7f060004;
+    public static final int main_tv_no_update_available_summary=0x7f060005;
+    public static final int main_tv_update_available_summary=0x7f060006;
+    public static final int main_tv_update_available_title=0x7f060007;
+    public static final int menu_available_cancel=0x7f060008;
+    public static final int menu_available_check_md5=0x7f060009;
+    public static final int menu_available_delete=0x7f06000a;
+    public static final int menu_available_download=0x7f06000b;
+    public static final int menu_available_install=0x7f06000c;
+    public static final int menu_changelog=0x7f06000d;
+    public static final int menu_settings=0x7f06000e;
+    public static final int title=0x7f06000f;
+    public static final int toolbar_available_bottom=0x7f060010;
+    public static final int tv_available_changelog_content=0x7f060011;
+    public static final int tv_available_md5=0x7f060012;
+    public static final int tv_available_progress_counter=0x7f060013;
+    public static final int tv_available_romhut=0x7f060014;
+    public static final int tv_available_update_name=0x7f060015;
+    public static final int tv_main_android_version=0x7f060016;
+    public static final int tv_main_rom_date=0x7f060017;
+    public static final int tv_main_rom_developer=0x7f060018;
+    public static final int tv_main_rom_information=0x7f060019;
+    public static final int tv_main_rom_name=0x7f06001a;
+    public static final int tv_main_rom_version=0x7f06001b;
   }
   public static final class layout {
-    public static final int card_addons=0x7f070000;
-    public static final int card_addons_list_item=0x7f070001;
-    public static final int card_app_donate=0x7f070002;
-    public static final int card_changelog=0x7f070003;
-    public static final int card_credits=0x7f070004;
-    public static final int card_donate=0x7f070005;
-    public static final int card_no_update=0x7f070006;
-    public static final int card_rom_info=0x7f070007;
-    public static final int card_update=0x7f070008;
-    public static final int card_version=0x7f070009;
-    public static final int card_website=0x7f07000a;
-    public static final int ota_about=0x7f07000b;
-    public static final int ota_addon_cancel_button=0x7f07000c;
-    public static final int ota_addon_delete_button=0x7f07000d;
-    public static final int ota_addon_download_button=0x7f07000e;
-    public static final int ota_addons=0x7f07000f;
-    public static final int ota_available=0x7f070010;
-    public static final int ota_available_menu=0x7f070011;
-    public static final int ota_changelog_layout=0x7f070012;
-    public static final int ota_main=0x7f070013;
-    public static final int ota_main_actionbar_top=0x7f070014;
-    public static final int preference=0x7f070015;
-    public static final int preference_no_pro=0x7f070016;
-    public static final int preference_pro=0x7f070017;
+    public static final int ota_available=0x7f070000;
+    public static final int ota_available_menu=0x7f070001;
+    public static final int ota_changelog_layout=0x7f070002;
+    public static final int ota_main=0x7f070003;
   }
   public static final class menu {
     public static final int ota_menu_available=0x7f080000;
@@ -613,22 +411,21 @@ public final class R {
   }
   public static final class style {
     public static final int AboutListElement=0x7f0a0000;
-    public static final int ActionBar_Solid_RagnarDark=0x7f0a0001;
-    public static final int ActionBar_Solid_RagnarLight=0x7f0a0002;
-    public static final int ActionBar_Solid_RagnarLight_DarkActionBar=0x7f0a0003;
-    public static final int CardStyle_Dark=0x7f0a0004;
-    public static final int CardStyle_Light=0x7f0a0005;
-    public static final int CardView=0x7f0a0006;
-    public static final int CardView_Dark=0x7f0a0007;
-    public static final int CardView_Light=0x7f0a0008;
-    public static final int HorizontalSeparator=0x7f0a0009;
+    public static final int AppTheme=0x7f0a0001;
+    public static final int BlueDeepTheme=0x7f0a0002;
+    public static final int CardStyle_Dark=0x7f0a0003;
+    public static final int CardStyle_Light=0x7f0a0004;
+    public static final int CardView=0x7f0a0005;
+    public static final int CardView_Dark=0x7f0a0006;
+    public static final int CardView_Light=0x7f0a0007;
+    public static final int DarkTheme=0x7f0a0008;
+    public static final int GreenDeepTheme=0x7f0a0009;
     public static final int MainListElement=0x7f0a000a;
-    public static final int Theme_RagnarDark=0x7f0a000b;
-    public static final int Theme_RagnarDark_Settings=0x7f0a000c;
-    public static final int Theme_RagnarLight=0x7f0a000d;
-    public static final int Theme_RagnarLight_DarkActionBar=0x7f0a000e;
-    public static final int Theme_RagnarLight_DarkActionBar_Settings=0x7f0a000f;
-    public static final int Theme_RagnarLight_Settings=0x7f0a0010;
+    public static final int OrangeDeepTheme=0x7f0a000b;
+    public static final int PrefsTheme2=0x7f0a000c;
+    public static final int RedDeepTheme=0x7f0a000d;
+    public static final int YourAlertDialogTheme=0x7f0a000e;
+    public static final int listViewPrefs=0x7f0a000f;
   }
   public static final class styleable {
     /**
@@ -663,9 +460,9 @@ public final class R {
      * @see #CardView_contentPaddingTop
      */
     public static final int[] CardView={
-      0x7f020005, 0x7f020006, 0x7f020007, 0x7f020008, 
-      0x7f020009, 0x7f02000b, 0x7f020011, 0x7f020012, 
-      0x7f020013, 0x7f020014, 0x7f020015
+      0x7f020002, 0x7f020003, 0x7f020004, 0x7f020005, 
+      0x7f020006, 0x7f020007, 0x7f02000a, 0x7f02000b, 
+      0x7f02000c, 0x7f02000d, 0x7f02000e
     };
     /**
      * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#cardBackgroundColor}
@@ -803,179 +600,55 @@ public final class R {
      */
     public static final int CardView_contentPaddingTop=10;
     /**
-     * Attributes that can be used with a Theme_Ragnar.
+     * Attributes that can be used with a OTATheme.
      * <p>Includes the following attributes:</p>
      * <table>
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_addonsIcon com.ota.updates:addonsIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_backgroundRippleSelector com.ota.updates:backgroundRippleSelector}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_backgroundSelector com.ota.updates:backgroundSelector}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_browserIcon com.ota.updates:browserIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_cardBackground com.ota.updates:cardBackground}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_cardStyle com.ota.updates:cardStyle}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_changelogIcon com.ota.updates:changelogIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_checkIcon com.ota.updates:checkIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_colorHoloBlue com.ota.updates:colorHoloBlue}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_colorPrimary com.ota.updates:colorPrimary}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_colorPrimaryDark com.ota.updates:colorPrimaryDark}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_donateIcon com.ota.updates:donateIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_downloadIcon com.ota.updates:downloadIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_helpIcon com.ota.updates:helpIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_materialAccent com.ota.updates:materialAccent}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_menuTheme com.ota.updates:menuTheme}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_moreIconWidget com.ota.updates:moreIconWidget}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_noUpdateAvailable com.ota.updates:noUpdateAvailable}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_proRibbon com.ota.updates:proRibbon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_separator com.ota.updates:separator}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_settingsIcon com.ota.updates:settingsIcon}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_textColorPrimary com.ota.updates:textColorPrimary}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_textColorSecondary com.ota.updates:textColorSecondary}</code></td><td></td></tr>
-     * <tr><td><code>{@link #Theme_Ragnar_updateAvailable com.ota.updates:updateAvailable}</code></td><td></td></tr>
+     * <tr><td><code>{@link #OTATheme_backgroundColor com.ota.updates:backgroundColor}</code></td><td></td></tr>
+     * <tr><td><code>{@link #OTATheme_backgroundColorDark com.ota.updates:backgroundColorDark}</code></td><td></td></tr>
+     * <tr><td><code>{@link #OTATheme_colorPrimary com.ota.updates:colorPrimary}</code></td><td></td></tr>
+     * <tr><td><code>{@link #OTATheme_colorPrimaryDark com.ota.updates:colorPrimaryDark}</code></td><td></td></tr>
+     * <tr><td><code>{@link #OTATheme_textColor com.ota.updates:textColor}</code></td><td></td></tr>
+     * <tr><td><code>{@link #OTATheme_textColorDark com.ota.updates:textColorDark}</code></td><td></td></tr>
      * </table>
-     * @see #Theme_Ragnar_addonsIcon
-     * @see #Theme_Ragnar_backgroundRippleSelector
-     * @see #Theme_Ragnar_backgroundSelector
-     * @see #Theme_Ragnar_browserIcon
-     * @see #Theme_Ragnar_cardBackground
-     * @see #Theme_Ragnar_cardStyle
-     * @see #Theme_Ragnar_changelogIcon
-     * @see #Theme_Ragnar_checkIcon
-     * @see #Theme_Ragnar_colorHoloBlue
-     * @see #Theme_Ragnar_colorPrimary
-     * @see #Theme_Ragnar_colorPrimaryDark
-     * @see #Theme_Ragnar_donateIcon
-     * @see #Theme_Ragnar_downloadIcon
-     * @see #Theme_Ragnar_helpIcon
-     * @see #Theme_Ragnar_materialAccent
-     * @see #Theme_Ragnar_menuTheme
-     * @see #Theme_Ragnar_moreIconWidget
-     * @see #Theme_Ragnar_noUpdateAvailable
-     * @see #Theme_Ragnar_proRibbon
-     * @see #Theme_Ragnar_separator
-     * @see #Theme_Ragnar_settingsIcon
-     * @see #Theme_Ragnar_textColorPrimary
-     * @see #Theme_Ragnar_textColorSecondary
-     * @see #Theme_Ragnar_updateAvailable
+     * @see #OTATheme_backgroundColor
+     * @see #OTATheme_backgroundColorDark
+     * @see #OTATheme_colorPrimary
+     * @see #OTATheme_colorPrimaryDark
+     * @see #OTATheme_textColor
+     * @see #OTATheme_textColorDark
      */
-    public static final int[] Theme_Ragnar={
-      0x7f020000, 0x7f020001, 0x7f020002, 0x7f020003, 
-      0x7f020004, 0x7f02000a, 0x7f02000c, 0x7f02000d, 
-      0x7f02000e, 0x7f02000f, 0x7f020010, 0x7f020016, 
-      0x7f020017, 0x7f020018, 0x7f020019, 0x7f02001a, 
-      0x7f02001b, 0x7f02001c, 0x7f02001d, 0x7f02001e, 
-      0x7f02001f, 0x7f020020, 0x7f020021, 0x7f020022
+    public static final int[] OTATheme={
+      0x7f020000, 0x7f020001, 0x7f020008, 0x7f020009, 
+      0x7f02000f, 0x7f020010
     };
     /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#addonsIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:addonsIcon
-     */
-    public static final int Theme_Ragnar_addonsIcon=0;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#backgroundRippleSelector}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:backgroundRippleSelector
-     */
-    public static final int Theme_Ragnar_backgroundRippleSelector=1;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#backgroundSelector}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:backgroundSelector
-     */
-    public static final int Theme_Ragnar_backgroundSelector=2;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#browserIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:browserIcon
-     */
-    public static final int Theme_Ragnar_browserIcon=3;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#cardBackground}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
+     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#backgroundColor}
+     * attribute's value can be found in the {@link #OTATheme} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      *
-     * @attr name com.ota.updates:cardBackground
+     * @attr name com.ota.updates:backgroundColor
      */
-    public static final int Theme_Ragnar_cardBackground=4;
+    public static final int OTATheme_backgroundColor=0;
     /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#cardStyle}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:cardStyle
-     */
-    public static final int Theme_Ragnar_cardStyle=5;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#changelogIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:changelogIcon
-     */
-    public static final int Theme_Ragnar_changelogIcon=6;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#checkIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:checkIcon
-     */
-    public static final int Theme_Ragnar_checkIcon=7;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#colorHoloBlue}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
+     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#backgroundColorDark}
+     * attribute's value can be found in the {@link #OTATheme} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      *
-     * @attr name com.ota.updates:colorHoloBlue
+     * @attr name com.ota.updates:backgroundColorDark
      */
-    public static final int Theme_Ragnar_colorHoloBlue=8;
+    public static final int OTATheme_backgroundColorDark=1;
     /**
      * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#colorPrimary}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
+     * attribute's value can be found in the {@link #OTATheme} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -983,10 +656,10 @@ public final class R {
      *
      * @attr name com.ota.updates:colorPrimary
      */
-    public static final int Theme_Ragnar_colorPrimary=9;
+    public static final int OTATheme_colorPrimary=2;
     /**
      * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#colorPrimaryDark}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
+     * attribute's value can be found in the {@link #OTATheme} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -994,158 +667,29 @@ public final class R {
      *
      * @attr name com.ota.updates:colorPrimaryDark
      */
-    public static final int Theme_Ragnar_colorPrimaryDark=10;
+    public static final int OTATheme_colorPrimaryDark=3;
     /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#donateIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:donateIcon
-     */
-    public static final int Theme_Ragnar_donateIcon=11;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#downloadIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:downloadIcon
-     */
-    public static final int Theme_Ragnar_downloadIcon=12;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#helpIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:helpIcon
-     */
-    public static final int Theme_Ragnar_helpIcon=13;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#materialAccent}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
+     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#textColor}
+     * attribute's value can be found in the {@link #OTATheme} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      *
-     * @attr name com.ota.updates:materialAccent
+     * @attr name com.ota.updates:textColor
      */
-    public static final int Theme_Ragnar_materialAccent=14;
+    public static final int OTATheme_textColor=4;
     /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#menuTheme}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:menuTheme
-     */
-    public static final int Theme_Ragnar_menuTheme=15;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#moreIconWidget}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:moreIconWidget
-     */
-    public static final int Theme_Ragnar_moreIconWidget=16;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#noUpdateAvailable}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
+     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#textColorDark}
+     * attribute's value can be found in the {@link #OTATheme} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      *
-     * @attr name com.ota.updates:noUpdateAvailable
+     * @attr name com.ota.updates:textColorDark
      */
-    public static final int Theme_Ragnar_noUpdateAvailable=17;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#proRibbon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:proRibbon
-     */
-    public static final int Theme_Ragnar_proRibbon=18;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#separator}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:separator
-     */
-    public static final int Theme_Ragnar_separator=19;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#settingsIcon}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a reference to another resource, in the form
-     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
-     * attribute in the form
-     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
-     *
-     * @attr name com.ota.updates:settingsIcon
-     */
-    public static final int Theme_Ragnar_settingsIcon=20;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#textColorPrimary}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     *
-     * @attr name com.ota.updates:textColorPrimary
-     */
-    public static final int Theme_Ragnar_textColorPrimary=21;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#textColorSecondary}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     *
-     * @attr name com.ota.updates:textColorSecondary
-     */
-    public static final int Theme_Ragnar_textColorSecondary=22;
-    /**
-     * <p>This symbol is the offset where the {@link com.ota.updates.R.attr#updateAvailable}
-     * attribute's value can be found in the {@link #Theme_Ragnar} array.
-     *
-     * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
-     * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
-     * "<code>#<i>aarrggbb</i></code>".
-     *
-     * @attr name com.ota.updates:updateAvailable
-     */
-    public static final int Theme_Ragnar_updateAvailable=23;
+    public static final int OTATheme_textColorDark=5;
   }
   public static final class xml {
     public static final int preferences=0x7f0c0000;

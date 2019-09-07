@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -80,7 +81,6 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 	@SuppressLint("NewApi") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		mContext = this;
-		setTheme(Preferences.getTheme(mContext));
 		super.onCreate(savedInstanceState);          
 		setContentView(R.layout.ota_available);
 
@@ -112,7 +112,6 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 		setupUpdateNameInfo();
 		setupProgress(mContext);
 		setupMd5Info();
-		setupRomHut();
 		setupChangeLog();
 		if (Utils.isLollipop()) {
 			setupMenuToolbar(mContext);
@@ -372,26 +371,7 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 		changelogView.setMovementMethod(LinkMovementMethod.getInstance());
 	}
 
-	private void setupRomHut() {
-		String domainText = RomUpdate.getUrlDomain(mContext);
-		boolean isRomHut = domainText.contains("romhut.com");
-		if (domainText != null) {
-			TextView domainTextView = (TextView) findViewById(R.id.tv_available_romhut);
-			String sponsoredBy = isRomHut ?  "Sponsored by " : "";
-			domainTextView.setText(sponsoredBy + domainText);
-			if (Utils.isLollipop()) {	
-				int color;
-				if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-					color = getResources().getColor(R.color.material_deep_teal_500);
-				} else {
-					color = getResources().getColor(R.color.material_deep_teal_200);
-				}
-				domainTextView.setTextColor(color);
-			} else {
-				domainTextView.setTextColor(getResources().getColor(R.color.holo_blue_light));
-			}
-		}
-	}
+
 
 	private void setupUpdateNameInfo() {
 		boolean isDownloadOnGoing = Preferences.getIsDownloadOnGoing(mContext);
@@ -402,13 +382,13 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 		if (Utils.isLollipop()) {
 			int color;
 			if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-				color = getResources().getColor(R.color.material_deep_teal_500);
+				color = getResources().getColor(R.color.green_accent_color);
 			} else {
-				color = getResources().getColor(R.color.material_deep_teal_200);
+				color = getResources().getColor(R.color.green_accent_color_dark);
 			}
 			updateNameInfoText.setTextColor(color);
 		} else {
-			updateNameInfoText.setTextColor(getResources().getColor(R.color.holo_blue_light));
+			updateNameInfoText.setTextColor(getResources().getColor(R.color.blue_accent));
 		}
 
 		if (isDownloadOnGoing) {
@@ -481,12 +461,12 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 				Log.d(TAG, "Download finished. Setting up Progress Bars accordingly.");
 			String ready = context.getResources().getString(R.string.available_ready_to_install);
 
-			int color = res.getColor(R.color.holo_blue_light);
+			int color = res.getColor(R.color.blue_accent);
 			if (Utils.isLollipop()) {
 				if (Preferences.getCurrentTheme(context) == 0) { // Light
-					color = context.getResources().getColor(R.color.material_deep_teal_500);
+					color = context.getResources().getColor(R.color.green_accent_color_dark);
 				} else {
-					color = context.getResources().getColor(R.color.material_deep_teal_200);
+					color = context.getResources().getColor(R.color.green_accent_color);
 				}		
 			} 
 			if(mProgressCounterText != null) {

@@ -1,31 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- 	Copyright (C) 2015 Matt Booth (Kryten2k35).
- 
- 	Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- 	(the "License") you may not use this file except in compliance with the License.
- 	You may obtain a copy of the License at
- 
- 		http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- 
- 	Unless required by applicable law or agreed to in writing, software
- 	distributed under the License is distributed on an "AS IS" BASIS,
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	See the License for the specific language governing permissions and
-	limitations under the License.
-
--->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="HorizontalSeparator">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">?attr/separator</item>
+    <style name="AppTheme" parent="@android:style/Theme.Holo.NoActionBar">
+        <item name="android:alertDialogTheme">@style/YourAlertDialogTheme</item>
+        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="colorPrimary">@color/accent_color</item>
+        <item name="textColorDark">@color/text_highlight</item>
+        <item name="colorPrimaryDark">@color/accent_color_dark</item>
+        <!-- Customize your theme here. -->
     </style>
+    <style name="PrefsTheme2" parent="android:Theme.Material.Dialog">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:colorAccent">@color/accent_color</item>
+        <item name="android:colorPressedHighlight">@color/accent_color</item>
+        <item name="android:colorLongPressedHighlight">@color/accent_color</item>
+        <item name="android:colorFocusedHighlight">@color/accent_color</item>
+        <item name="android:colorActivatedHighlight">@color/accent_color</item>
+        <item name="android:activatedBackgroundIndicator">@color/background</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:listViewStyle">@style/listViewPrefs</item>
+        <item name="android:actionBarSize">48dp</item>
+    </style>
+
+    <style name="listViewPrefs" parent="@android:style/Widget.ListView">
+        <item name="android:background">@color/background</item>
+        <item name="android:cacheColorHint">@color/background</item>
+    </style>
+
+    <style name="YourAlertDialogTheme">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:background">@color/background</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:textColorAlertDialogListItem">@color/text_color</item>
+        <item name="android:textColorHint">@color/text_color</item>
+        <item name="android:textColorSecondary">@color/text_color</item>
+        <item name="android:actionMenuTextColor">@color/text_color</item>
+        <item name="android:colorAccent">@color/accent_color</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    </style>
+
+
+
+    <style name="OrangeDeepTheme" parent="@android:style/Theme.NoTitleBar" >
+        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="colorPrimary">@color/accent_color</item>
+        <item name="textColorDark">@color/text_highlight</item>
+        <item name="colorPrimaryDark">@color/accent_color_dark</item>
+    </style>
+
+    <style name="BlueDeepTheme" parent="@android:style/Theme.NoTitleBar" >
+        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="colorPrimary">@color/blue_accent</item>
+        <item name="textColorDark">@color/text_highlight</item>
+        <item name="colorPrimaryDark">@color/blue_accent_dark</item>
+    </style>
+
+    <style name="RedDeepTheme" parent="@android:style/Theme.NoTitleBar" >
+        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="colorPrimary">@color/red_accent_color</item>
+        <item name="textColorDark">@color/text_highlight</item>
+        <item name="colorPrimaryDark">@color/red_accent_color_dark</item>
+    </style>
+
+    <style name="GreenDeepTheme" parent="@android:style/Theme.NoTitleBar" >
+        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="colorPrimary">@color/green_accent_color</item>
+        <item name="textColorDark">@color/text_highlight</item>
+        <item name="colorPrimaryDark">@color/green_accent_color_dark</item>
+    </style>
+
+    <style name="DarkTheme" parent="@android:style/Theme.NoTitleBar" >
+        <item name="backgroundColor">@color/backgroundColorDark</item>
+        <item name="backgroundColorDark">@color/backgroundColorDarkSecond</item>
+        <item name="textColor">@color/text_white</item>
+        <item name="colorPrimary">#838383</item>
+        <item name="textColorDark">@color/text_white</item>
+        <item name="colorPrimaryDark">#616161</item>
+    </style>
+
+
+
 
     <style name="MainListElement">
         <item name="android:clickable">true</item>
-        <item name="android:background">?attr/backgroundSelector</item>
+        <item name="android:background">#FFF</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingLeft">16dp</item>
@@ -45,7 +118,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
-        <item name="android:background">?attr/cardBackground</item>
+        <item name="android:background">#FFF</item>
     </style>
 
     <style name="CardStyle.Dark" parent="android:style/Theme">
@@ -54,7 +127,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
-        <item name="android:background">?attr/cardBackground</item>
+        <item name="android:background">#FFF</item>
     </style>
 
 </resources>

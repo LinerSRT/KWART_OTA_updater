@@ -12,38 +12,44 @@
  	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
-	limitations under the License.
+	limitations under the License.
+
 -->
 <resources>
 
-    <color name="white">#ffffffff</color>
-    <color name="grey">#ffcccccc</color>
-    <color name="dark_grey">#ff333333</color>
-    <color name="black">#ff000000</color>
-    <color name="separator_dark">#ff333333</color>
-    <color name="separator_light">#ffdddddd</color>
+    <color name="background">#eeeeee</color>
+    <color name="background_dark">#A83D00</color>
+    <color name="background_sdark">#B3C4C4</color>
+    <color name="text_color">#393d46</color>
+    <color name="text_highlight">#212832</color>
+    <color name="text_white">#FFF</color>
+    <color name="white">#FFF</color>
 
-    <!-- A light Holo shade of blue -->
-    <color name="holo_blue_light">#ff33b5e5</color>
-    <!-- A light Holo shade of green -->
-    <color name="holo_green_light">#ff99cc00</color>
-    <!-- A light Holo shade of red -->
-    <color name="holo_red_light">#ffff4444</color>
-    <!-- A dark Holo shade of blue -->
-    <color name="holo_blue_dark">#ff0099cc</color>
-    <!-- A dark Holo shade of green -->
-    <color name="holo_green_dark">#ff669900</color>
-    <!-- A dark Holo shade of red -->
-    <color name="holo_red_dark">#ffcc0000</color>
-    <!-- A Holo shade of purple -->
-    <color name="holo_purple">#ffaa66cc</color>
-    <!-- A light Holo shade of orange -->
-    <color name="holo_orange_light">#ffffbb33</color>
-    <!-- A dark Holo shade of orange -->
-    <color name="holo_orange_dark">#ffff8800</color>
-    <!-- A really bright Holo shade of blue -->
-    <color name="holo_blue_bright">#ff00ddff</color>
-    <color name="card_background_holo_dark">#80000000</color>
-    <color name="card_background_holo_light">@color/white</color>
+
+
+    <!-- Blue Theme -->
+    <color name="blue_accent">#2036F3</color>
+    <color name="blue_accent_dark">#192AB6</color>
+
+    <!-- Orange Theme -->
+    <color name="accent_color">#fd7014</color>
+    <color name="accent_color_dark">#C75810</color>
+
+    <!-- Red Theme -->
+    <color name="red_accent_color">#C00000</color>
+    <color name="red_accent_color_dark">#940000</color>
+
+    <!-- Green Theme -->
+    <color name="green_accent_color">#139400</color>
+    <color name="green_accent_color_dark">#0F6D01</color>
+
+    <!-- Dark Mode -->
+    <color name="backgroundColorDark">#000</color>
+    <color name="backgroundColorDarkSecond">#0E0E0E</color>
+    <color name="dark_accent">#838383</color>
+
+    <!-- Light Mode -->
+    <color name="backgroundColorLight">#eee</color>
+    <color name="backgroundColorLightSecond">#B3C4C4</color>
 
 </resources>

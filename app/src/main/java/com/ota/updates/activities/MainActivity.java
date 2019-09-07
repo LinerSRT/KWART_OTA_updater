@@ -81,10 +81,8 @@ public class MainActivity extends Activity implements Constants{
 			if (action.equals(MANIFEST_LOADED)) {
 				// Reloads layouts to reflect the updated manifest information
 				updateDonateLinkLayout();
-				updateAddonsLayout();
 				updateRomInformation();
 				updateRomUpdateLayouts();
-				updateWebsiteLayout();
 			}
 		}
 	};
@@ -93,31 +91,11 @@ public class MainActivity extends Activity implements Constants{
 	public void onCreate(Bundle savedInstanceState) {
 
 		mContext = this;
-		setTheme(Preferences.getTheme(mContext));
 		isLollipop = Utils.isLollipop();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ota_main);
 
-		if (isLollipop) {
-			Toolbar toolbar = null;
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-				toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-				setActionBar(toolbar);
-				toolbar.setTitle(getResources().getString(R.string.app_name));
-			}
-		} else {
-			// Custom ActionBar view
-			ActionBar actionBar = getActionBar();
-			actionBar.setTitle(R.string.app_name);
-			LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
-					LayoutParams.WRAP_CONTENT,
-					Gravity.END |
-					Gravity.CENTER_VERTICAL);
-			View actionbarView = LayoutInflater.from(this).inflate(R.layout.ota_main_actionbar_top, null);
-			actionBar.setCustomView(actionbarView, layoutParams);
-			actionBar.setDisplayShowCustomEnabled(true);
-		}
 		
 		boolean firstRun = Preferences.getFirstRun(mContext);				
 		if(firstRun) {
@@ -164,10 +142,8 @@ public class MainActivity extends Activity implements Constants{
 
 		// Update the layouts
 		updateDonateLinkLayout();
-		updateAddonsLayout();
 		updateRomInformation();
 		updateRomUpdateLayouts();
-		updateWebsiteLayout();
 	}
 
 	@Override
@@ -387,14 +363,7 @@ public class MainActivity extends Activity implements Constants{
 		}
 	}
 	
-	private void updateAddonsLayout() {
-		CardView addonsLink = (CardView) findViewById(R.id.layout_main_addons);
-		addonsLink.setVisibility(View.GONE);
-		
-		if (RomUpdate.getAddonsCount(mContext) > 0) {
-			addonsLink.setVisibility(View.VISIBLE);
-		}
-	}
+
 
 	private void updateDonateLinkLayout() {
 		CardView donateLink = (CardView) findViewById(R.id.layout_main_dev_donate_link);
@@ -406,14 +375,7 @@ public class MainActivity extends Activity implements Constants{
 		}
 	}
 
-	private void updateWebsiteLayout() {
-		CardView webLink = (CardView) findViewById(R.id.layout_main_dev_website);
-		webLink.setVisibility(View.GONE);
 
-		if (!RomUpdate.getWebsite(mContext).trim().equals("null")) {
-			webLink.setVisibility(View.VISIBLE);
-		}
-	}
 
 	private void updateRomInformation() {
 		String htmlColorOpen = "";
@@ -472,10 +434,7 @@ public class MainActivity extends Activity implements Constants{
 		startActivity(intent);
 	}
 	
-	public void openAddons(View v) {
-		Intent intent = new Intent(mContext, AddonActivity.class);
-		startActivity(intent);
-	}
+
 
 	public void openDonationPage(View v) {
 		

@@ -16,29 +16,6 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <!-- Open Recovery Script -->
-    <PreferenceCategory
-        android:key="updater_ors_screen_title"
-        android:title="@string/twrp_ors_cat" />
-    
-    <Preference
-        android:dependency="updater_twrp_ors"
-        android:key="updater_twrp_ors_information"
-        android:selectable="false"
-        android:summary="@string/twrp_ors_information"
-        android:title="@string/information" />
-
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="updater_twrp_ors"
-        android:summary="@string/twrp_ors_summary"
-        android:title="@string/twrp_ors_title" />
-
-    <Preference
-        android:dependency="updater_twrp_ors"
-        android:key="install_prefs"
-        android:summary="@string/twrp_ors_install_prefs_summary"
-        android:title="@string/twrp_ors_install_prefs" />
     
     <!-- Background update service -->
     <PreferenceCategory
@@ -72,32 +49,7 @@
         android:dependency="background_service"
         android:key="notifications_vibrate"
         android:title="@string/notifications_vibrate" />
-    <SwitchPreference
-        android:defaultValue="false"
-        android:dependency="background_service"
-        android:key="notifications_ignored_release"
-        android:title="@string/notification_ignore_release_title" />
 
-     <!-- Storage Settings -->
-    <PreferenceCategory
-        android:key="updater_storage_location_cat"
-        android:title="@string/storage" />
-    <Preference 
-        android:key="updater_storage_location"
-        android:title="@string/storage_location" />
-    
-    <!-- Network Settings -->
-    <PreferenceCategory
-        android:key="updater_updater_mobile_wifi_network_cat"
-        android:title="@string/mobile_wifi_network" />
-
-    <ListPreference
-        android:defaultValue="2"
-        android:entries="@array/updater_network_entries"
-        android:entryValues="@array/updater_network_values"
-        android:key="network_type"
-        android:summary="@string/list_summary"
-        android:title="@string/mobile_wifi_title" />
 
     <!-- App Theme -->
     <PreferenceCategory
@@ -110,29 +62,5 @@
         android:key="current_theme"
         android:summary="@string/list_summary"
         android:title="@string/theme" />
-
-    <PreferenceCategory
-        android:key="updater_ads_cat"
-        android:title="@string/ads_cat" />
-
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="ads_enabled"
-        android:summaryOff="@string/ads_summary_off"
-        android:summaryOn="@string/ads_summary_on"
-        android:title="@string/ads_enable" />-->
-    
-     <!-- About -->
-    <PreferenceCategory
-        android:key="settings_about"
-        android:title="@string/app_name" />
-    
-    <Preference android:key="about_pro" />
-    
-    <Preference 
-        android:key="about_activity_pref"
-        android:title="@string/about_about_title"
-        android:summary="@string/about_preferences_summary" />
-
 
 </PreferenceScreen>

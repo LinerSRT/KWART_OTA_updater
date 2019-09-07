@@ -69,7 +69,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 	@SuppressLint("NewApi") @Override
 	public void onCreate(Bundle savedInstanceState) {
 		mContext = this;
-		setTheme(Preferences.getSettingsTheme(mContext));
 		super.onCreate(savedInstanceState);
 
 		getPreferenceManager().setSharedPreferencesName(Preferences.PREF_NAME);
@@ -115,19 +114,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 
 		mProPreference = (Preference) findPreference(ABOUT_PREF_PRO);
 		mProPreference.setOnPreferenceClickListener(this);
-
-		Boolean isPro = Utils.isPackageInstalled("com.ota.updatespro", mContext);
-		if (isPro) {		
-			mProPreference.setLayoutResource(R.layout.preference_pro);
-			mProPreference.setTitle(R.string.about_pro_title);
-			mProPreference.setSummary(R.string.about_pro_summary);
-			mProPreference.setSelectable(!isPro);
-		} else {
-			mProPreference.setLayoutResource(R.layout.preference_no_pro);
-			mProPreference.setTitle(R.string.about_pro_title);
-			mProPreference.setSummary(R.string.about_non_pro_summary);
-		}
-		Preferences.setIsPro(mContext, isPro);
 		
 		mStorageLocation = (Preference) findPreference(STORAGE_LOCATION);
 		mStorageLocation.setSelectable(false);
@@ -175,9 +161,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 
 		if (preference == mInstallPrefs) {
 			showInstallPrefs();
-		} else if (preference == mAboutActivity) {
-			Intent intent = new Intent(mContext, AboutActivity.class);
-			startActivity(intent);
 		} else if (preference == mProPreference) {
 			String url = "https://play.google.com/store/apps/details?id=" + otaPackage;
 			Intent intent = new Intent(Intent.ACTION_VIEW);
