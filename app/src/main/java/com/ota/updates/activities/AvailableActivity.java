@@ -293,20 +293,7 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 									+ Preferences
 									.getORSEnabled(mContext));
 
-
-				//   public Installer(Context context) {
-				//	this.context = context;
-				//	this.filename = RomUpdate.getFilename(context) + ".zip";
-				//}
-//
-				//File installAfterFlashDir = new File("/sdcard"
-				//		+ File.separator
-				//		+ OTA_DOWNLOAD_DIR
-				//		+ File.separator
-				//		+ filename);
-//
-
-				String filename = "/sdcard/"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(AvailableActivity.this);
+				String filename = "/sdcard/"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(AvailableActivity.this)+".zip";
 				Log.d("TAGTAG", "Start install "+filename);
 				installer.flashFiles(AvailableActivity.this, filename, false, false, false);
 				// Flash after download

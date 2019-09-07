@@ -1,4 +1,4 @@
-#Fri Sep 06 23:45:58 MSK 2019
+#Sat Sep 07 23:25:21 ICT 2019
 base.0=E\:\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 path.0=classes.dex
 renamed.0=classes.dex
