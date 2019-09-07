@@ -51,16 +51,4 @@
         android:title="@string/notifications_vibrate" />
 
 
-    <!-- App Theme -->
-    <PreferenceCategory
-        android:key="updater_theme_cat"
-        android:title="@string/theme" />
-
-    <ListPreference
-        android:entries="@array/theme_entries"
-        android:entryValues="@array/theme_values"
-        android:key="current_theme"
-        android:summary="@string/list_summary"
-        android:title="@string/theme" />
-
 </PreferenceScreen>

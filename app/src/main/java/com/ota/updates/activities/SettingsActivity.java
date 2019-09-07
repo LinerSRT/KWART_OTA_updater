@@ -1,22 +1,5 @@
-/*
- * Copyright (C) 2015 Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.ota.updates.activities;
-
-import java.io.File;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -39,32 +22,21 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.preference.SwitchPreference;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseBooleanArray;
-
 import com.ota.updates.R;
 import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Tools;
 import com.ota.updates.utils.Utils;
 
-@SuppressLint("SdCardPath")
-@SuppressWarnings("deprecation")
+@SuppressLint({"SdCardPath", "ExportedPreferenceActivity"})
 public class SettingsActivity extends PreferenceActivity implements OnPreferenceClickListener, OnPreferenceChangeListener, OnSharedPreferenceChangeListener, Constants{
 
 	public final String TAG = this.getClass().getSimpleName();
-	private static final String NOTIFICATIONS_IGNORED_RELEASE = "notifications_ignored_release";
-
 	private Context mContext;
 	private Builder mInstallPrefsDialog;
-	private Preference mInstallPrefs;
-	private Preference mAboutActivity;
 	private RingtonePreference mRingtonePreference;
 	private SparseBooleanArray mInstallPrefsItems = new SparseBooleanArray();
-	private SwitchPreference mIgnoredRelease;
-	private ListPreference mThemePref;
-	private Preference mProPreference;
-	private Preference mStorageLocation;
 
 	@SuppressLint("NewApi") @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,17 +47,9 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		addPreferencesFromResource(R.xml.preferences);
 
-		mInstallPrefs = (Preference) findPreference(INSTALL_PREFS);
-		mInstallPrefs.setOnPreferenceClickListener(this);
-
-		mAboutActivity = (Preference) findPreference(ABOUT_ACTIVITY_PREF);
-		mAboutActivity.setOnPreferenceClickListener(this);
 
 		mRingtonePreference = (RingtonePreference) findPreference(NOTIFICATIONS_SOUND);
 
-		mThemePref = (ListPreference) findPreference(CURRENT_THEME);
-		mThemePref.setValue(Integer.toString(Preferences.getCurrentTheme(mContext)));
-		setThemeSummary();
 
 		String defValue = android.provider.Settings.System.DEFAULT_NOTIFICATION_URI.toString();
 		String soundValue = getPreferenceManager().getSharedPreferences().getString(NOTIFICATIONS_SOUND, defValue);
@@ -95,30 +59,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 			SwitchPreference ors = (SwitchPreference) findPreference("updater_twrp_ors");
 			ors.setEnabled(false);
 		}
-
-		mIgnoredRelease = (SwitchPreference) findPreference(NOTIFICATIONS_IGNORED_RELEASE);
-		mIgnoredRelease.setOnPreferenceChangeListener(this);
-		String ignoredRelease = Preferences.getIgnoredRelease(mContext);
-		boolean isIgnored = ignoredRelease.equalsIgnoreCase("0");
-		if (!isIgnored) {
-			mIgnoredRelease.setSummary(
-					getResources().getString(R.string.notification_ignoring_release) +
-					" " + 
-					ignoredRelease);
-			mIgnoredRelease.setChecked(true);
-			mIgnoredRelease.setEnabled(true);
-			mIgnoredRelease.setSelectable(true);
-		} else {
-			setNotIgnore(false);
-		}
-
-		mProPreference = (Preference) findPreference(ABOUT_PREF_PRO);
-		mProPreference.setOnPreferenceClickListener(this);
-		
-		mStorageLocation = (Preference) findPreference(STORAGE_LOCATION);
-		mStorageLocation.setSelectable(false);
-		String storageLocationStr = SD_CARD + File.separator + OTA_DOWNLOAD_DIR;
-		mStorageLocation.setSummary(storageLocationStr);
 	}
 
 	@Override
@@ -157,16 +97,6 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
-		String otaPackage = "com.ota.updatespro";
-
-		if (preference == mInstallPrefs) {
-			showInstallPrefs();
-		} else if (preference == mProPreference) {
-			String url = "https://play.google.com/store/apps/details?id=" + otaPackage;
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(Uri.parse(url));
-			startActivity(intent);
-		}
 		return false;
 	}
 
@@ -176,66 +106,8 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 		if (preference == mRingtonePreference) {
 			setRingtoneSummary((String)newValue);
 			result = true;
-		} else if (preference == mIgnoredRelease) {
-			if (!(Boolean) newValue) {
-				if (DEBUGGING) {
-					Log.d(TAG, "Unignoring release");
-				}
-				setNotIgnore(true);
-			}
 		}
 		return result;
-	}
-
-	private void setNotIgnore(boolean set) {
-		if (set) {
-			Preferences.setIgnoredRelease(mContext, "0");
-		}
-		mIgnoredRelease.setSummary(
-				getResources().getString(R.string.notification_not_ignoring_release));
-		mIgnoredRelease.setChecked(false);
-		mIgnoredRelease.setEnabled(false);
-		mIgnoredRelease.setSelectable(false);
-	}
-
-	private void showInstallPrefs() {
-		boolean wipeData, wipeCache, wipeDalvik, deleteAfterInstall;
-
-		wipeData = Preferences.getWipeData(mContext);
-		wipeCache = Preferences.getWipeCache(mContext);
-		wipeDalvik = Preferences.getWipeDalvik(mContext);
-		deleteAfterInstall = Preferences.getDeleteAfterInstall(mContext);
-
-		// Default value array for the multichoice class.
-		boolean [] defaultValues = { wipeData, wipeCache, wipeDalvik, deleteAfterInstall };
-
-		// Also fill in InstallPrefItems with the default values
-		// So that, if the user changes nothing, it doesn't reset all to false.
-		mInstallPrefsItems.put(0, wipeData);
-		mInstallPrefsItems.put(1, wipeCache);
-		mInstallPrefsItems.put(2, wipeDalvik);
-		mInstallPrefsItems.put(3, deleteAfterInstall);
-
-		mInstallPrefsDialog = new AlertDialog.Builder(mContext);
-		mInstallPrefsDialog.setTitle(R.string.twrp_ors_install_prefs);
-		mInstallPrefsDialog.setMultiChoiceItems(R.array.ors_install_entries, defaultValues,
-				new DialogInterface.OnMultiChoiceClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which,
-					boolean isChecked) {            
-				mInstallPrefsItems.put(which, isChecked);
-			}
-		});
-		mInstallPrefsDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int id) {
-				Preferences.setWipeData(mContext, mInstallPrefsItems.get(0));
-				Preferences.setWipeCache(mContext, mInstallPrefsItems.get(1));   
-				Preferences.setWipeDalvik(mContext, mInstallPrefsItems.get(2));   
-				Preferences.setDeleteAfterInstall(mContext, mInstallPrefsItems.get(3));   
-			}
-		});
-		mInstallPrefsDialog.show();
 	}
 
 	private void setRingtoneSummary(String soundValue) {
@@ -243,19 +115,5 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 		Ringtone tone = soundUri != null ? RingtoneManager.getRingtone(this, soundUri) : null;
 		mRingtonePreference.setSummary(tone != null ? tone.getTitle(this)
 				: getResources().getString(R.string.silent_ringtone));
-	}
-
-	private void setThemeSummary() {	
-		int currentTheme = Preferences.getCurrentTheme(mContext);
-		if(DEBUGGING)
-			Log.d(TAG, "Current theme number is" + currentTheme);
-		int id = 0;
-		for (int i = 0; i < mThemePref.getEntryValues().length; i++) {
-			if (mThemePref.getEntryValues()[i].equals(Integer.toString(currentTheme))) {
-				id = i;
-				break;
-			}
-		}
-		mThemePref.setSummary(mThemePref.getEntries()[id]);
 	}
 }

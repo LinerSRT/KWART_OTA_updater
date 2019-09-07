@@ -134,13 +134,6 @@ public class Preferences implements Constants{
 		return getPrefs(context).getString(IGNORE_RELEASE_VERSION, "0");
 	}
 
-	public static Boolean getAdsEnabled(Context context) {
-		return getPrefs(context).getBoolean(ADS_ENABLED, true);
-	}
-
-	public static String getOldChangelog(Context context) {
-		return getPrefs(context).getString(OLD_CHANGELOG, context.getResources().getString(R.string.app_version));
-	}
 
 	public static Boolean getFirstRun(Context context) {
 		return getPrefs(context).getBoolean(FIRST_RUN, true);

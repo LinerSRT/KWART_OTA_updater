@@ -106,7 +106,7 @@ public class Changelog extends AsyncTask<Void, Void, String> {
 				}
 				text = data.toString();
 			} catch (IOException e) {
-				text = mContext.getString(R.string.changelog_error);
+				text = " ";
 			} finally {
 				try {
 					if (inputReader != null) {

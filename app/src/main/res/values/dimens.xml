@@ -16,7 +16,12 @@
 -->
 <resources>
 
-    <dimen name="shadow_height">2dp</dimen>
-    <dimen name="card_view_radius">3dp</dimen>
+    <dimen name="rippleStrokeWidth">2dp</dimen>
+    <dimen name="rippleRadius">64dp</dimen>
+    <dimen name="elevation_top">40dp</dimen>
+    <dimen name="headerTextSize">17sp</dimen>
+    <dimen name="textSizeGlobal">12sp</dimen>
+    <dimen name="secondTextSizeGlobal">9sp</dimen>
+    <dimen name="headerSize">60dp</dimen>
 
 </resources>

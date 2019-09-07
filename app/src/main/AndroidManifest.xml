@@ -3,8 +3,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ota.updates"
-    android:versionCode="19"
-    android:versionName="@string/app_version" >
+    android:versionCode="19" >
     
     <uses-sdk
         android:maxSdkVersion="22" />
@@ -55,7 +54,11 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/preferences_name" />
+            android:label="@string/preferences_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
 
         <receiver
             android:name="com.ota.updates.receivers.AppReceiver"

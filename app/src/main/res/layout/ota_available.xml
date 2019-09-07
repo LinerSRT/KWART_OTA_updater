@@ -1,112 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- 	Copyright (C) 2015 Matt Booth (Kryten2k35).
- 
- 	Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- 	(the "License") you may not use this file except in compliance with the License.
- 	You may obtain a copy of the License at
- 
- 		http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- 
- 	Unless required by applicable law or agreed to in writing, software
- 	distributed under the License is distributed on an "AS IS" BASIS,
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	See the License for the specific language governing permissions and
-	limitations under the License.
--->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    android:orientation="vertical" >
+    android:gravity="center">
 
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:orientation="vertical"
-        android:padding="16dp" >
-
-        <TextView
-            android:id="@+id/tv_available_update_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/available_update_name"
-            android:textSize="28sp"
-            android:textColor="?attr/textColor"/>
-
-        <ProgressBar
-            android:id="@+id/bar_available_progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/tv_available_progress_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/available_progress_counter"
-            android:textColor="?attr/textColor"
-            android:textSize="10sp"
-            tools:ignore="SmallSp" />
+            <TextView
+                android:id="@+id/tv_available_update_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/available_update_name"
+                android:textSize="@dimen/textSizeGlobal"
+                android:textColor="?attr/textColor"/>
 
-        <TextView
-            android:id="@+id/tv_available_md5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/available_md5"
-            android:textColor="?attr/textColor"
-            android:textSize="10sp"
-            tools:ignore="SmallSp" />
+            <ProgressBar
+                android:id="@+id/bar_available_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:progressTint="?attr/colorPrimary"
+                android:progress="40"/>
 
-        <TextView
-            android:id="@+id/tv_available_romhut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textSize="10sp"
-            tools:ignore="SmallSp" />
+            <TextView
+                android:id="@+id/tv_available_progress_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/available_progress_counter"
+                android:textColor="?attr/textColor"
+                android:textSize="@dimen/secondTextSizeGlobal"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/tv_available_md5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/available_md5"
+                android:textColor="?attr/textColor"
+                android:textSize="@dimen/secondTextSizeGlobal"
+                tools:ignore="SmallSp"
+                android:visibility="gone"/>
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp" >
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_available_changelog_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:text="@string/available_changelog_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="?attr/textColor"
+                        android:textSize="@dimen/secondTextSizeGlobal"/>
+                </LinearLayout>
+            </ScrollView>
+
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="horizontal"
+                android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tv_available_changelog_content"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/menu_available_check_md5"
+                    android:background="@drawable/button_background_shape"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:singleLine="false"
-                    android:text="@string/available_changelog_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/available_check_md5"
+                    android:textSize="@dimen/secondTextSizeGlobal"
+                    android:textColor="#fff"/>
 
-                    android:textColor="?attr/textColor"/>
+                <Button
+                    android:id="@+id/menu_available_delete"
+                    android:background="@drawable/button_background_shape"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/delete"
+                    android:textSize="@dimen/secondTextSizeGlobal"
+                    android:textColor="#fff"/>
+
+                <Button
+                    android:id="@+id/menu_available_download"
+                    android:background="@drawable/button_background_shape"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/download"
+                    android:textSize="@dimen/secondTextSizeGlobal"
+                    android:textColor="#fff"/>
+
+                <Button
+                    android:id="@+id/menu_available_cancel"
+                    android:background="@drawable/button_background_shape"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/cancel"
+                    android:textSize="@dimen/secondTextSizeGlobal"
+                    android:textColor="#fff"/>
+
+                <Button
+                    android:id="@+id/menu_available_install"
+                    android:background="@drawable/button_background_shape"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/install"
+                    android:textSize="@dimen/secondTextSizeGlobal"
+                    android:textColor="#fff"/>
+
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+        </LinearLayout>
 
-    <Toolbar
-        android:id="@+id/toolbar_available_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/AppTheme" >
 
-        <include layout="@layout/ota_available_menu" />
-    </Toolbar>
+    </ScrollView>
+
+
+
+
 
 </RelativeLayout>
