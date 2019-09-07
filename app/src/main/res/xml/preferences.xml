@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ 	Copyright (C) 2015 Matt Booth (Kryten2k35).
+ 
+ 	Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
+ 	(the "License") you may not use this file except in compliance with the License.
+ 	You may obtain a copy of the License at
+ 
+ 		http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+ 
+ 	Unless required by applicable law or agreed to in writing, software
+ 	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Open Recovery Script -->
+    <PreferenceCategory
+        android:key="updater_ors_screen_title"
+        android:title="@string/twrp_ors_cat" />
+    
+    <Preference
+        android:dependency="updater_twrp_ors"
+        android:key="updater_twrp_ors_information"
+        android:selectable="false"
+        android:summary="@string/twrp_ors_information"
+        android:title="@string/information" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="updater_twrp_ors"
+        android:summary="@string/twrp_ors_summary"
+        android:title="@string/twrp_ors_title" />
+
+    <Preference
+        android:dependency="updater_twrp_ors"
+        android:key="install_prefs"
+        android:summary="@string/twrp_ors_install_prefs_summary"
+        android:title="@string/twrp_ors_install_prefs" />
+    
+    <!-- Background update service -->
+    <PreferenceCategory
+        android:key="updater_ors_screen_title"
+        android:title="@string/notifications_title" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="background_service"
+        android:summary="@string/background_service_summary"
+        android:title="@string/notifications_title" />
+
+    <ListPreference
+        android:defaultValue="43200"
+        android:dependency="background_service"
+        android:entries="@array/updater_background_frequency_entries"
+        android:entryValues="@array/updater_background_frequency_values"
+        android:key="background_frequency"
+        android:summary="@string/list_summary"
+        android:title="@string/background_frequency" />
+
+    <RingtonePreference
+        android:defaultValue="content://settings/system/notification_sound"
+        android:dependency="background_service"
+        android:key="notifications_sound"
+        android:ringtoneType="notification"
+        android:title="@string/notifications_sound" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:dependency="background_service"
+        android:key="notifications_vibrate"
+        android:title="@string/notifications_vibrate" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:dependency="background_service"
+        android:key="notifications_ignored_release"
+        android:title="@string/notification_ignore_release_title" />
+
+     <!-- Storage Settings -->
+    <PreferenceCategory
+        android:key="updater_storage_location_cat"
+        android:title="@string/storage" />
+    <Preference 
+        android:key="updater_storage_location"
+        android:title="@string/storage_location" />
+    
+    <!-- Network Settings -->
+    <PreferenceCategory
+        android:key="updater_updater_mobile_wifi_network_cat"
+        android:title="@string/mobile_wifi_network" />
+
+    <ListPreference
+        android:defaultValue="2"
+        android:entries="@array/updater_network_entries"
+        android:entryValues="@array/updater_network_values"
+        android:key="network_type"
+        android:summary="@string/list_summary"
+        android:title="@string/mobile_wifi_title" />
+
+    <!-- App Theme -->
+    <PreferenceCategory
+        android:key="updater_theme_cat"
+        android:title="@string/theme" />
+
+    <ListPreference
+        android:entries="@array/theme_entries"
+        android:entryValues="@array/theme_values"
+        android:key="current_theme"
+        android:summary="@string/list_summary"
+        android:title="@string/theme" />
+
+    <PreferenceCategory
+        android:key="updater_ads_cat"
+        android:title="@string/ads_cat" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="ads_enabled"
+        android:summaryOff="@string/ads_summary_off"
+        android:summaryOn="@string/ads_summary_on"
+        android:title="@string/ads_enable" />-->
+    
+     <!-- About -->
+    <PreferenceCategory
+        android:key="settings_about"
+        android:title="@string/app_name" />
+    
+    <Preference android:key="about_pro" />
+    
+    <Preference 
+        android:key="about_activity_pref"
+        android:title="@string/about_about_title"
+        android:summary="@string/about_preferences_summary" />
+
+
+</PreferenceScreen>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ors_install_entries">
+        <item>@string/twrp_ors_wipe_data</item>
+        <item>@string/twrp_ors_wipe_cache</item>
+        <item>@string/twrp_ors_wipe_dalvik</item>
+        <item>@string/twrp_ors_delete_after</item>
+    </string-array>
+    <string-array name="theme_entries">
+        <item>@string/theme_dark</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_light_dark</item>
+    </string-array>
+    <string-array name="theme_values" translatable="false">
+        <item>"2"</item>
+        <item>"0"</item>
+        <item>"1"</item>
+    </string-array>
+    <string-array name="updater_background_frequency_entries">
+        <item>@string/background_30mins</item>
+        <item>@string/background_60mins</item>
+        <item>@string/background_2hours</item>
+        <item>@string/background_3hours</item>
+        <item>@string/background_6hours</item>
+        <item>@string/background_12hours</item>
+        <item>@string/background_24hours</item>
+        <item>@string/background_3days</item>
+        <item>@string/background_7days</item>
+    </string-array>
+    <string-array name="updater_background_frequency_values" translatable="false">
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+        <item>10800</item>
+        <item>21600</item>
+        <item>43200</item>
+        <item>86400</item>
+        <item>259200</item>
+        <item>604800</item>
+    </string-array>
+    <string-array name="updater_network_entries">
+        <item>@string/wifi_network_only</item>
+        <item>@string/mobile_or_wifi</item>
+    </string-array>
+    <string-array name="updater_network_values" translatable="false">
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+    <color name="black">#ff000000</color>
+    <color name="card_background_holo_dark">#80000000</color>
+    <color name="card_background_holo_light">@color/white</color>
+    <color name="cardview_dark_background">#FF202020</color>
+    <color name="cardview_light_background">#FFFAFAFA</color>
+    <color name="cardview_shadow_end_color">#03000000</color>
+    <color name="cardview_shadow_start_color">#37000000</color>
+    <color name="dark_grey">#ff333333</color>
+    <color name="grey">#ffcccccc</color>
+    <color name="holo_blue_bright">#ff00ddff</color>
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="holo_blue_light">#ff33b5e5</color>
+    <color name="holo_green_dark">#ff669900</color>
+    <color name="holo_green_light">#ff99cc00</color>
+    <color name="holo_orange_dark">#ffff8800</color>
+    <color name="holo_orange_light">#ffffbb33</color>
+    <color name="holo_purple">#ffaa66cc</color>
+    <color name="holo_red_dark">#ffcc0000</color>
+    <color name="holo_red_light">#ffff4444</color>
+    <color name="separator_dark">#ff333333</color>
+    <color name="separator_light">#ffdddddd</color>
+    <color name="white">#ffffffff</color>
+    <dimen name="card_view_radius">4dp</dimen>
+    <dimen name="cardview_compat_inset_shadow">1dp</dimen>
+    <dimen name="cardview_default_elevation">2dp</dimen>
+    <dimen name="cardview_default_radius">2dp</dimen>
+    <dimen name="preference_child_padding_side">16.0dip</dimen>
+    <dimen name="preference_icon_minWidth">0.0dip</dimen>
+    <dimen name="preference_item_padding_inner">8.0dip</dimen>
+    <dimen name="preference_item_padding_side">8.0dip</dimen>
+    <dimen name="preference_widget_width">48.0dip</dimen>
+    <dimen name="shadow_height">3dp</dimen>
+    <string name="about_about_summary">This app was born out of my frustration of using other apps that didn\'t work how I wanted them to. I developed it for my ROM, but quickly realised other developers might find this useful as well. As a result, I generalised it and wrote up some implementation guides for other developers to use.</string>
+    <string name="about_about_title">About</string>
+    <string name="about_app_version">App version:</string>
+    <string name="about_credits_summary">Credits Summary</string>
+    <string name="about_credits_title">Credits</string>
+    <string name="about_donate_button_summary">Grab me a beer</string>
+    <string name="about_donate_summary">If this app has made your life easier, please consider a donation to the app developer (Kryten2k35)</string>
+    <string name="about_donate_title">Donate</string>
+    <string name="about_non_pro_summary">Consider showing your support by buying OTA Updates Pro</string>
+    <string name="about_preferences_summary">OTAUpdates information, donation and credits</string>
+    <string name="about_pro_summary">Thanks for your support!</string>
+    <string name="about_pro_title">OTA Updates Pro</string>
+    <string name="about_version_title">Version</string>
+    <string name="addons_created_on">Created:</string>
+    <string name="addons_updated_on">Updated:</string>
+    <string name="ads_cat">Advertisements</string>
+    <string name="ads_enable">Enable ads</string>
+    <string name="ads_summary_off">Consider enabling advertisements enabled to support further development of the app</string>
+    <string name="ads_summary_on">Consider leaving advertisements enabled to support further development of the app</string>
+    <string name="app_name" translatable="false">OTA Updates</string>
+    <string name="app_version" translatable="false">2.5.3</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="available_changelog_content">Your Changelog goes here</string>
+    <string name="available_changelog_title">Changelog</string>
+    <string name="available_check_md5">Check MD5</string>
+    <string name="available_checking_md5">Checking MD5…</string>
+    <string name="available_delete_confirm_message">Are you sure you want to delete the downloaded file?</string>
+    <string name="available_downloading">Downloading…</string>
+    <string name="available_md5" translatable="false">MD5:</string>
+    <string name="available_md5_failed">MD5 Failed</string>
+    <string name="available_md5_ok">MD5 Passed</string>
+    <string name="available_progress_counter">0MB / 0MB</string>
+    <string name="available_ready_to_install">Ready to install</string>
+    <string name="available_reboot_confirm">Would you like to reboot now?</string>
+    <string name="available_reboot_manual_message">Please reboot to recovery and flash your ROM.\n\nYou can find it in /sdcard/Downloads</string>
+    <string name="available_reboot_manual_title">Please reboot now</string>
+    <string name="available_update_name">Update name and file info here</string>
+    <string name="available_url_error">URL Error: Please see your ROM developer</string>
+    <string name="available_wrong_network_message">You are trying to download over your mobile network, and the settings only allow Wi-Fi. Please change the settings accordingly.</string>
+    <string name="available_wrong_network_title">Wrong network selected</string>
+    <string name="back">Back</string>
+    <string name="background_12hours">12 hours</string>
+    <string name="background_24hours">Daily</string>
+    <string name="background_2days">2 days</string>
+    <string name="background_2hours">2 Hours</string>
+    <string name="background_30mins">30 Mins</string>
+    <string name="background_3days">3 days</string>
+    <string name="background_3hours">3 hours</string>
+    <string name="background_60mins">60 Mins</string>
+    <string name="background_6hours">6 hours</string>
+    <string name="background_7days">Weekly</string>
+    <string name="background_frequency">Update check frequency</string>
+    <string name="background_service_summary">Automatically check for updates and show a notification if one is available</string>
+    <string name="cancel">Cancel</string>
+    <string name="changelog">Changelog</string>
+    <string name="changelog_error">Error reading changelog</string>
+    <string name="changelog_summary">View the app\'s changelog</string>
+    <string name="changelog_url" translatable="false">https://raw.githubusercontent.com/MatthewBooth/OTAUpdates/stable/Changelog.md</string>
+    <string name="delete">Delete</string>
+    <string name="delete_confirm">Are you sure you want to delete this file?</string>
+    <string name="donate">Donate</string>
+    <string name="done">Done</string>
+    <string name="download">Download</string>
+    <string name="download_folder" translatable="false">/storage/emulated/0/Download</string>
+    <string name="downloading">Downloading…</string>
+    <string name="filename_separator">-</string>
+    <string name="finished">Finished</string>
+    <string name="help">Help</string>
+    <string name="ignore">Ignore</string>
+    <string name="information">Information</string>
+    <string name="install">Install</string>
+    <string name="list_summary" translatable="false">%s</string>
+    <string name="loading">Loading…</string>
+    <string name="main_actionbar_button">Actionbar Buttons</string>
+    <string name="main_addon">Addons</string>
+    <string name="main_addon_summary">Browse and download additional files for this ROM</string>
+    <string name="main_android_verison">Android version:</string>
+    <string name="main_button_icon">Button icon</string>
+    <string name="main_dev_website_icon">Developer Website Icon</string>
+    <string name="main_donate">Donate</string>
+    <string name="main_donate_summary">Donate to the ROM developer</string>
+    <string name="main_download_completed_details">Tap for details</string>
+    <string name="main_last_checked">Last checked for an update at</string>
+    <string name="main_no_update_available">No Update Available</string>
+    <string name="main_not_compatible_message">This ROM is not compatible with OTA Updates. Please contact your ROM developer. This app requires a custom ROM where the developer has specifically enabled support. Do not rate 1 star because of this. This is not a fault.</string>
+    <string name="main_not_compatible_title">Not compatible</string>
+    <string name="main_not_connected_message">You are not connected to any network. Please enable your network or WiFi and try again.</string>
+    <string name="main_not_connected_title">Not connected</string>
+    <string name="main_playstore_message">You do not have any available apps to handle the \"bitcoin:\" mime-type.\n\nWould you like to search the Google Play Store to find one?</string>
+    <string name="main_playstore_title">BitCoin</string>
+    <string name="main_release_ignored">Release ignored</string>
+    <string name="main_rom_build_date">ROM date:</string>
+    <string name="main_rom_codename">ROM codename:</string>
+    <string name="main_rom_developer">Developer(s):</string>
+    <string name="main_rom_information">ROM information</string>
+    <string name="main_rom_name">ROM name:</string>
+    <string name="main_rom_version">ROM version:</string>
+    <string name="main_tap_to_download">Tap to download</string>
+    <string name="main_tap_to_view_progress">Tap to view progress</string>
+    <string name="main_update_available">Update Available!</string>
+    <string name="main_update_filename">Filename</string>
+    <string name="main_update_finished">Download complete</string>
+    <string name="main_update_progress">Download Progress</string>
+    <string name="main_website">Website</string>
+    <string name="main_website_summary">Visit ROM website</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_settings">Settings</string>
+    <string name="mobile_or_wifi">Mobile or Wi-Fi</string>
+    <string name="mobile_wifi_network">Network</string>
+    <string name="mobile_wifi_title">Update over network</string>
+    <string name="notification_ignore_release_title">Ignore release</string>
+    <string name="notification_ignoring_release">Currently ignoring version: </string>
+    <string name="notification_not_ignoring_release">You are not currently ignoring a release</string>
+    <string name="notifications_sound">Sound</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_vibrate">Vibrate</string>
+    <string name="ok">OK</string>
+    <string name="preferences_name">Settings</string>
+    <string name="prop_name" translatable="false">ro.ota.romname</string>
+    <string name="rebooting">Rebooting…</string>
+    <string name="settings">Settings</string>
+    <string name="silent_ringtone">Silent</string>
+    <string name="storage">Storage</string>
+    <string name="storage_location">Storage location</string>
+    <string name="theme">Theme</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_light_dark">Light, Dark ActionBar</string>
+    <string name="theme_title">App Theme</string>
+    <string name="twrp_ors_cat" translatable="false">OpenRecoveryScript</string>
+    <string name="twrp_ors_delete_after">Delete after install</string>
+    <string name="twrp_ors_delete_after_summary">Should the open recovery script remove the update after the install?</string>
+    <string name="twrp_ors_information">Enables this app to flash the file via recovery without any interaction needed from the user. Just hit install and wait for it to finish.</string>
+    <string name="twrp_ors_install_prefs">Install preferences</string>
+    <string name="twrp_ors_install_prefs_summary">Choose some install preferences to use when using the ORS script</string>
+    <string name="twrp_ors_summary">Works for TWRP and some custom CWM (not official) recoveries</string>
+    <string name="twrp_ors_title">Enable OpenRecoveryScript</string>
+    <string name="twrp_ors_wipe_cache">Wipe Cache</string>
+    <string name="twrp_ors_wipe_dalvik">Wipe Dalvik</string>
+    <string name="twrp_ors_wipe_data">Wipe Data</string>
+    <string name="update_available">ROM update available</string>
+    <string name="wifi_network_only">Wi-Fi only</string>
+    <style name="AboutListElement">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+    <style name="ActionBar.Solid.RagnarDark" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_holo_dark</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_holo_dark</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_holo_dark</item>
+    </style>
+    <style name="ActionBar.Solid.RagnarLight" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_holo_light</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_holo_light</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_holo_light</item>
+    </style>
+    <style name="ActionBar.Solid.RagnarLight.DarkActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_holo_dark</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_holo_dark</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_holo_dark</item>
+    </style>
+    <style name="CardStyle.Dark" parent="android:style/Theme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:background">?attr/cardBackground</item>
+    </style>
+    <style name="CardStyle.Light" parent="android:style/Theme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:background">?attr/cardBackground</item>
+    </style>
+    <style name="CardView">
+        <item name="cardBackgroundColor">@color/cardview_light_background</item>
+        <item name="cardCornerRadius">@dimen/cardview_default_radius</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardMaxElevation">@dimen/cardview_default_elevation</item>
+        <item name="cardUseCompatPadding">false</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
+    <style name="CardView.Dark">
+        <item name="cardBackgroundColor">@color/cardview_dark_background</item>
+    </style>
+    <style name="CardView.Light">
+        <item name="cardBackgroundColor">@color/cardview_light_background</item>
+    </style>
+    <style name="HorizontalSeparator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?attr/separator</item>
+    </style>
+    <style name="MainListElement">
+        <item name="android:clickable">true</item>
+        <item name="android:background">?attr/backgroundSelector</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+    <style name="Theme.RagnarDark" parent="@android:style/Theme.Holo">
+        <item name="android:windowBackground">@drawable/holo_background_dark</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.RagnarDark</item>
+
+        
+        <item name="noUpdateAvailable">@color/holo_red_dark</item>
+        <item name="updateAvailable">@color/holo_green_dark</item>
+        <item name="colorHoloBlue">@color/holo_blue_light</item>
+        <item name="helpIcon">@drawable/ic_about_dark</item>
+        <item name="settingsIcon">@drawable/ic_settings_dark</item>
+        <item name="changelogIcon">@drawable/ic_changelog_dark</item>
+        <item name="downloadIcon">@drawable/ic_download_dark</item>
+        <item name="browserIcon">@drawable/ic_web_site_dark</item>
+        <item name="donateIcon">@drawable/ic_donate_dark</item>
+        <item name="addonsIcon">@drawable/ic_addon_dark</item>
+        <item name="checkIcon">@drawable/ic_check_dark</item>
+        <item name="separator">@color/separator_dark</item>
+        <item name="backgroundSelector">@drawable/list_selector_holo_dark</item>
+        <item name="cardBackground">@color/card_background_holo_dark</item>
+        <item name="cardStyle">@style/CardStyle.Dark</item>
+        <item name="textColorPrimary">@color/white</item>
+        <item name="textColorSecondary">@color/grey</item>
+        <item name="proRibbon">@drawable/pro_ribbon_dark</item>
+    </style>
+    <style name="Theme.RagnarDark.Settings" parent="Theme.RagnarDark"/>
+    <style name="Theme.RagnarLight" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowBackground">@drawable/holo_background_light</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.RagnarLight</item>
+
+        
+        <item name="noUpdateAvailable">@color/holo_red_light</item>
+        <item name="updateAvailable">@color/holo_green_light</item>
+        <item name="colorHoloBlue">@color/holo_blue_dark</item>
+        <item name="helpIcon">@drawable/ic_about_light</item>
+        <item name="settingsIcon">@drawable/ic_settings_light</item>
+        <item name="changelogIcon">@drawable/ic_changelog_light</item>
+        <item name="downloadIcon">@drawable/ic_download_light</item>
+        <item name="browserIcon">@drawable/ic_web_site_light</item>
+        <item name="donateIcon">@drawable/ic_donate_light</item>
+        <item name="addonsIcon">@drawable/ic_addon_light</item>
+        <item name="checkIcon">@drawable/ic_check_light</item>
+        <item name="separator">@color/separator_light</item>
+        <item name="backgroundSelector">@drawable/list_selector_holo_light</item>
+        <item name="cardBackground">@color/card_background_holo_light</item>
+        <item name="cardStyle">@style/CardStyle.Light</item>
+        <item name="textColorPrimary">@color/black</item>
+        <item name="textColorSecondary">@color/dark_grey</item>
+        <item name="proRibbon">@drawable/pro_ribbon_light</item>
+    </style>
+    <style name="Theme.RagnarLight.DarkActionBar" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowBackground">@drawable/holo_background_light</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.RagnarLight.DarkActionBar</item>
+	
+        
+        <item name="noUpdateAvailable">@color/holo_red_light</item>
+        <item name="updateAvailable">@color/holo_green_light</item>
+        <item name="colorHoloBlue">@color/holo_blue_dark</item>
+        <item name="helpIcon">@drawable/ic_about_dark</item>
+        <item name="settingsIcon">@drawable/ic_settings_dark</item>
+        <item name="changelogIcon">@drawable/ic_changelog_dark</item>
+        <item name="downloadIcon">@drawable/ic_download_light</item>
+        <item name="browserIcon">@drawable/ic_web_site_light</item>
+        <item name="donateIcon">@drawable/ic_donate_light</item>
+        <item name="addonsIcon">@drawable/ic_addon_light</item>
+        <item name="checkIcon">@drawable/ic_check_light</item>
+        <item name="separator">@color/separator_light</item>
+        <item name="backgroundSelector">@drawable/list_selector_holo_light</item>
+        <item name="cardBackground">@color/card_background_holo_light</item>
+        <item name="cardStyle">@style/CardStyle.Light</item>
+        <item name="textColorPrimary">@color/black</item>
+        <item name="textColorSecondary">@color/dark_grey</item>
+        <item name="proRibbon">@drawable/pro_ribbon_light</item>
+    </style>
+    <style name="Theme.RagnarLight.DarkActionBar.Settings" parent="Theme.RagnarLight.DarkActionBar"/>
+    <style name="Theme.RagnarLight.Settings" parent="Theme.RagnarLight"/>
+    <declare-styleable name="CardView"><attr format="color" name="cardBackgroundColor"/><attr format="dimension" name="cardCornerRadius"/><attr format="dimension" name="cardElevation"/><attr format="dimension" name="cardMaxElevation"/><attr format="boolean" name="cardUseCompatPadding"/><attr format="boolean" name="cardPreventCornerOverlap"/><attr format="dimension" name="contentPadding"/><attr format="dimension" name="contentPaddingLeft"/><attr format="dimension" name="contentPaddingRight"/><attr format="dimension" name="contentPaddingTop"/><attr format="dimension" name="contentPaddingBottom"/></declare-styleable>
+    <declare-styleable name="Theme.Ragnar">
+        <attr format="reference" name="helpIcon"/>
+        <attr format="reference" name="moreIconWidget"/>
+        <attr format="reference" name="settingsIcon"/>
+        <attr format="reference" name="changelogIcon"/>
+        <attr format="reference" name="downloadIcon"/>
+		<attr format="reference" name="addonsIcon"/>
+        <attr format="reference" name="backgroundSelector"/>
+        <attr format="reference" name="separator"/>
+        <attr format="reference" name="browserIcon"/>
+        <attr format="reference" name="donateIcon"/>
+        <attr format="reference" name="checkIcon"/>
+        <attr format="color" name="noUpdateAvailable"/>
+        <attr format="color" name="updateAvailable"/>
+        <attr format="color" name="colorHoloBlue"/>
+        <attr format="reference" name="cardStyle"/>
+        <attr format="color" name="cardBackground"/>
+        <attr format="color" name="textColorPrimary"/>
+        <attr format="color" name="textColorSecondary"/>
+        <attr format="reference" name="proRibbon"/>
+    </declare-styleable>
+</resources>

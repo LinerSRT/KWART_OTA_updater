@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Fri Sep 06 23:45:58 MSK 2019
+1.base=E\:\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+2.path=fonts/Roboto-Light.ttf
+0.baseType=DIRECTORY
+2.base=E\:\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\merged_assets\\debug\\out
+2.set=ASSET
+1.baseType=DIRECTORY
+count=3
+1.set=DEX
+0.path=fonts/Roboto-Medium.ttf
+0.set=ASSET
+0.base=E\:\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\merged_assets\\debug\\out
+2.baseType=DIRECTORY
+1.path=classes.dex
