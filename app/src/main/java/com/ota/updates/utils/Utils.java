@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2015 Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ota.updates.utils;
 
 import java.io.BufferedReader;
@@ -41,8 +25,6 @@ import android.util.Log;
 
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
-import com.ota.updates.activities.AvailableActivity;
-import com.ota.updates.activities.MainActivity;
 import com.ota.updates.receivers.AppReceiver;
 
 public class Utils implements Constants{
@@ -217,40 +199,33 @@ public class Utils implements Constants{
 		return Build.VERSION.SDK_INT >= 21;
 	}
 
-	private static boolean versionBiggerThan(String current, String manifest) {
-		// returns true if current > manifest, false otherwise
-		if (current.length() > manifest.length()) {
-			for (int i = 0; i < current.length() - manifest.length(); i++) {
-				manifest += "0";
-			}
-		} else if (manifest.length() > current.length()) {
-			for (int i = 0; i < manifest.length() - current.length(); i++) {
-				current += "0";
-			}
-		}
-		
-		if (DEBUGGING)
-			Log.d(TAG, "Current: " + current + " Manifest: " + manifest);
-
-		return Integer.parseInt(current) < Integer.parseInt(manifest);
-	}
-
     public static boolean isUpdateIgnored(Context context) {
-        String manifestVer = Integer.toString(RomUpdate.getVersionNumber(context));
+        String manifestVer = RomUpdate.getVersionNumber(context);
         return Preferences.getIgnoredRelease(context).matches(manifestVer);
     }
 
-	public static void setUpdateAvailability(Context context) {
-		// Grab the data from the device and manifest
-		int otaVersion = RomUpdate.getVersionNumber(context);
-		String currentVer = Utils.getProp("ro.ota.version");
-		String manifestVer = Integer.toString(otaVersion);
+    private static boolean compareVersion(String current, String manifest){
+		String[] currentDevice = current.split("\\.", 2);
+		String[] currentManifest = manifest.split("\\.", 2);
+		int sumCurrent = 0;
+		int sumManifest = 0;
+        for (String c : currentDevice) {
+            sumCurrent += Integer.parseInt(c);
+        }
+        for (String m : currentManifest) {
+            sumManifest += Integer.parseInt(m);
+        }
+		return sumManifest > sumCurrent;
+	}
 
+	public static void setUpdateAvailability(Context context) {
+		String currentVer = Utils.getProp("ro.ota.version");
+		String manifestVer = RomUpdate.getVersionNumber(context);
         boolean available;
         if (Preferences.getIgnoredRelease(context).matches(manifestVer)) {
             available = false;
         } else {
-            available = DEBUG_NOTIFICATIONS ? true : versionBiggerThan(currentVer, manifestVer);
+            available =	compareVersion(currentVer, manifestVer);
         }
 
 		RomUpdate.setUpdateAvailable(context, available);
@@ -278,21 +253,21 @@ public class Utils implements Constants{
 		        );
         Intent skipIntent = new Intent(context, AppReceiver.class);
         skipIntent.setAction(IGNORE_RELEASE);
-        Intent downloadIntent = new Intent(context, AvailableActivity.class);
+        Intent downloadIntent = new Intent(context, com.ota.updates.MainActivity.class);
         PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 0, skipIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent downloadPendingIntent = PendingIntent.getActivity(context, 0, downloadIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder.setContentTitle(context.getString(R.string.update_available))
 		.setContentText(filename)
-		.setSmallIcon(R.drawable.ic_notif)
+		.setSmallIcon(R.drawable.ic_launcher)
 		.setContentIntent(resultPendingIntent)
 		.setAutoCancel(true)
 		.setPriority(NotificationCompat.PRIORITY_HIGH)
 		.setDefaults(NotificationCompat.DEFAULT_LIGHTS)
 		.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 		.setSound(Uri.parse(Preferences.getNotificationSound(context)))
-		.addAction(R.drawable.ic_action_download, context.getString(R.string.download), downloadPendingIntent)
-        .addAction(R.drawable.ic_action_close, context.getString(R.string.ignore), skipPendingIntent);
+		.addAction(R.drawable.ic_check, context.getString(R.string.download), downloadPendingIntent)
+        .addAction(R.drawable.ic_update_not_available, context.getString(R.string.ignore), skipPendingIntent);
 
 		if (Preferences.getNotificationVibrate(context)) {
 			mBuilder.setDefaults(NotificationCompat.DEFAULT_VIBRATE);

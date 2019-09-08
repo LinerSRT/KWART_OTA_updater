@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2015 Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ota.updates.tasks;
 
 import java.io.File;
@@ -37,27 +21,19 @@ import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Utils;
 
 public class RomXmlParser extends DefaultHandler implements Constants {
-
-	public final String TAG = this.getClass().getSimpleName();
-
+	public final String TAG = "OTATAG";
 	private StringBuffer value = new StringBuffer();
 	private Context mContext;
-
-	boolean tagRomName = false;
-	boolean tagVersionName = false;
-	boolean tagVersionNumber = false;
-	boolean tagDirectUrl = false;
-	boolean tagHttpUrl = false;
-	boolean tagMD5 = false;
-	boolean tagLog = false;
-	boolean tagAndroid = false;
-	boolean tagDeveloper = false;
-	boolean tagWebsite = false;
-	boolean tagDonateUrl = false;
-	boolean tagBitCoinUrl = false;
-	boolean tagFileSize = false;
-	boolean tagAddonsCount = false;
-	boolean tagAddonUrl = false;
+	private boolean tagRomName = false;
+	private boolean tagVersionName = false;
+	private boolean tagVersionNumber = false;
+	private boolean tagDirectUrl = false;
+	private boolean tagHttpUrl = false;
+	private boolean tagMD5 = false;
+	private boolean tagLog = false;
+	private boolean tagWebsite = false;
+	private boolean tagFileSize = false;
+	private boolean tagUpdateDate = false;
 
 	public void parse(File xmlFile, Context context) throws IOException {
 		mContext = context;
@@ -76,8 +52,7 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 	}
 
 	@Override
-	public void startElement(String uri, String localName, String qName,
-			Attributes attributes) throws SAXException {
+	public void startElement(String uri, String localName, String qName, Attributes attributes) {
 		
 		value.setLength(0);
 
@@ -93,64 +68,44 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 			tag += ">";
 		}
 
-		if (qName.equalsIgnoreCase("romname")) {
+		if (qName.equalsIgnoreCase("name")) {
 			tagRomName = true;
 		}
 
-		if (qName.equalsIgnoreCase("versionname")) {
+		if (qName.equalsIgnoreCase("version_name")) {
 			tagVersionName = true;
 		}
 		
-		if (qName.equalsIgnoreCase("versionnumber")) {
+		if (qName.equalsIgnoreCase("version_number")) {
 			tagVersionNumber = true;
 		}
 
-		if (qName.equalsIgnoreCase("directurl")) {
+		if (qName.equalsIgnoreCase("drct_url")) {
 			tagDirectUrl = true;
 		}
 
-		if (qName.equalsIgnoreCase("httpurl")) {
+		if (qName.equalsIgnoreCase("http_url")) {
 			tagHttpUrl = true;
 		}
-		
-		if (qName.equalsIgnoreCase("android")) {
-			tagAndroid = true;
-		}
 
-		if (qName.equalsIgnoreCase("checkmd5")) {
+		if (qName.equalsIgnoreCase("md5")) {
 			tagMD5 = true;
 		}
 		
-		if (qName.equalsIgnoreCase("filesize")) {
+		if (qName.equalsIgnoreCase("size")) {
 			tagFileSize = true;
 		}
-		
-		if (qName.equalsIgnoreCase("developer")) {
-			tagDeveloper = true;
-		}
 
-		if (qName.equalsIgnoreCase("websiteurl")) {
+		if (qName.equalsIgnoreCase("site_url")) {
 			tagWebsite = true;
 		}
-
-		if (qName.equalsIgnoreCase("donateurl")) {
-			tagDonateUrl = true;
-		}
 		
-		if (qName.equalsIgnoreCase("bitcoinaddress")) {
-			tagBitCoinUrl = true;
-		}
-		
-		if (qName.equalsIgnoreCase("changelog")) {
+		if (qName.equalsIgnoreCase("changes")) {
 			tagLog = true;
 		}
-		
-		if (qName.equalsIgnoreCase("addoncount")) {
-			tagAddonsCount = true;
-		}
 
-		if (qName.equalsIgnoreCase("addonsurl")) {
-			tagAddonUrl = true;
+		if (qName.equalsIgnoreCase("update_date")) {
+			tagUpdateDate = true;
 		}
 
 	}
@@ -182,7 +137,7 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 		}
 		
 		if (tagVersionNumber) {
-			RomUpdate.setVersionNumber(mContext, Integer.parseInt(input));
+			RomUpdate.setVersionNumber(mContext, input);
 			tagVersionNumber = false;
 			if (DEBUGGING)
 				Log.d(TAG, "OTA Version = " + input);
@@ -212,13 +167,6 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 			if (DEBUGGING)
 				Log.d(TAG, "HTTP URL = " + input);
 		}
-		
-		if (tagAndroid) {
-			RomUpdate.setAndroidVersion(mContext, input);
-			tagAndroid = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Android Version = " + input);
-		}
 
 		if (tagMD5) {
 			RomUpdate.setMd5(mContext, input);
@@ -233,13 +181,7 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 			if (DEBUGGING)
 				Log.d(TAG, "Filesize = " + input);
 		}
-		
-		if (tagDeveloper) {
-			RomUpdate.setDeveloper(mContext, input);
-			tagDeveloper = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Developer = " + input);
-		}
+
 
 		if (tagWebsite) {
 			if (!input.isEmpty()) {
@@ -251,31 +193,6 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 			if (DEBUGGING)
 				Log.d(TAG, "Website = " + input);
 		}
-
-		if (tagDonateUrl) {
-			if (!input.isEmpty()) {
-				RomUpdate.setDonateLink(mContext, input);
-			} else {
-				RomUpdate.setDonateLink(mContext, "null");
-			}			
-			tagDonateUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Donate URL = " + input);
-		}
-		
-		if (tagBitCoinUrl) {
-			if (input.contains("bitcoin:")) {
-				RomUpdate.setBitCoinLink(mContext, input);
-			} else if (input.isEmpty()) { 
-				RomUpdate.setBitCoinLink(mContext, "null");
-			} else {		
-				RomUpdate.setBitCoinLink(mContext, "bitcoin:" + input);
-			}
-			
-			tagBitCoinUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "BitCoin URL = " + input);
-		}
 		
 		if (tagLog) {
 			RomUpdate.setChangelog(mContext, input);
@@ -283,20 +200,14 @@ public class RomXmlParser extends DefaultHandler implements Constants {
 			if (DEBUGGING)
 				Log.d(TAG, "Changelog = " + input);
 		}
-		
-		if (tagAddonsCount) {
-			RomUpdate.setAddonsCount(mContext, Integer.parseInt(input));
-			tagAddonsCount = false;
+
+		if (tagUpdateDate) {
+			RomUpdate.setUpdateDate(mContext, input);
+			tagUpdateDate = false;
 			if (DEBUGGING)
-				Log.d(TAG, "Addons Count = " + input);
+				Log.d(TAG, "Update date = " + input);
 		}
-		
-		if (tagAddonUrl) {
-			RomUpdate.setAddonsUrl(mContext, input);
-			tagAddonUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Addons URL = " + input);
-		}
+
 	}
 	
 	private void setUrlDomain(String input) {

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="?attr/backgroundColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+
+        <ImageView
+            android:id="@+id/smile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_update_not_available"
+            android:tint="?attr/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textSize="@dimen/textSizeGlobal"
+            android:textColor="?attr/textColor"
+            android:text="Доступных обновлений нет."
+            android:gravity="center"
+            android:lines="2"/>
+
+        <LinearLayout
+            android:id="@+id/interact_layout"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:background="@drawable/button_background_shape"
+            android:backgroundTint="?attr/backgroundColor"
+            android:elevation="4dp">
+
+            <ImageView
+                android:id="@+id/interact_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_check"
+                android:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/interact_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:textSize="@dimen/textSizeGlobal"
+                android:textColor="?attr/textColor"
+                android:text="Нажмите что бы проверить"
+                android:gravity="center"
+                android:lines="2"/>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/download_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            layout="@layout/download_element"/>
+
+        <TextView
+            android:id="@+id/last_update_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Последняя проверка: 18:52 02.03.2001"
+            android:textColor="?attr/textColor"
+            android:textSize="@dimen/secondTextSizeGlobal"
+            android:layout_marginTop="5dp"/>
+
+        <include
+            android:id="@+id/download_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginTop="5dp"
+            layout="@layout/device_info_layout"/>
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -2,13 +2,9 @@ package com.ota.updates;
 
 import java.util.Set;
 
-import android.Manifest;
 import android.app.Application;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
-
-import com.ota.updates.activities.MainActivity;
 
 public class OtaUpdates extends Application {
 	private static ArrayMap<Integer, Long> mAddonsDownloads = new ArrayMap<Integer, Long>();

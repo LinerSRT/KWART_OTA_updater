@@ -28,7 +28,7 @@ public class Changelog extends AsyncTask<Void, Void, String> {
 
 	private ProgressDialog mLoadingDialog;
 	private static final String CHANGELOG = "Changelog.md";
-	private static final String TAG = "AboutActivity.Changelog";
+	public final static String TAG = "OTATAG";
 	private File mChangelogFile;
 	private Context mContext;
 	private Activity mActivity;

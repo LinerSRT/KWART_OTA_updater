@@ -32,7 +32,7 @@ import com.ota.updates.utils.Utils;
 @SuppressLint({"SdCardPath", "ExportedPreferenceActivity"})
 public class SettingsActivity extends PreferenceActivity implements OnPreferenceClickListener, OnPreferenceChangeListener, OnSharedPreferenceChangeListener, Constants{
 
-	public final String TAG = this.getClass().getSimpleName();
+    public final static String TAG = "OTATAG";
 	private Context mContext;
 	private Builder mInstallPrefsDialog;
 	private RingtonePreference mRingtonePreference;

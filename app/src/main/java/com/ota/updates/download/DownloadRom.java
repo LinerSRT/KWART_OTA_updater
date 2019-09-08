@@ -29,8 +29,8 @@ import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Utils;
 
 public class DownloadRom implements Constants {
-	
-	public final static String TAG = "DownloadRomUpdate";
+
+	public final static String TAG = "OTATAG";
 
 	public DownloadRom() {
 		
@@ -72,6 +72,7 @@ public class DownloadRom implements Constants {
 		
 		// Start updating the progress
 		new DownloadRomProgress(context, downloadManager).execute(mDownloadID);
+
 		
 		// MD5 checker has not been run, nor passed
 		Preferences.setMD5Passed(context, false);

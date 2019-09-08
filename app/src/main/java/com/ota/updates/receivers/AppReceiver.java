@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2015 Matt Booth (Kryten2k35).
- *
- * Licensed under the Attribution-NonCommercial-ShareAlike 4.0 International 
- * (the "License") you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ota.updates.receivers;
 
 import java.util.Iterator;
@@ -32,10 +16,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
+import com.ota.updates.MainActivity;
 import com.ota.updates.OtaUpdates;
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
-import com.ota.updates.activities.AvailableActivity;
 import com.ota.updates.tasks.LoadUpdateManifest;
 import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Preferences;
@@ -43,7 +27,7 @@ import com.ota.updates.utils.Utils;
 
 public class AppReceiver extends BroadcastReceiver implements Constants{
 
-	public final String TAG = this.getClass().getSimpleName();
+	public final static String TAG = "OTATAG";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -97,22 +81,12 @@ public class AppReceiver extends BroadcastReceiver implements Constants{
 					if (DEBUGGING)
 						Log.w(TAG, "Download Failed");
 					Preferences.setDownloadFinished(context, false);
-					if (Utils.isLollipop()) {
-						AvailableActivity.setupMenuToolbar(context); // Reset options menu
-					} else {
-						AvailableActivity.invalidateMenu();
-					}
 					return;
 				} else {
 					if (DEBUGGING)
 						Log.v(TAG, "Download Succeeded");
 					Preferences.setDownloadFinished(context, true);
-					AvailableActivity.setupProgress(context);
-					if (Utils.isLollipop()) {
-						AvailableActivity.setupMenuToolbar(context); // Reset options menu
-					} else {
-						AvailableActivity.invalidateMenu();
-					}
+					//AvailableActivity.setupProgress(context);
 					return;
 				}
 
@@ -128,7 +102,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants{
 						Log.v(TAG, "mDownloadID is " + mRomDownloadID + " and ID is " + id);
 					return;
 				} else {
-					Intent i = new Intent(context, AvailableActivity.class);
+					Intent i = new Intent(context, MainActivity.class);
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					context.startActivity(i);
 				}
@@ -170,12 +144,12 @@ public class AppReceiver extends BroadcastReceiver implements Constants{
 			if (DEBUGGING) {
 				Log.d(TAG, "Ignore release");
 			}
-			Preferences.setIgnoredRelease(context, Integer.toString(RomUpdate.getVersionNumber(context)));
+			Preferences.setIgnoredRelease(context, RomUpdate.getVersionNumber(context));
 			final NotificationManager mNotifyManager =
 					(NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			Builder mBuilder = new NotificationCompat.Builder(context);
 			mBuilder.setContentTitle(context.getString(R.string.main_release_ignored))
-			.setSmallIcon(R.drawable.ic_notif)
+			.setSmallIcon(R.drawable.ic_launcher)
 			.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(), 0));
 			mNotifyManager.notify(NOTIFICATION_ID, mBuilder.build());
 

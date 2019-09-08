@@ -11,23 +11,6 @@
         <item name="colorPrimaryDark">@color/accent_color_dark</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="PrefsTheme2" parent="android:Theme.Material.Dialog">
-        <item name="android:windowBackground">@color/background</item>
-        <item name="android:colorAccent">@color/accent_color</item>
-        <item name="android:colorPressedHighlight">@color/accent_color</item>
-        <item name="android:colorLongPressedHighlight">@color/accent_color</item>
-        <item name="android:colorFocusedHighlight">@color/accent_color</item>
-        <item name="android:colorActivatedHighlight">@color/accent_color</item>
-        <item name="android:activatedBackgroundIndicator">@color/background</item>
-        <item name="android:textColor">#FFF</item>
-        <item name="android:listViewStyle">@style/listViewPrefs</item>
-        <item name="android:actionBarSize">48dp</item>
-    </style>
-
-    <style name="listViewPrefs" parent="@android:style/Widget.ListView">
-        <item name="android:background">@color/background</item>
-        <item name="android:cacheColorHint">@color/background</item>
-    </style>
 
     <style name="YourAlertDialogTheme">
         <item name="android:windowBackground">@android:color/black</item>
@@ -45,8 +28,6 @@
         <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
     </style>
-
-
 
     <style name="OrangeDeepTheme" parent="@android:style/Theme.NoTitleBar" >
         <item name="backgroundColor">@color/backgroundColorLight</item>
@@ -91,43 +72,6 @@
         <item name="colorPrimary">#838383</item>
         <item name="textColorDark">@color/text_white</item>
         <item name="colorPrimaryDark">#616161</item>
-    </style>
-
-
-
-
-    <style name="MainListElement">
-        <item name="android:clickable">true</item>
-        <item name="android:background">#FFF</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-    </style>
-
-    <style name="AboutListElement">
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-    </style>
-
-    <style name="CardStyle.Light" parent="android:style/Theme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">16dp</item>
-        <item name="android:background">#FFF</item>
-    </style>
-
-    <style name="CardStyle.Dark" parent="android:style/Theme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">16dp</item>
-        <item name="android:background">#FFF</item>
     </style>
 
 </resources>

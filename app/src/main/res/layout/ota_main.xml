@@ -66,7 +66,6 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="@string/main_button_icon"
-                    android:src="@drawable/ic_action_download"
                     android:tint="?attr/colorPrimary"/>
 
                 <LinearLayout
@@ -149,8 +148,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:tint="?attr/colorPrimary"
-                    android:src="@drawable/ic_web_site_light" />
+                    android:tint="?attr/colorPrimary"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

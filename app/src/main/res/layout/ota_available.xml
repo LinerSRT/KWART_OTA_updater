@@ -11,7 +11,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +42,8 @@
                 android:text="@string/available_progress_counter"
                 android:textColor="?attr/textColor"
                 android:textSize="@dimen/secondTextSizeGlobal"
-                tools:ignore="SmallSp" />
+                tools:ignore="SmallSp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_available_md5"

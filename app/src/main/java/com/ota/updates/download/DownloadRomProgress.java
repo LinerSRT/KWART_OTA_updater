@@ -16,7 +16,6 @@
 
 package com.ota.updates.download;
 
-import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,14 +23,13 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.ota.updates.activities.AvailableActivity;
-import com.ota.updates.activities.MainActivity;
 import com.ota.updates.utils.Constants;
+import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.Preferences;
 
 public class DownloadRomProgress  extends AsyncTask<Long, Integer, Void> implements Constants {
 	
-	public final String TAG = this.getClass().getSimpleName();
+	public final String TAG = "OTATAG";
 
 	private Context mContext;
 	private DownloadManager mDownloadManager;
@@ -80,11 +78,15 @@ public class DownloadRomProgress  extends AsyncTask<Long, Integer, Void> impleme
 	}
 	
 	protected void onProgressUpdate(Integer... progress) {
-		if (DEBUGGING)
-			Log.d(TAG, "Updating Progress - " + progress[0] + "%");
+		Log.d(TAG, "Updating Progress - " + progress[0] + "%");
 		if (Preferences.getIsDownloadOnGoing(mContext)) {
-			AvailableActivity.updateProgress(progress[0], progress[1], progress[2], mContext);
-			MainActivity.updateProgress(progress[0], progress[1], progress[2], (Activity) mContext);
+			InteractClass.updateDownloadStatus(progress[0], progress[1], progress[2]);
 		}
      }
+
+	@Override
+	protected void onPostExecute(Void aVoid) {
+		super.onPostExecute(aVoid);
+		InteractClass.onDownloadFinish();
+	}
 }
