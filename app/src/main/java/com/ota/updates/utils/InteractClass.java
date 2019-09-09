@@ -13,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
@@ -29,12 +28,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Objects;
 
-import static com.ota.updates.utils.Constants.NETWORK_TYPE;
 import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_DIR;
-import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_DOWNLOADING;
-import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_FINISHED;
-import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_ID;
-import static com.ota.updates.utils.Constants.OTA_MD5_CHECKED;
 import static com.ota.updates.utils.Constants.WIFI_ONLY;
 
 public class InteractClass{
