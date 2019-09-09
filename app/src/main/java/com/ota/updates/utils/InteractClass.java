@@ -53,16 +53,16 @@ public class InteractClass{
     }
 
 
-    public void installOTA(boolean backup, boolean wipeCache, boolean wipeData){
-        installDialog = new OTADialog(context, "Установить?",
+    public void installOTA(final boolean backup, final boolean wipeCache, final boolean wipeData){
+        installDialog = new OTADialog(context, RomUpdate.getVersionNumber(context),"Установить?",
                 RomUpdate.getChangelog(context),101,
                 context.getString(R.string.cancel), " ",
                 context.getString(R.string.install));
         installDialog.setOkBtn(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                @SuppressLint("SdCardPath") String filename = "/sdcard"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(context)+".zip";
-                //flashFiles(context, filename, backup, wipeCache, wipeData);
+                @SuppressLint("SdCardPath") String filename = "/sdcard/"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(context)+".zip";
+                flashFiles(context, filename, backup, wipeCache, wipeData);
             }
         });
         installDialog.setNegativeBtn(new View.OnClickListener() {
@@ -72,7 +72,6 @@ public class InteractClass{
                 }
             });
         installDialog.show();
-        Toast.makeText(context, "Install pressed", Toast.LENGTH_SHORT).show();
     }
 
 

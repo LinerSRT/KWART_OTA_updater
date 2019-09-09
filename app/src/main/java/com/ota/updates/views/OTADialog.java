@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ota.updates.R;
 
@@ -17,16 +18,18 @@ public class OTADialog {
     private Context context;
     private int btn_type = 0;
     private Button dialogCancelBtn, dialogOkBtn, dialogMiddleBtn;
-    private TextView dialogTitle, dialogText;
+    private TextView dialogTitle, dialogText, dialogOtaVersion;
 
     @SuppressLint("SetTextI18n")
-    public OTADialog(final Context context, String title, String text, int buttonSet, String cancel_text, String middle_text, String ok_text){
+    public OTADialog(final Context context, String otaVersion, String title, String text, int buttonSet, String cancel_text, String middle_text, String ok_text){
         this.context = context;
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.ota_dialog);
         dialogTitle = (TextView) dialog.findViewById(R.id.dialog_title);
         dialogText = (TextView) dialog.findViewById(R.id.dialog_text);
+        dialogOtaVersion = (TextView) dialog.findViewById(R.id.ota_version);
+        dialogOtaVersion.setText(otaVersion);
         dialogCancelBtn = (Button) dialog.findViewById(R.id.cancel_button);
         dialogCancelBtn.setText(cancel_text);
         dialogOkBtn = (Button) dialog.findViewById(R.id.ok_button);
