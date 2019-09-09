@@ -4,17 +4,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.NativeActivity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.ota.updates.utils.Constants;
-import com.ota.updates.utils.Installer;
 import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.InteractInterface;
-import com.ota.updates.utils.PreferenceManager;
 import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Utils;
 
@@ -36,44 +25,36 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 import static com.ota.updates.utils.Constants.*;
 
 public class MainActivity extends Activity {
-    //Include Views
     private TextView descriptionText, interactText, lastUpdateText, downloadStatusText;
-    private TextView aboutDevice, aboutRomVersion, aboutRomLastUpdate;
-
+    private TextView aboutRomVersion;
+    private TextView aboutRomLastUpdate;
     private ImageView smile, interactIcon;
     private NumberProgressBar downloadProgressBar;
     private RelativeLayout downloadLayout;
     private LinearLayout interact_layout;
-
-    //Include util
-    PreferenceManager preferenceManager;
     private static InteractClass interactClass;
-    private Installer installer;
-
-    //Booleans
-    private boolean permissionGrant = false;
-    private boolean isFirstRun = true;
     private boolean canInstall = false;
     private boolean canDownload = true;
     private boolean haveUpdates = false;
-
-
     public static InteractClass getInteractClass(){
         return interactClass;
     }
-
-
+    private Utils utils;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        utils = new Utils(this);
+        if(AMOLED_VERSION){
+            setContentView(R.layout.activity_main_amoled);
+        } else {
+            setContentView(R.layout.activity_main);
+        }
         initViews();
         checkPermissions();
         File installAfterFlashDir = new File(SD_CARD
@@ -81,10 +62,12 @@ public class MainActivity extends Activity {
                 + OTA_DOWNLOAD_DIR
                 + File.separator
                 + INSTALL_AFTER_FLASH_DIR);
+        //noinspection ResultOfMethodCallIgnored
         installAfterFlashDir.mkdirs();
         Utils.setHasFileDownloaded(this);
+
+        updateValues();
         updateViews();
-        updateButtonStat();
         interactClass = new InteractClass(MainActivity.this);
 
         if (!Utils.isConnected(this)) {
@@ -103,9 +86,38 @@ public class MainActivity extends Activity {
         }
 
 
+
+        interact_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!haveUpdates){
+                    interactClass.updateManifest(false);
+                }
+                if (canInstall) {
+                    interactClass.installOTA(false, false, false);
+
+                } else if (canDownload) {
+                    interactClass.downloadOTA();
+                }
+            }
+        });
+
+
+        //DEBUG
+
+        smile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                interactClass.deleteUpdate();
+            }
+        });
+
+
         interactClass.serInteractListener(new InteractInterface() {
             @Override
             public void onDownloadFinished() {
+                updateValues();
                 updateViews();
                 downloadProgressBar.setProgress(0);
                 downloadStatusText.setText(" ");
@@ -120,7 +132,6 @@ public class MainActivity extends Activity {
                 downloadStatusText.setText(" ");
                 interact_layout.setVisibility(View.GONE);
                 downloadLayout.setVisibility(View.VISIBLE);
-                Log.d(TAG+"Downloader", "Download started!");
             }
 
             @SuppressLint("SetTextI18n")
@@ -128,8 +139,6 @@ public class MainActivity extends Activity {
             public void onDownloadProgressChanched(Integer... progress) {
                 downloadProgressBar.setProgress(progress[0]);
                 downloadStatusText.setText(Utils.formatDataFromBytes(progress[1]) +"/" +Utils.formatDataFromBytes(progress[2]));
-
-                Log.d(TAG+"Downloader", "Download changed!");
             }
 
             @Override
@@ -139,7 +148,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onMD5Checked(boolean status) {
-                Log.d(TAG+"MD5Checker", "Check status - "+status);
+
+                updateValues();
             }
 
             @Override
@@ -149,10 +159,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onManifestUpdated() {
-                Log.v(TAG+"MANIFEST", "Downloaded");
                 getInformation();
-                updateViews();
-                updateButtonStat();
+                updateValues();
                 updateViews();
             }
 
@@ -163,61 +171,23 @@ public class MainActivity extends Activity {
 
             @Override
             public void onOTADeleted() {
-                updateButtonStat();
-                getInformation();
-                updateViews();
-                Log.d(TAG+"Manager", "OTADeleted");
-            }
-        });
-        interact_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!haveUpdates){
-                    interactClass.updateManifest(false);
-                }
-                if (canInstall) {
-                    interactClass.installOTA();
-
-                } else if (canDownload) {
-                    interactClass.downloadOTA();
-                }
-                Log.d(TAG+"Button", "Status = HU "+haveUpdates+" | CI "+canInstall+" | CD "+canDownload);
-            }
-        });
-
-        //DEBUG
-        smile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                interactClass.updateManifest(false);
+                updateValues();
                 getInformation();
                 updateViews();
             }
         });
-        smile.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                interactClass.deleteUpdate();
-                return false;
-            }
-        });
-        //DEBUG
-
 
 
     }
 
 
-    private void updateButtonStat(){
+    private void updateValues(){
         haveUpdates = RomUpdate.getUpdateAvailability(this) || (!RomUpdate.getUpdateAvailability(this)) && Utils.isUpdateIgnored(this);
         canDownload = haveUpdates && !Preferences.getDownloadFinished(this) && !Preferences.getIsDownloadOnGoing(this);
         canInstall = Preferences.getDownloadFinished(this) && haveUpdates && Preferences.getMD5Passed(this);
-
-        Log.d(TAG+"Button", "Status = HU "+haveUpdates+" | CI "+canInstall+" | CD "+canDownload);
     }
 
     private void updateViews(){
-
         downloadLayout.setVisibility(View.GONE);
         if (haveUpdates) {
             interactIcon.setImageDrawable(getDrawable(R.drawable.ic_update_download_done));
@@ -255,6 +225,7 @@ public class MainActivity extends Activity {
                 time = new SimpleDateFormat("d MMMM hh:mm a", locale).format(now);
             }
             Preferences.setUpdateLastChecked(this, time);
+
             lastUpdateText.setText("Последняя проверка: " + time);
         }
     }
@@ -270,6 +241,7 @@ public class MainActivity extends Activity {
         descriptionText = (TextView) findViewById(R.id.description);
         interactText = (TextView) findViewById(R.id.interact_text);
         lastUpdateText = (TextView) findViewById(R.id.last_update_text);
+        lastUpdateText.setText("Последняя проверка: "+Preferences.getUpdateLastChecked(this, "Нет данных"));
         downloadStatusText = (TextView) findViewById(R.id.download_status);
 
         smile = (ImageView) findViewById(R.id.smile);
@@ -279,7 +251,7 @@ public class MainActivity extends Activity {
         downloadLayout = (RelativeLayout) findViewById(R.id.download_layout);
         interact_layout = (LinearLayout) findViewById(R.id.interact_layout);
 
-        aboutDevice = (TextView) findViewById(R.id.about_device_text);
+        TextView aboutDevice = (TextView) findViewById(R.id.about_device_text);
         aboutRomLastUpdate = (TextView) findViewById(R.id.about_rom_last_update);
         aboutRomVersion = (TextView) findViewById(R.id.about_rom_version);
     }
@@ -288,19 +260,5 @@ public class MainActivity extends Activity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 1);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,	String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0	&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    permissionGrant = true;
-                } else {
-                    permissionGrant = false;
-                }
-                return;
-            }
-        }
     }
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="?attr/colorPrimaryDark"
+            android:gravity="center"
+            android:text="Dialog Title"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/textSizeGlobal" />
+
+        <TextView
+            android:id="@+id/dialog_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT "
+            android:textColor="?attr/textColor"
+            android:textSize="@dimen/secondTextSizeGlobal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Cancel"
+                android:textSize="@dimen/secondTextSizeGlobal"
+                android:textColor="@color/text_white"/>
+
+            <Button
+                android:id="@+id/middle_button"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Middle"
+                android:textSize="@dimen/secondTextSizeGlobal"
+                android:textColor="@color/text_white"/>
+
+            <Button
+                android:id="@+id/ok_button"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="OK"
+                android:textSize="@dimen/secondTextSizeGlobal"
+                android:textColor="@color/text_white"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

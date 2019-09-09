@@ -26,11 +26,10 @@ import android.util.Log;
 import com.ota.updates.MainActivity;
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
-import com.ota.updates.receivers.AppReceiver;
+import com.ota.updates.receivers.OTAReceivers;
 
 public class Utils implements Constants{
-
-	public final static String TAG = "Utils";
+	private Context context;
 
 	private static final int KILOBYTE = 1024;
 	private static int KB = KILOBYTE;
@@ -41,6 +40,10 @@ public class Utils implements Constants{
 	static {
 		decimalFormat.setMaximumIntegerDigits(3);
 		decimalFormat.setMaximumFractionDigits(1);
+	}
+
+	public Utils(Context context){
+		this.context = context;
 	}
 
 	public static Boolean doesPropExist(String propName) {
@@ -109,7 +112,7 @@ public class Utils implements Constants{
 	public static void setHasFileDownloaded(Context context) {
 		File file = RomUpdate.getFullFile(context);
 		int filesize = RomUpdate.getFileSize(context);
-		boolean downloadIsRunning = Preferences.getIsDownloadOnGoing(context);
+		//boolean downloadIsRunning = Preferences.getIsDownloadOnGoing(context);
 
 		boolean status = false;
 		if (DEBUGGING) {
@@ -117,9 +120,9 @@ public class Utils implements Constants{
 			Log.d(TAG, "Local filesize " + file.length());
 			Log.d(TAG, "Remote filesize " + filesize);
 		}
-		if (file.length() != 0 && file.length() == filesize && !downloadIsRunning) {
+		if (file.length() != 0 && file.length() == filesize && !Preferences.getIsDownloadOnGoing(context)) {
 			status = true;
-		}		
+		}
 		Preferences.setDownloadFinished(context, status);
 	}
 
@@ -129,7 +132,7 @@ public class Utils implements Constants{
 	
 	public static void scheduleNotification(Context context, boolean cancel) {
 		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(context, AppReceiver.class);
+		Intent intent = new Intent(context, OTAReceivers.class);
 		intent.setAction(START_UPDATE_CHECK);
 		int intentId = 1673;
 		int intentFlag = PendingIntent.FLAG_UPDATE_CURRENT;
@@ -252,7 +255,7 @@ public class Utils implements Constants{
 		            0,
 		            PendingIntent.FLAG_UPDATE_CURRENT
 		        );
-        Intent skipIntent = new Intent(context, AppReceiver.class);
+        Intent skipIntent = new Intent(context, OTAReceivers.class);
         skipIntent.setAction(IGNORE_RELEASE);
         Intent downloadIntent = new Intent(context, com.ota.updates.MainActivity.class);
         PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 0, skipIntent, PendingIntent.FLAG_UPDATE_CURRENT);

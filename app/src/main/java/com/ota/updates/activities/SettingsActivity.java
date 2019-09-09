@@ -2,10 +2,8 @@
 package com.ota.updates.activities;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -33,7 +31,6 @@ import com.ota.updates.utils.Utils;
 
 @SuppressLint({"SdCardPath", "ExportedPreferenceActivity"})
 public class SettingsActivity extends PreferenceActivity implements OnPreferenceClickListener, OnPreferenceChangeListener, OnSharedPreferenceChangeListener, Constants{
-
     public final static String TAG = "OTATAG";
 	private Context mContext;
 	private Builder mInstallPrefsDialog;

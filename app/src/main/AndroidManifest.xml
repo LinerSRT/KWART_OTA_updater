@@ -55,7 +55,7 @@
         </activity>
 
         <receiver
-            android:name=".receivers.AppReceiver"
+            android:name=".receivers.OTAReceivers"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />

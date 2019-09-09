@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -20,94 +21,69 @@ import com.ota.updates.tasks.RomXmlParser;
 import com.ota.updates.views.OTADialog;
 
 import java.io.BufferedInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
-import static com.ota.updates.utils.Constants.MANIFEST_CHECK_BACKGROUND;
-import static com.ota.updates.utils.Constants.MANIFEST_LOADED;
+import static com.ota.updates.utils.Constants.NETWORK_TYPE;
 import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_DIR;
-import static com.ota.updates.utils.Constants.TAG;
+import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_DOWNLOADING;
+import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_FINISHED;
+import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_ID;
+import static com.ota.updates.utils.Constants.OTA_MD5_CHECKED;
 import static com.ota.updates.utils.Constants.WIFI_ONLY;
 
 public class InteractClass{
-    //Booleans
-    private boolean downloadFinished;
-    private boolean isDownloadRunning;
-    private boolean isMD5HasRun;
-    private boolean isMD5Passed;
-
-    //SubClasses
     private OTADialog installDialog;
-
-    //Utils
     private Context context;
-    private GetManifest getManifest;
-
 
 
     public InteractClass(Context context){
         this.context = context;
-        downloadFinished = Preferences.getDownloadFinished(context);
-        isDownloadRunning = Preferences.getIsDownloadOnGoing(context);
     }
 
 
     public void updateManifest(boolean isForegroundUpdate){
-        getManifest = new GetManifest(context, isForegroundUpdate);
+        GetManifest getManifest = new GetManifest(context, isForegroundUpdate);
         getManifest.execute();
     }
 
 
-    public void installOTA(){
-        checkMD5Summ();
-        isMD5HasRun = Preferences.getHasMD5Run(context);
-        isMD5Passed = Preferences.getMD5Passed(context);
-        if(downloadFinished && !isDownloadRunning && isMD5Passed){
-            installDialog = new OTADialog(context, "Установить?",
-                    RomUpdate.getChangelog(context),101,
-                    context.getString(R.string.cancel), " ",
-                    context.getString(R.string.install));
-            installDialog.setOkBtn(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String filename = "/sdcard"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(context)+".zip";
-                    Toast.makeText(context, "INST "+filename, Toast.LENGTH_SHORT).show();
-                    //Installer.flashFiles(AvailableActivity.this, filename, false, false, false);
-                }
-            });
-            installDialog.setNegativeBtn(new View.OnClickListener() {
+    public void installOTA(boolean backup, boolean wipeCache, boolean wipeData){
+        installDialog = new OTADialog(context, "Установить?",
+                RomUpdate.getChangelog(context),101,
+                context.getString(R.string.cancel), " ",
+                context.getString(R.string.install));
+        installDialog.setOkBtn(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                @SuppressLint("SdCardPath") String filename = "/sdcard"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(context)+".zip";
+                //flashFiles(context, filename, backup, wipeCache, wipeData);
+            }
+        });
+        installDialog.setNegativeBtn(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     installDialog.close();
                 }
             });
-        } else {
-            Log.d(TAG+"Installer", "Statements not passed! Downloaded = ["+downloadFinished+
-                    "] MD5 Check pass = ["+isMD5Passed+"] Download now running = ["+isDownloadRunning+"]");
-            Log.d(TAG+"Installer", "Skip installation!");
-        }
+        installDialog.show();
+        Toast.makeText(context, "Install pressed", Toast.LENGTH_SHORT).show();
     }
 
 
     public void downloadOTA(){
-        if(!isDownloadRunning && !downloadFinished){
-            String httpUrl = RomUpdate.getHttpUrl(context);
-            String directUrl = RomUpdate.getDirectUrl(context);
-            boolean isMobile = Utils.isMobileNetwork(context);
-            boolean isSettingWiFiOnly = Preferences.getNetworkType(context).equals(WIFI_ONLY);
-            boolean directUrlEmpty = directUrl.equals("null") || directUrl.isEmpty();
-            boolean httpUrlEmpty = httpUrl.equals("null") || httpUrl.isEmpty();
             startDownload(context);
-
-        }
     }
 
     public void cancelDownloadOTA(Context context) {
         long mDownloadID = Preferences.getDownloadID(context);
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        assert downloadManager != null;
         downloadManager.remove(mDownloadID);
         Preferences.setIsDownloadRunning(context, false);
         interactInterface.onDownloadStopped();
@@ -115,13 +91,42 @@ public class InteractClass{
 
     public void deleteUpdate(){
         Utils.deleteFile(RomUpdate.getFullFile(context));
-        Preferences.setHasMD5Run(context, false);
+        Preferences.setMD5Passed(context, false);
         Preferences.setDownloadFinished(context, false);
         interactInterface.onOTADeleted();
     }
 
+///////////////////////////////INSTALL PART////////////////////////////////////////
+    private static void flashFiles(Context context, String file, boolean backup, boolean wipeCache, boolean wipeData) {
+        try {
+            Process p = Runtime.getRuntime().exec("su");
+            DataOutputStream os = new DataOutputStream(p.getOutputStream());
+            os.writeBytes("mkdir -p /cache/recovery/\n");
+            os.writeBytes("rm -f /cache/recovery/command\n");
+            os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
+            os.writeBytes("echo 'boot-recovery' >> /cache/recovery/command\n");
+            if (backup) {
+                os.writeBytes("echo '--nandroid' >> /cache/recovery/command\n");
+            }
+            if (wipeData) {
+                os.writeBytes("echo '--wipe_data' >> /cache/recovery/command\n");
+            }
+            if (wipeCache) {
+                os.writeBytes("echo '--wipe_cache' >> /cache/recovery/command\n");
+            }
+            os.writeBytes("echo '--update_package=" + file + "' >> /cache/recovery/command\n");
 
-
+            String rebootCmd = "reboot recovery";
+            os.writeBytes(rebootCmd + "\n");
+            os.writeBytes("sync\n");
+            os.writeBytes("exit\n");
+            os.flush();
+            p.waitFor();
+            ((PowerManager) Objects.requireNonNull(context.getSystemService(Context.POWER_SERVICE))).reboot("recovery");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 ///////////////////////////////DOWNLOAD PART///////////////////////////////////////
     private void startDownload(Context context) {
@@ -140,6 +145,7 @@ public class InteractClass{
         request.setDestinationInExternalPublicDir(OTA_DOWNLOAD_DIR, fileName);
         Utils.deleteFile(file);
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        assert downloadManager != null;
         long mDownloadID = downloadManager.enqueue(request);
         Preferences.setDownloadID(context, mDownloadID);
         Preferences.setIsDownloadRunning(context, true);
@@ -176,7 +182,7 @@ public class InteractClass{
                     if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
                         Preferences.setIsDownloadRunning(mContext, false);
                     }
-                    final int progressPercent = (int) ((bytesDownloaded * 100l) / bytesInTotal);
+                    final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
                     if (progressPercent != previousValue) {
                         publishProgress(progressPercent, bytesDownloaded, bytesInTotal);
                         previousValue = progressPercent;
@@ -200,29 +206,33 @@ public class InteractClass{
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if(checkMD5Summ()){
+
+            Log.d(TAG+"_MD5", "Download finished, start checking MD5...");
+            String OTAFile, MD5OTAServer, MD5OTALocal;
+            OTAFile = RomUpdate.getFullFile(context).getAbsolutePath();
+            MD5OTAServer = RomUpdate.getMd5(context).trim();
+            MD5OTALocal = Tools.shell("md5sum " + OTAFile + " | cut -d ' ' -f 1", false).trim();
+
+            Log.d(TAG+"_MD5", "Server MD5: "+MD5OTAServer+"\n\t\t Local MD5: "+MD5OTALocal);
+            boolean result = MD5OTALocal.equalsIgnoreCase(MD5OTAServer);
+
+            Log.d(TAG+"_MD5", "Result of checking: "+result);
+
+            if(result) {
+                interactInterface.onMD5Checked(result);
                 Preferences.setDownloadFinished(context, true);
                 Preferences.setMD5Passed(context, true);
+                Preferences.setIsDownloadRunning(context,false);
+                interactInterface.onDownloadFinished();
             }
-            interactInterface.onDownloadFinished();
         }
     }
 ////////////////////////////////////////////////DOWNLOAD PART END/////////////////////////////////////////
 ////////////////////////////////////////////////MD5 CHECK/////////////////////////////////////////////////
 
-    private boolean checkMD5Summ(){
-        String file = RomUpdate.getFullFile(context).getAbsolutePath();
-        String md5Remote = RomUpdate.getMd5(context);
-        String md5Local = Tools.shell("md5sum " + file + " | cut -d ' ' -f 1", false);
-        md5Local = md5Local.trim();
-        md5Remote = md5Remote.trim();
-        boolean result = md5Local.equalsIgnoreCase(md5Remote);
-        Preferences.setMD5Passed(context, result);
-        interactInterface.onMD5Checked(result);
-        Preferences.setMD5Passed(context,result);
-        return result;
-    }
-////////////////////////////////////////////////MD5 END/////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////MD5 END/////////////////////////////////////////////////
 ////////////////////////////////////////////////MANIFEST CHECK//////////////////////////////////////////
 
    @SuppressLint("StaticFieldLeak")
@@ -255,6 +265,7 @@ public class InteractClass{
 
            File manifest = new File(mContext.getFilesDir().getPath(), MANIFEST);
            if (manifest.exists()) {
+               //noinspection ResultOfMethodCallIgnored
                manifest.delete();
            }
        }
@@ -263,33 +274,21 @@ public class InteractClass{
        protected Void doInBackground(Void... v) {
 
            try {
-               InputStream input = null;
-
-               URL url;
-               if (DEBUGGING) {
-                   url = new URL("https://romhut.com/roms/aosp-jf/ota.xml");
-               } else {
-                   url = new URL(Utils.getProp("ro.ota.manifest").trim());
-               }
+               InputStream input;
+               URL url = new URL(Utils.getProp("ro.ota.manifest").trim());
                URLConnection connection = url.openConnection();
                connection.connect();
-               // download the file
                input = new BufferedInputStream(url.openStream());
-
                OutputStream output = mContext.openFileOutput(
                        MANIFEST, Context.MODE_PRIVATE);
-
-               byte data[] = new byte[1024];
+               byte[] data = new byte[1024];
                int count;
                while ((count = input.read(data)) != -1) {
                    output.write(data, 0, count);
                }
-
                output.flush();
                output.close();
                input.close();
-
-               // file finished downloading, parse it!
                RomXmlParser parser = new RomXmlParser();
                parser.parse(new File(mContext.getFilesDir(), MANIFEST),
                        mContext);

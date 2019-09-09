@@ -25,10 +25,18 @@ public interface Constants {
 	boolean AMOLED_VERSION							= false;
 	String TAG										= "LINEROTA";
 
-	
-	// Props
-	String OTA_ROMNAME 								= "ro.ota.romname";
-	String OTA_VERSION 								= "ro.ota.version";
+    String OTA_DOWNLOAD_FINISHED = "ota_download_finished";
+    String OTA_DOWNLOAD_DOWNLOADING = "ota_downloading";
+    String OTA_HAVE_UPDATE = "ota_have_update";
+    String OTA_LAST_UPDATE_TIME = "ota_last_update_time";
+    String OTA_MD5_PASS = "ota_md5_pass";
+    String OTA_MD5_CHECKED = "ota_md5_checked";
+    String OTA_DOWNLOAD_ID = "ota_download_id";
+
+
+
+
+    String OTA_VERSION 								= "ro.ota.version";
 	String OTA_MANIFEST 							= "ro.ota.manifest";
 	String OTA_DOWNLOAD_LOC							= "ro.ota.download_loc";
 	String OTA_DEFAULT_THEME						= "ro.ota.default_theme";
