@@ -20,9 +20,11 @@ import android.os.Environment;
 
 public interface Constants {
 	// Developer
-	boolean DEBUGGING 								= true;
+	boolean DEBUGGING 								= false;
 	boolean DEBUG_NOTIFICATIONS 					= false;
 	boolean AMOLED_VERSION							= false;
+	String TAG										= "LINEROTA";
+
 	
 	// Props
 	String OTA_ROMNAME 								= "ro.ota.romname";

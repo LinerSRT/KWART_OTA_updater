@@ -23,6 +23,7 @@ import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+import com.ota.updates.MainActivity;
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
 import com.ota.updates.receivers.AppReceiver;

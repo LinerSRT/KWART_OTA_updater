@@ -23,6 +23,8 @@ import android.preference.RingtonePreference;
 import android.preference.SwitchPreference;
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
+
+import com.ota.updates.MainActivity;
 import com.ota.updates.R;
 import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Preferences;

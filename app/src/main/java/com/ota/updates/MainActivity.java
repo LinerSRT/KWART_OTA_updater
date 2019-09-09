@@ -1,6 +1,7 @@
 package com.ota.updates;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NativeActivity;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,8 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.ota.updates.download.DownloadRom;
-import com.ota.updates.tasks.LoadUpdateManifest;
 import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Installer;
 import com.ota.updates.utils.InteractClass;
@@ -52,17 +52,20 @@ public class MainActivity extends Activity {
 
     //Include util
     PreferenceManager preferenceManager;
-    private CompatibilityTask compatibilityTask;
-    private InteractClass interactClass;
+    private static InteractClass interactClass;
     private Installer installer;
-    private DownloadRom mDownloadRom;
 
     //Booleans
     private boolean permissionGrant = false;
     private boolean isFirstRun = true;
-    private boolean downloadFinished, downloadIsRunning, md5HasRun, md5Passed;
+    private boolean canInstall = false;
+    private boolean canDownload = true;
+    private boolean haveUpdates = false;
 
 
+    public static InteractClass getInteractClass(){
+        return interactClass;
+    }
 
 
 
@@ -71,71 +74,122 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        preferenceManager = PreferenceManager.getInstance(this);
-        mDownloadRom = new DownloadRom();
-        registerReceiver(manifestReceiver, new IntentFilter(MANIFEST_LOADED));
-        initValues();
         initViews();
         checkPermissions();
-        init();
-
-        if(isFirstRun){
-            preferenceManager.saveBoolean(FIRST_RUN, false);
-            //Do some stuff when first run
-        }
-
         File installAfterFlashDir = new File(SD_CARD
                 + File.separator
                 + OTA_DOWNLOAD_DIR
                 + File.separator
                 + INSTALL_AFTER_FLASH_DIR);
-        //noinspection ResultOfMethodCallIgnored
         installAfterFlashDir.mkdirs();
-
-
         Utils.setHasFileDownloaded(this);
-        getInformation();
         updateViews();
+        updateButtonStat();
+        interactClass = new InteractClass(MainActivity.this);
+
+        if (!Utils.isConnected(this)) {
+            AlertDialog.Builder notConnectedDialog = new AlertDialog.Builder(this);
+            notConnectedDialog.setTitle(R.string.main_not_connected_title)
+                    .setMessage(R.string.main_not_connected_message)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            (MainActivity.this).finish();
+                        }
+                    })
+                    .show();
+        } else {
+            interactClass.updateManifest(false);
+        }
 
 
+        interactClass.serInteractListener(new InteractInterface() {
+            @Override
+            public void onDownloadFinished() {
+                updateViews();
+                downloadProgressBar.setProgress(0);
+                downloadStatusText.setText(" ");
+                interact_layout.setVisibility(View.VISIBLE);
+                downloadLayout.setVisibility(View.GONE);
+                interactText.setText(getString(R.string.main_download_completed_details));
+            }
 
+            @Override
+            public void onDownloadStarted() {
+                downloadProgressBar.setProgress(0);
+                downloadStatusText.setText(" ");
+                interact_layout.setVisibility(View.GONE);
+                downloadLayout.setVisibility(View.VISIBLE);
+                Log.d(TAG+"Downloader", "Download started!");
+            }
 
-        interactClass = new InteractClass(MainActivity.this, downloadFinished, downloadIsRunning,
-                md5HasRun, md5Passed, installer, mDownloadRom,downloadStatusText, descriptionText,
-                downloadProgressBar, downloadLayout, interact_layout);
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDownloadProgressChanched(Integer... progress) {
+                downloadProgressBar.setProgress(progress[0]);
+                downloadStatusText.setText(Utils.formatDataFromBytes(progress[1]) +"/" +Utils.formatDataFromBytes(progress[2]));
+
+                Log.d(TAG+"Downloader", "Download changed!");
+            }
+
+            @Override
+            public void onDownloadStopped() {
+                Log.d(TAG+"Downloader", "Download stopped!");
+            }
+
+            @Override
+            public void onMD5Checked(boolean status) {
+                Log.d(TAG+"MD5Checker", "Check status - "+status);
+            }
+
+            @Override
+            public void needUpdateManifest() {
+
+            }
+
+            @Override
+            public void onManifestUpdated() {
+                Log.v(TAG+"MANIFEST", "Downloaded");
+                getInformation();
+                updateViews();
+                updateButtonStat();
+                updateViews();
+            }
+
+            @Override
+            public void onManifestDownloaded() {
+
+            }
+
+            @Override
+            public void onOTADeleted() {
+                updateButtonStat();
+                getInformation();
+                updateViews();
+                Log.d(TAG+"Manager", "OTADeleted");
+            }
+        });
         interact_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-
-
-
-
-                if(!(RomUpdate.getUpdateAvailability(MainActivity.this) || (!RomUpdate.getUpdateAvailability(MainActivity.this)) && Utils.isUpdateIgnored(MainActivity.this))){
-                    //Если нет обновлений
-                    new LoadUpdateManifest(MainActivity.this, true).execute();
-                    updateViews();
+                if(!haveUpdates){
+                    interactClass.updateManifest(false);
                 }
+                if (canInstall) {
+                    interactClass.installOTA();
 
-                if (Preferences.getDownloadFinished(MainActivity.this)) {
-                    // Если есть обновление и оно загружно
-                    interactClass.installUpdate();
-
-                } else if (!Preferences.getIsDownloadOnGoing(MainActivity.this)) {
-                    // Если есть обновление
-                    interactClass.startDownload();
+                } else if (canDownload) {
+                    interactClass.downloadOTA();
                 }
-                //interactClass.deleteUpdate();
+                Log.d(TAG+"Button", "Status = HU "+haveUpdates+" | CI "+canInstall+" | CD "+canDownload);
             }
         });
 
-
+        //DEBUG
         smile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                interactClass.updateManifest(false);
                 getInformation();
                 updateViews();
             }
@@ -147,26 +201,25 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
+        //DEBUG
 
-        interactClass.serInteractListener(new InteractInterface() {
-            @Override
-            public void onDownloadFinished() {
-                new LoadUpdateManifest(MainActivity.this, true).execute();
-                updateViews();
-                interact_layout.setVisibility(View.VISIBLE);
-                downloadLayout.setVisibility(View.GONE);
-                interactText.setText(getString(R.string.main_download_completed_details));
-            }
-        });
+
 
     }
 
 
+    private void updateButtonStat(){
+        haveUpdates = RomUpdate.getUpdateAvailability(this) || (!RomUpdate.getUpdateAvailability(this)) && Utils.isUpdateIgnored(this);
+        canDownload = haveUpdates && !Preferences.getDownloadFinished(this) && !Preferences.getIsDownloadOnGoing(this);
+        canInstall = Preferences.getDownloadFinished(this) && haveUpdates && Preferences.getMD5Passed(this);
+
+        Log.d(TAG+"Button", "Status = HU "+haveUpdates+" | CI "+canInstall+" | CD "+canDownload);
+    }
+
     private void updateViews(){
 
         downloadLayout.setVisibility(View.GONE);
-        if (RomUpdate.getUpdateAvailability(this) ||
-                (!RomUpdate.getUpdateAvailability(this)) && Utils.isUpdateIgnored(this)) {
+        if (haveUpdates) {
             interactIcon.setImageDrawable(getDrawable(R.drawable.ic_update_download_done));
             smile.setImageDrawable(getDrawable(R.drawable.ic_update_available));
 
@@ -213,32 +266,6 @@ public class MainActivity extends Activity {
         aboutRomVersion.setText(romVersionActual);
     }
 
-    private void init(){
-        if (!Utils.isConnected(this)) {
-            AlertDialog.Builder notConnectedDialog = new AlertDialog.Builder(this);
-            notConnectedDialog.setTitle(R.string.main_not_connected_title)
-                    .setMessage(R.string.main_not_connected_message)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            (MainActivity.this).finish();
-                        }
-                    })
-                    .show();
-        } else {
-            compatibilityTask = new CompatibilityTask(this);
-            compatibilityTask.execute();
-        }
-    }
-
-    private void initValues(){
-        isFirstRun = preferenceManager.getBoolean(FIRST_RUN, true);
-        downloadFinished = Preferences.getDownloadFinished(this);
-        downloadIsRunning = Preferences.getIsDownloadOnGoing(this);
-        md5HasRun = Preferences.getHasMD5Run(this);
-        md5Passed = Preferences.getMD5Passed(this);
-    }
-
     private void initViews(){
         descriptionText = (TextView) findViewById(R.id.description);
         interactText = (TextView) findViewById(R.id.interact_text);
@@ -256,16 +283,6 @@ public class MainActivity extends Activity {
         aboutRomLastUpdate = (TextView) findViewById(R.id.about_rom_last_update);
         aboutRomVersion = (TextView) findViewById(R.id.about_rom_version);
     }
-
-    private BroadcastReceiver manifestReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Objects.equals(intent.getAction(), MANIFEST_LOADED)) {
-                getInformation();
-                updateViews();
-            }
-        }
-    };
 
     private void checkPermissions(){
         ActivityCompat.requestPermissions(this,
@@ -286,45 +303,4 @@ public class MainActivity extends Activity {
             }
         }
     }
-    
-    @Override
-    protected void onStop() {
-        unregisterReceiver(manifestReceiver);
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        registerReceiver(manifestReceiver, new IntentFilter(MANIFEST_LOADED));
-        super.onStart();
-    }
-
-
-    public class CompatibilityTask extends AsyncTask<Void, Boolean, Boolean> implements Constants {
-
-        public final String TAG = this.getClass().getSimpleName();
-
-        private Context mContext;
-        private String mPropName;
-
-        public CompatibilityTask(Context context) {
-            this.mContext = context;
-            mPropName = context.getResources().getString(R.string.prop_name);
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... v) {
-            return Utils.doesPropExist(mPropName);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            if (result) {
-                new LoadUpdateManifest(mContext, true).execute();
-                updateViews();
-            }
-            super.onPostExecute(result);
-        }
-    }
-
 }

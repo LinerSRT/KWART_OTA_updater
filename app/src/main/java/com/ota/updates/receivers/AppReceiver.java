@@ -20,14 +20,15 @@ import com.ota.updates.MainActivity;
 import com.ota.updates.OtaUpdates;
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
-import com.ota.updates.tasks.LoadUpdateManifest;
 import com.ota.updates.utils.Constants;
+import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Utils;
 
 public class AppReceiver extends BroadcastReceiver implements Constants{
 
 	public final static String TAG = "OTATAG";
+	private InteractClass interactClass = MainActivity.getInteractClass();
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -125,7 +126,9 @@ public class AppReceiver extends BroadcastReceiver implements Constants{
 		if (action.equals(START_UPDATE_CHECK)) {
 			if (DEBUGGING)
 				Log.d(TAG, "Update check started");
-			new LoadUpdateManifest(context, false).execute();
+			if(interactClass != null)
+				interactClass.updateManifest(false);
+			//new LoadUpdateManifest(context, false).execute();
 		}
 
 		if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
