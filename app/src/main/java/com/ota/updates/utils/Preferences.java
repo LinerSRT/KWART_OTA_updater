@@ -78,10 +78,6 @@ public class Preferences implements Constants{
         return getPrefs(context).getLong(DOWNLOAD_ID, 0L);
     }
 
-    public static String getNotificationSound(Context context) {
-        String defValue = android.provider.Settings.System.DEFAULT_NOTIFICATION_URI.toString();
-        return getPrefs(context).getString(NOTIFICATIONS_SOUND, defValue);
-    }
 
     public static Boolean getNotificationVibrate(Context context) {
         return getPrefs(context).getBoolean(NOTIFICATIONS_VIBRATE, true);
@@ -100,6 +96,17 @@ public class Preferences implements Constants{
     public static boolean getORSEnabled(Context context) {
         Log.d(TAG, "ORS Enabled Preference " + getPrefs(context).getBoolean(UPDATER_ENABLE_ORS, false));
         return getPrefs(context).getBoolean(UPDATER_ENABLE_ORS, false);
+    }
+
+    public static void setRingtone(Context context, String ringtone){
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(NOTIFICATIONS_SOUND, ringtone);
+        editor.commit();
+    }
+
+    public static String getRingtone(Context context){
+        String def = android.provider.Settings.System.DEFAULT_NOTIFICATION_URI.toString();
+        return getPrefs(context).getString(NOTIFICATIONS_SOUND, def);
     }
 
     public static int getCurrentTheme(Context context) {
@@ -146,6 +153,18 @@ public class Preferences implements Constants{
     public static void setUpdateLastChecked(Context context, String time) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(LAST_CHECKED, time);
+        editor.commit();
+    }
+
+    public static void setBackgroundService(Context context, boolean enable) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(UPDATER_BACK_SERVICE, enable);
+        editor.commit();
+    }
+
+    public static void setNotificationVibrate(Context context, boolean enable) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean(NOTIFICATIONS_VIBRATE, enable);
         editor.commit();
     }
 

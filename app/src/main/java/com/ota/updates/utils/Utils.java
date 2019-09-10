@@ -42,10 +42,6 @@ public class Utils implements Constants{
 		decimalFormat.setMaximumFractionDigits(1);
 	}
 
-	public Utils(Context context){
-		this.context = context;
-	}
-
 	public static Boolean doesPropExist(String propName) {
 		boolean valid = false;
 		
@@ -269,7 +265,7 @@ public class Utils implements Constants{
 		.setPriority(NotificationCompat.PRIORITY_HIGH)
 		.setDefaults(NotificationCompat.DEFAULT_LIGHTS)
 		.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-		.setSound(Uri.parse(Preferences.getNotificationSound(context)))
+		.setSound(Uri.parse(Preferences.getRingtone(context)))
 		.addAction(R.drawable.ic_check, context.getString(R.string.download), downloadPendingIntent)
         .addAction(R.drawable.ic_update_not_available, context.getString(R.string.ignore), skipPendingIntent);
 

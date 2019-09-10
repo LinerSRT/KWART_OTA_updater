@@ -29,6 +29,27 @@
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
     </style>
 
+    <style name="SpinnerStyle" parent="@style/Widget.AppCompat.Spinner">
+        <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem</item>
+    </style>
+
+    <style name="SpinnerItem" parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:textSize">@dimen/secondTextSizeGlobal</item>
+        <item name="android:textColor">?attr/textColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:colorAccent">?attr/colorPrimary</item>
+    </style>
+
+    <style name="SpinnerDropDownItem" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textSize">@dimen/secondTextSizeGlobal</item>
+        <item name="android:textColor">?attr/textColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:colorAccent">?attr/colorPrimary</item>
+    </style>
+
     <style name="OrangeDeepTheme" parent="@android:style/Theme.NoTitleBar" >
         <item name="backgroundColor">@color/backgroundColorLight</item>
         <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>

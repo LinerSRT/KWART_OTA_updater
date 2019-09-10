@@ -26,7 +26,7 @@
                 android:id="@+id/about_device_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Часы KWART Uranus"
+                android:text="Часы KWART "
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
         </LinearLayout>

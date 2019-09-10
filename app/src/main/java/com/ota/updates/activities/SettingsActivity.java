@@ -52,7 +52,7 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 
 		String defValue = android.provider.Settings.System.DEFAULT_NOTIFICATION_URI.toString();
 		String soundValue = getPreferenceManager().getSharedPreferences().getString(NOTIFICATIONS_SOUND, defValue);
-		setRingtoneSummary(soundValue);
+		//setRingtoneSummary(soundValue);
 
 		if (!Tools.isRootAvailable()) {
 			SwitchPreference ors = (SwitchPreference) findPreference("updater_twrp_ors");
@@ -103,16 +103,11 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		boolean result = false;
 		if (preference == mRingtonePreference) {
-			setRingtoneSummary((String)newValue);
+			//setRingtoneSummary((String)newValue);
 			result = true;
 		}
 		return result;
 	}
 
-	private void setRingtoneSummary(String soundValue) {
-		Uri soundUri = TextUtils.isEmpty(soundValue) ? null : Uri.parse(soundValue);
-		Ringtone tone = soundUri != null ? RingtoneManager.getRingtone(this, soundUri) : null;
-		mRingtonePreference.setSummary(tone != null ? tone.getTitle(this)
-				: getResources().getString(R.string.silent_ringtone));
-	}
+
 }

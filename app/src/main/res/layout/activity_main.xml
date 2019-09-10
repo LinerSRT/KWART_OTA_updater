@@ -10,38 +10,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
 
         <ImageView
             android:id="@+id/smile"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/ic_update_not_available"
-            android:tint="?attr/colorPrimary"/>
+            android:tint="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:textSize="@dimen/textSizeGlobal"
-            android:textColor="?attr/textColor"
-            android:text="Доступных обновлений нет."
             android:gravity="center"
-            android:lines="2"/>
+            android:text="Доступных обновлений нет."
+            android:textColor="?attr/textColor"
+            android:textSize="@dimen/textSizeGlobal" />
 
         <LinearLayout
             android:id="@+id/interact_layout"
             android:layout_width="240dp"
             android:layout_height="50dp"
-            android:orientation="horizontal"
             android:layout_marginTop="5dp"
-            android:gravity="center"
             android:background="@drawable/button_background_shape"
             android:backgroundTint="?attr/backgroundColor"
-            android:elevation="4dp">
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/interact_img"
@@ -55,46 +54,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
-                android:textSize="@dimen/textSizeGlobal"
-                android:textColor="?attr/textColor"
-                android:text="Нажмите что бы проверить"
                 android:gravity="center"
-                android:lines="2"/>
+                android:lines="2"
+                android:text="Нажмите что бы проверить"
+                android:textColor="?attr/textColor"
+                android:textSize="@dimen/textSizeGlobal" />
 
         </LinearLayout>
 
         <include
             android:id="@+id/download_layout"
+            layout="@layout/download_element"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            layout="@layout/download_element"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/last_update_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Последняя проверка: 18:52 02.03.2001"
             android:textColor="?attr/textColor"
-            android:textSize="@dimen/secondTextSizeGlobal"
-            android:layout_marginTop="5dp"/>
+            android:textSize="@dimen/secondTextSizeGlobal" />
 
         <include
             android:id="@+id/download_layout"
+            layout="@layout/device_info_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:layout_marginTop="5dp"
-            layout="@layout/device_info_layout"/>
+            android:visibility="visible" />
 
 
-
-
-
-
-
-
-
+        <ImageButton
+            android:id="@+id/to_settings_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circle_btn_qs_bg"
+            android:src="@drawable/ic_settings"
+            android:scaleType="fitCenter"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:tint="@color/white" />
 
     </LinearLayout>
 

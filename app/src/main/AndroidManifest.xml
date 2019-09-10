@@ -36,6 +36,7 @@
         android:theme="@style/BlueDeepTheme"
         android:uiOptions="splitActionBarWhenNarrow"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Settings"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,8 +44,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".activities.SettingsActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"

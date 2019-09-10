@@ -5,11 +5,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -32,6 +35,7 @@ public class MainActivity extends Activity {
     private TextView descriptionText, interactText, lastUpdateText, downloadStatusText;
     private TextView aboutRomVersion;
     private TextView aboutRomLastUpdate;
+    private ImageButton toSettingsBtn;
     private ImageView smile, interactIcon;
     private NumberProgressBar downloadProgressBar;
     private RelativeLayout downloadLayout;
@@ -43,18 +47,30 @@ public class MainActivity extends Activity {
     public static InteractClass getInteractClass(){
         return interactClass;
     }
-    private Utils utils;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        utils = new Utils(this);
         if(AMOLED_VERSION){
             setContentView(R.layout.activity_main_amoled);
         } else {
             setContentView(R.layout.activity_main);
         }
+
+
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screenWidth = dm.widthPixels;
+        int screenHeight = dm.heightPixels;
+
+        Log.d(TAG+"DISP", "W: "+screenWidth+"x"+screenHeight+"  "+dm.toString());
+
+
+
+
         initViews();
         checkPermissions();
         File installAfterFlashDir = new File(SD_CARD
@@ -102,14 +118,17 @@ public class MainActivity extends Activity {
             }
         });
 
-
-        //DEBUG
-
-        smile.setOnClickListener(new View.OnClickListener() {
+        toSettingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                interactClass.deleteUpdate();
+                if(android.os.Build.VERSION.SDK_INT < 24) {
+                    Intent intent = new Intent(MainActivity.this, Settings.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, Settings.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -252,8 +271,10 @@ public class MainActivity extends Activity {
         interact_layout = (LinearLayout) findViewById(R.id.interact_layout);
 
         TextView aboutDevice = (TextView) findViewById(R.id.about_device_text);
+        aboutDevice.setText("Часы KWART "+RomUpdate.getRomName(this));
         aboutRomLastUpdate = (TextView) findViewById(R.id.about_rom_last_update);
         aboutRomVersion = (TextView) findViewById(R.id.about_rom_version);
+        toSettingsBtn = (ImageButton) findViewById(R.id.to_settings_btn);
     }
 
     private void checkPermissions(){
