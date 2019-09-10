@@ -19,14 +19,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Устройство: "
+                android:text="@string/device_text"
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
             <TextView
                 android:id="@+id/about_device_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Часы KWART "
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
         </LinearLayout>
@@ -40,14 +39,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Версия прошивки: "
+                android:text="@string/version_text"
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
             <TextView
                 android:id="@+id/about_rom_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.0"
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
         </LinearLayout>
@@ -61,14 +59,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Обновлено: "
+                android:text="@string/update_time_text"
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
             <TextView
                 android:id="@+id/about_rom_last_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="22.22.2021"
                 android:textColor="#fff"
                 android:textSize="@dimen/secondTextSizeGlobal"/>
         </LinearLayout>

@@ -13,7 +13,7 @@
             android:id="@+id/download_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выполняется загрузка"
+            android:text="@string/downloading_title"
             android:gravity="center_horizontal"
             android:textSize="@dimen/textSizeGlobal"
             android:textColor="?attr/textColor"/>
@@ -36,7 +36,6 @@
                 android:id="@+id/download_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 KB /1230 KB"
                 android:textSize="@dimen/secondTextSizeGlobal"
                 android:textColor="?attr/textColor"/>
         </LinearLayout>

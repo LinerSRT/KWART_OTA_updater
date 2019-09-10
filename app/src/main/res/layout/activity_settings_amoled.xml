@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="22sp"
-                android:text="Уведомления"
+                android:text="@string/notifications"
                 android:textColor="?attr/textColor"
                 android:background="@drawable/button_background_shape_up"
                 android:backgroundTint="?attr/backgroundColorDark"/>
@@ -43,7 +43,7 @@
                 android:textColor="?attr/textColor"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:text="@string/background_service_summary"
+                android:text="@string/show_notification_text"
                 android:checked="false"
                 android:buttonTint="?attr/colorPrimary"/>
 
@@ -100,7 +100,7 @@
                 android:textColor="?attr/textColor"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:text="@string/notifications_vibrate"
+                android:text="@string/vibrate_on_notice_text"
                 android:checked="false"
                 android:buttonTint="?attr/colorPrimary"/>
 
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:drawableLeft="@drawable/ic_sound"
-                android:text="Звук уведомления"
+                android:text="@string/notification_melody_text"
                 android:background="@drawable/button_background_shape"
                 android:backgroundTint="?attr/backgroundColor"
                 android:elevation="5dp"

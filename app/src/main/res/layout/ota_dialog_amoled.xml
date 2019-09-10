@@ -18,9 +18,45 @@
             android:paddingBottom="5dp"
             android:background="?attr/colorPrimaryDark"
             android:gravity="center"
-            android:text="Dialog Title"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/textSizeGlobal" />
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/reboot_warn"
+            android:textColor="#B00"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/changes_text"
+                android:textColor="?attr/textColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/ota_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:textColor="#090"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/dialog_text"
@@ -30,9 +66,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:gravity="center"
-            android:text="Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT Dialog TEXT "
             android:textColor="?attr/textColor"
-            android:textSize="@dimen/secondTextSizeGlobal" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,8 +86,7 @@
                 android:layout_marginEnd="5dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Cancel"
-                android:textSize="@dimen/secondTextSizeGlobal"
+                android:textSize="18sp"
                 android:textColor="@color/text_white"/>
 
             <Button
@@ -64,8 +98,7 @@
                 android:layout_marginEnd="5dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Middle"
-                android:textSize="@dimen/secondTextSizeGlobal"
+                android:textSize="18sp"
                 android:textColor="@color/text_white"/>
 
             <Button
@@ -77,8 +110,7 @@
                 android:layout_marginEnd="5dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="OK"
-                android:textSize="@dimen/secondTextSizeGlobal"
+                android:textSize="18sp"
                 android:textColor="@color/text_white"/>
         </LinearLayout>
     </LinearLayout>

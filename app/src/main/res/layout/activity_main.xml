@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:gravity="center"
-            android:text="Доступных обновлений нет."
+            android:text="@string/no_updates_text"
             android:textColor="?attr/textColor"
             android:textSize="@dimen/textSizeGlobal" />
 
@@ -56,7 +56,7 @@
                 android:layout_marginStart="5dp"
                 android:gravity="center"
                 android:lines="2"
-                android:text="Нажмите что бы проверить"
+                android:text="@string/tap_to_check_updates"
                 android:textColor="?attr/textColor"
                 android:textSize="@dimen/textSizeGlobal" />
 
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Последняя проверка: 18:52 02.03.2001"
+            android:text="@string/last_update_time_text"
             android:textColor="?attr/textColor"
             android:textSize="@dimen/secondTextSizeGlobal" />
 

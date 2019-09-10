@@ -30,6 +30,7 @@ public class Preferences implements Constants{
     private Preferences() {
     }
 
+
     private static SharedPreferences getPrefs(Context context) {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
@@ -109,32 +110,6 @@ public class Preferences implements Constants{
         return getPrefs(context).getString(NOTIFICATIONS_SOUND, def);
     }
 
-    public static int getCurrentTheme(Context context) {
-        Boolean isDefaultThemeUsed = Utils.doesPropExist(OTA_DEFAULT_THEME);
-        String getDefTheme = Utils.getProp(OTA_DEFAULT_THEME);
-        Boolean isLollipop = Utils.isLollipop();
-
-        // Has a a default theme been set by the developer?
-        if(isDefaultThemeUsed && !getDefTheme.isEmpty()) {
-            int defThemeInt = Integer.parseInt(getDefTheme);
-            if(!(defThemeInt < 0 || defThemeInt > 2)) {
-                return Integer.parseInt(getPrefs(context).getString(CURRENT_THEME, getDefTheme));
-            } else {
-                return normalTheme(context, isLollipop);
-            }
-        } else {
-            return normalTheme(context, isLollipop);
-        }
-    }
-
-    private static int normalTheme(Context context, Boolean isLollipop) {
-        if (isLollipop) {
-            return Integer.parseInt(getPrefs(context).getString(CURRENT_THEME, THEME_LIGHT));
-        } else {
-            return Integer.parseInt(getPrefs(context).getString(CURRENT_THEME, THEME_DARK));
-        }
-    }
-
 
 
     public static String getIgnoredRelease(Context context) {
@@ -146,14 +121,20 @@ public class Preferences implements Constants{
         return getPrefs(context).getBoolean(FIRST_RUN, true);
     }
 
-    public static Boolean getIsPro(Context context) {
-        return getPrefs(context).getBoolean(IS_PRO, false);
-    }
-
     public static void setUpdateLastChecked(Context context, String time) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(LAST_CHECKED, time);
         editor.commit();
+    }
+
+    public static void setLanguage(Context context, String lang) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(LANGUAGE, lang);
+        editor.commit();
+    }
+
+    public static String getLangugage(Context context){
+        return getPrefs(context).getString(LANGUAGE, "ru");
     }
 
     public static void setBackgroundService(Context context, boolean enable) {

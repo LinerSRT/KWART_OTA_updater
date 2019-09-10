@@ -24,14 +24,7 @@ public interface Constants {
 	boolean DEBUG_NOTIFICATIONS 					= false;
 	boolean AMOLED_VERSION							= false;
 	String TAG										= "LINEROTA";
-
-    String OTA_DOWNLOAD_FINISHED = "ota_download_finished";
-    String OTA_DOWNLOAD_DOWNLOADING = "ota_downloading";
-    String OTA_HAVE_UPDATE = "ota_have_update";
-    String OTA_LAST_UPDATE_TIME = "ota_last_update_time";
-    String OTA_MD5_PASS = "ota_md5_pass";
-    String OTA_MD5_CHECKED = "ota_md5_checked";
-    String OTA_DOWNLOAD_ID = "ota_download_id";
+	String LANGUAGE = "lang";
 
 
 
