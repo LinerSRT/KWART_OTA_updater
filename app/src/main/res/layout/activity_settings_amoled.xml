@@ -63,7 +63,7 @@
                 android:layout_height="50dp"
                 android:padding="5dp"
                 android:dropDownWidth="wrap_content"
-                android:dropDownSelector="@drawable/spinner_selector"
+                android:dropDownSelector="@drawable/spinner_selector_drawawble"
                 android:popupBackground="@android:color/transparent"
                 android:background="@null"
                 android:spinnerMode="dropdown"

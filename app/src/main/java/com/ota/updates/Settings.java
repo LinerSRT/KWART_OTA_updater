@@ -151,7 +151,7 @@ public class Settings extends Activity implements Constants {
         String[] frequencyArray = getResources().getStringArray(R.array.updater_background_frequency_entries);
         if(isAmoled) {
             setContentView(R.layout.activity_settings_amoled);
-            qrequencyAdapter = new ArrayAdapter<>(this, R.layout.spinner_row_item_amoled, R.id.spinner_row_text, frequencyArray);
+            qrequencyAdapter = new ArrayAdapter<>(this, R.layout.spinner_row_item_amoled, R.id.spinner_row_text_amoled, frequencyArray);
         } else {
             setContentView(R.layout.activity_settings);
             qrequencyAdapter = new ArrayAdapter<>(this, R.layout.spinner_row_item, R.id.spinner_row_text, frequencyArray);

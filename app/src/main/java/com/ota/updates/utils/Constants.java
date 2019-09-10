@@ -22,7 +22,7 @@ public interface Constants {
 	// Developer
 	boolean DEBUGGING 								= false;
 	boolean DEBUG_NOTIFICATIONS 					= false;
-	boolean AMOLED_VERSION							= false;
+	boolean AMOLED_VERSION							= true;
 	String TAG										= "LINEROTA";
 	String LANGUAGE = "lang";
 
