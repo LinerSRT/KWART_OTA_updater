@@ -2,68 +2,65 @@ package com.ota.updates;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.preference.RingtonePreference;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Preferences;
 
 public class Settings extends Activity implements Constants {
     private Spinner frequencySpinner;
-    private String[] frequencyArray;
     private String[] frequencyArrayValues;
-
     private CheckBox notificationCheckBox, vibrationCheckBox;
     private Button notificationSoundBtn;
-
     private boolean showNotification = true;
     private boolean vibrate = false;
-    private String ringtonePreference;
     private int selectedFrequency;
-
-
     ArrayAdapter<?> qrequencyAdapter;
 
+    private void initTheme(){
+        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 0)){
+            case 0:
+                setTheme(R.style.AppTheme);
+                break;
+            case 1:
+                setTheme(R.style.BlueDeepTheme);
+                break;
+            case 2:
+                setTheme(R.style.RedDeepTheme);
+                break;
+            case 3:
+                setTheme(R.style.GreenDeepTheme);
+                break;
+            case 4:
+                setTheme(R.style.DarkTheme);
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initTheme();
         frequencyArrayValues = getResources().getStringArray(R.array.updater_background_frequency_values);
         initValues();
         initViews(AMOLED_VERSION);
         frequencySpinner.setAdapter(qrequencyAdapter);
         updateView();
-
-
-
-
-
-        Log.d(TAG+"SOUND", "Show notification: "+showNotification+" | Vibrate: "+vibrate+" | Notification sound: "+ringtonePreference);
         notificationCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Preferences.setBackgroundService(Settings.this, notificationCheckBox.isChecked());
                 initValues();
                 updateView();
-
-                Log.d(TAG+"SOUND", "Show notification: "+showNotification+" | Vibrate: "+vibrate+" | Notification sound: "+ringtonePreference);
             }
         });
 
@@ -73,8 +70,6 @@ public class Settings extends Activity implements Constants {
                 Preferences.setNotificationVibrate(Settings.this, vibrationCheckBox.isChecked());
                 initValues();
                 updateView();
-
-                Log.d(TAG+"SOUND", "Show notification: "+showNotification+" | Vibrate: "+vibrate+" | Notification sound: "+ringtonePreference);
             }
         });
 
@@ -92,8 +87,6 @@ public class Settings extends Activity implements Constants {
 
             }
         });
-
-
         notificationSoundBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +99,6 @@ public class Settings extends Activity implements Constants {
         });
 
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -121,18 +113,14 @@ public class Settings extends Activity implements Constants {
     private void initValues(){
         showNotification = Preferences.getBackgroundService(this);
         vibrate = Preferences.getNotificationVibrate(this);
-        ringtonePreference = Preferences.getRingtone(this);
         selectedFrequency = getSpinnerSelected(Preferences.getBackgroundFrequency(this));
-        Log.d(TAG+"SEL", "GET - "+selectedFrequency);
 
 
     }
 
     private int getSpinnerSelected(int value){
         int result = 0;
-        if(value == Integer.valueOf(frequencyArrayValues[0])){
-            result = 0;
-        } else if (value == Integer.valueOf(frequencyArrayValues[1])){
+        if (value == Integer.valueOf(frequencyArrayValues[1])){
             result = 1;
         } else if (value == Integer.valueOf(frequencyArrayValues[2])){
             result = 2;
@@ -157,18 +145,16 @@ public class Settings extends Activity implements Constants {
         notificationCheckBox.setChecked(showNotification);
         vibrationCheckBox.setChecked(vibrate);
         frequencySpinner.setSelection(selectedFrequency);
-
-        Log.d(TAG+"SEL", "SSS - "+selectedFrequency);
     }
 
     private void initViews(boolean isAmoled){
-        frequencyArray = getResources().getStringArray(R.array.updater_background_frequency_entries);
+        String[] frequencyArray = getResources().getStringArray(R.array.updater_background_frequency_entries);
         if(isAmoled) {
             setContentView(R.layout.activity_settings_amoled);
-            qrequencyAdapter = new ArrayAdapter<String>(this, R.layout.spinner_row_item_amoled, R.id.spinner_row_text, frequencyArray);
+            qrequencyAdapter = new ArrayAdapter<>(this, R.layout.spinner_row_item_amoled, R.id.spinner_row_text, frequencyArray);
         } else {
             setContentView(R.layout.activity_settings);
-            qrequencyAdapter = new ArrayAdapter<String>(this, R.layout.spinner_row_item, R.id.spinner_row_text, frequencyArray);
+            qrequencyAdapter = new ArrayAdapter<>(this, R.layout.spinner_row_item, R.id.spinner_row_text, frequencyArray);
         }
         frequencySpinner = (Spinner) findViewById(R.id.update_period_frequency_spinner);
         frequencySpinner.setSelection(selectedFrequency);

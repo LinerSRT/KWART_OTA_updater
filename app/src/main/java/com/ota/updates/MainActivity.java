@@ -48,11 +48,30 @@ public class MainActivity extends Activity {
         return interactClass;
     }
 
-
+    private void initTheme(){
+        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 0)){
+            case 0:
+                setTheme(R.style.AppTheme);
+                break;
+            case 1:
+                setTheme(R.style.BlueDeepTheme);
+                break;
+            case 2:
+                setTheme(R.style.RedDeepTheme);
+                break;
+            case 3:
+                setTheme(R.style.GreenDeepTheme);
+                break;
+            case 4:
+                setTheme(R.style.DarkTheme);
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTheme();
         if(AMOLED_VERSION){
             setContentView(R.layout.activity_main_amoled);
         } else {
