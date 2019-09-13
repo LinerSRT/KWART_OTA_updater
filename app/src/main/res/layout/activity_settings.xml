@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings"
-    android:background="?attr/backgroundColor">
+    android:background="?attr/backgroundColorDark">
 
 
     <LinearLayout
@@ -31,9 +31,9 @@
                 android:gravity="center"
                 android:textSize="@dimen/textSizeGlobal"
                 android:text="@string/notifications"
-                android:textColor="?attr/textColor"
+                android:textColor="#fff"
                 android:background="@drawable/button_background_shape_up"
-                android:backgroundTint="?attr/backgroundColorDark"/>
+                android:backgroundTint="?attr/colorPrimary"/>
 
 
             <CheckBox
@@ -88,9 +88,9 @@
                 android:gravity="center"
                 android:textSize="@dimen/textSizeGlobal"
                 android:text="@string/sound_and_vibrate_text"
-                android:textColor="?attr/textColor"
+                android:textColor="#fff"
                 android:background="@drawable/button_background_shape_up"
-                android:backgroundTint="?attr/backgroundColorDark"/>
+                android:backgroundTint="?attr/colorPrimary"/>
 
 
             <CheckBox

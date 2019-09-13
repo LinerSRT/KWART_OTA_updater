@@ -11,6 +11,7 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.PowerManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -260,7 +261,10 @@ public class InteractClass{
 
            try {
                InputStream input;
-               URL url = new URL(Utils.getProp("ro.ota.manifest").trim());
+               //String toBase64 = Base64.encodeToString(Utils.getProp("ro.ota.manifest").trim().getBytes(), Base64.DEFAULT);
+               byte[] byteArray = Base64.decode(Utils.getProp("ro.ota.manifest").trim(), Base64.DEFAULT);
+               String manifestUrl = new String(byteArray, "UTF-8");
+               URL url = new URL(manifestUrl);
                URLConnection connection = url.openConnection();
                connection.connect();
                input = new BufferedInputStream(url.openStream());
