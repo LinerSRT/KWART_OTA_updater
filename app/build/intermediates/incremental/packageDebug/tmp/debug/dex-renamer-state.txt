@@ -1,7 +1,7 @@
-#Sun Sep 08 00:12:48 ICT 2019
-base.0=E\:\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out
+#Fri Sep 13 18:28:46 MSK 2019
+base.0=C\:\\Users\\LineR\\Documents\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=E\:\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out
+base.1=C\:\\Users\\LineR\\Documents\\AndroidStudioProjects\\OTAUpdates-stable1\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out

@@ -1,189 +1,191 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
-MERGED from [com.android.support:support-v4:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\a92936912a47e8f3ebd1acc6d8967527\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\ad61fcbe6825741b1adc5d0073673fbe\AndroidManifest.xml:17:1-24:12
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:1-73:12
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:2:1-58:12
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\24e044e865cbac1c935764b4de6770c3\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\0f17848791e924f916c853a779504984\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\ec4440b35738090890dbbf0b9e79a045\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\4635af5dabdc0cbd136ab1ae47025b4d\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\1444010d1272de1f9463fe1a65b00a45\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\c9a2ec0a931225701286a8e29f9862a7\AndroidManifest.xml:2:1-11:12
+MERGED from [com.daimajia.numberprogressbar:library:1.4] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\189b5b89112ce45017cf2d578fd6d893\AndroidManifest.xml:2:1-11:12
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\a8090dff86d30a8e054f1d1c3b4956f1\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:2:1-58:12
 	package
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:5:5-30
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
-	android:versionName
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-46
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:4:5-30
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:4:5-51
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:5-51
 	xmlns:android
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:3:11-69
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:6:5-29
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:5:5-29
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
 uses-sdk
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
-MERGED from [com.android.support:support-v4:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\a92936912a47e8f3ebd1acc6d8967527\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\a92936912a47e8f3ebd1acc6d8967527\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\ad61fcbe6825741b1adc5d0073673fbe\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\ad61fcbe6825741b1adc5d0073673fbe\AndroidManifest.xml:20:5-43
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
-INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\24e044e865cbac1c935764b4de6770c3\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\24e044e865cbac1c935764b4de6770c3\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\0f17848791e924f916c853a779504984\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\0f17848791e924f916c853a779504984\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\ec4440b35738090890dbbf0b9e79a045\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\ec4440b35738090890dbbf0b9e79a045\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\4635af5dabdc0cbd136ab1ae47025b4d\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\4635af5dabdc0cbd136ab1ae47025b4d\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\1444010d1272de1f9463fe1a65b00a45\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\1444010d1272de1f9463fe1a65b00a45\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\c9a2ec0a931225701286a8e29f9862a7\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\c9a2ec0a931225701286a8e29f9862a7\AndroidManifest.xml:5:5-7:41
+MERGED from [com.daimajia.numberprogressbar:library:1.4] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\189b5b89112ce45017cf2d578fd6d893\AndroidManifest.xml:7:5-9:41
+MERGED from [com.daimajia.numberprogressbar:library:1.4] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\189b5b89112ce45017cf2d578fd6d893\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\a8090dff86d30a8e054f1d1c3b4956f1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\a8090dff86d30a8e054f1d1c3b4956f1\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\24e044e865cbac1c935764b4de6770c3\AndroidManifest.xml:23:9-75
 	android:maxSdkVersion
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:15-41
 	android:targetSdkVersion
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-10:38
-		INJECTED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:7:5-44
+		INJECTED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:12:5-13:47
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:9:5-11:47
 	tools:ignore
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:13:9-44
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:11:9-44
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:12:22-70
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:10:9-57
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:14:5-81
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:12:5-81
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:14:22-78
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:12:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:15:5-80
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:13:5-80
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:15:22-77
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:13:22-77
 uses-permission#android.permission.INTERNET
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:16:5-67
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:14:5-67
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:16:22-64
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:14:22-64
 uses-permission#android.permission.ACCESS_SUPERUSER
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:17:5-75
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:15:5-75
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:17:22-72
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:15:22-72
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:18:5-81
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:16:5-81
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:18:22-78
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:16:22-78
 uses-permission#android.permission.WAKE_LOCK
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:19:5-68
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:17:5-68
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:19:22-65
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:17:22-65
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:20:5-79
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:18:5-79
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:20:22-76
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:18:22-76
 uses-permission#android.permission.VIBRATE
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:21:5-66
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:19:5-66
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:21:22-63
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:19:22-63
 uses-permission#android.permission.REBOOT
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:22:5-24:47
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:20:5-22:47
 	tools:ignore
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:24:9-44
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:22:9-44
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:23:9-49
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:21:9-49
 uses-permission#android.permission.RECOVERY
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:25:5-26:47
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:23:5-25:47
 	tools:ignore
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:26:9-44
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:25:9-44
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:25:22-64
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:24:9-51
 uses-permission#android.permission.ACCESS_CACHE_FILESYSTEM
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:27:5-29:47
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:26:5-28:47
 	tools:ignore
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:29:9-44
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:28:9-44
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:28:9-66
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:27:9-66
 uses-permission#com.android.alarm.permission.SET_ALARM
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:30:5-78
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:29:5-78
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:30:22-75
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:29:22-75
 application
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:32:5-71:19
-MERGED from [com.android.support:support-v4:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\a92936912a47e8f3ebd1acc6d8967527\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\a92936912a47e8f3ebd1acc6d8967527\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\ad61fcbe6825741b1adc5d0073673fbe\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\user-LineR\.gradle\caches\transforms-2\files-2.1\ad61fcbe6825741b1adc5d0073673fbe\AndroidManifest.xml:22:5-20
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:31:5-56:19
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\24e044e865cbac1c935764b4de6770c3\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\24e044e865cbac1c935764b4de6770c3\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\0f17848791e924f916c853a779504984\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\0f17848791e924f916c853a779504984\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\ec4440b35738090890dbbf0b9e79a045\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\ec4440b35738090890dbbf0b9e79a045\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\4635af5dabdc0cbd136ab1ae47025b4d\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\4635af5dabdc0cbd136ab1ae47025b4d\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\1444010d1272de1f9463fe1a65b00a45\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.0.0] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\1444010d1272de1f9463fe1a65b00a45\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\c9a2ec0a931225701286a8e29f9862a7\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\LineR\.gradle\caches\transforms-2\files-2.1\c9a2ec0a931225701286a8e29f9862a7\AndroidManifest.xml:9:5-20
 	android:label
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:36:9-41
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:35:9-41
 	tools:ignore
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:39:9-48
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:38:9-48
 	android:uiOptions
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:38:9-53
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:37:9-53
 	android:icon
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:35:9-45
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:34:9-45
 	android:allowBackup
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:34:9-35
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:33:9-35
 	android:theme
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:37:9-40
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:36:9-45
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:33:9-50
-activity#com.ota.updates.activities.MainActivity
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:41:9-50:20
-	android:label
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:44:13-45
-	android:configChanges
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:43:13-83
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:32:9-35
+activity#com.ota.updates.Settings
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:39:9-55
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:42:13-52
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:45:13-49:29
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:39:19-43
+activity#com.ota.updates.MainActivity
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:40:9-44:20
+	android:name
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:40:19-47
+intent-filter#action:name:android.intent.action.MAIN
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:41:13-43:29
 action#android.intent.action.MAIN
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:46:17-69
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:42:17-69
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:46:25-66
-category#android.intent.category.LAUNCHER
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:48:17-77
-	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:48:27-74
-activity#com.ota.updates.activities.AvailableActivity
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:51:9-54:48
-	android:label
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:54:13-45
-	android:configChanges
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:53:13-83
-	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:52:13-57
-activity#com.ota.updates.activities.SettingsActivity
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:55:9-58:56
-	android:label
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:58:13-53
-	android:configChanges
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:57:13-83
-	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:56:13-56
-receiver#com.ota.updates.receivers.AppReceiver
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:60:9-70:20
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:42:25-66
+receiver#com.ota.updates.receivers.OTAReceivers
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:45:9-55:20
 	android:enabled
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:62:13-35
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:47:13-35
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:61:13-65
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:46:13-51
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.DOWNLOAD_COMPLETE+action:name:android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED+action:name:com.ota.update.MANIFEST_CHECK_BACKGROUND+action:name:com.ota.update.START_UPDATE_CHECK
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:63:13-69:29
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:48:13-54:29
 action#android.intent.action.DOWNLOAD_COMPLETE
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:64:17-82
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:49:17-82
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:64:25-79
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:49:25-79
 action#android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:65:17-94
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:50:17-94
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:65:25-91
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:50:25-91
 action#android.intent.action.BOOT_COMPLETED
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:66:17-79
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:51:17-79
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:66:25-76
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:51:25-76
 action#com.ota.update.MANIFEST_CHECK_BACKGROUND
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:67:17-83
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:52:17-83
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:67:25-80
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:52:25-80
 action#com.ota.update.START_UPDATE_CHECK
-ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:68:17-76
+ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:53:17-76
 	android:name
-		ADDED from E:\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:68:25-73
+		ADDED from C:\Users\LineR\Documents\AndroidStudioProjects\OTAUpdates-stable1\app\src\main\AndroidManifest.xml:53:25-73
