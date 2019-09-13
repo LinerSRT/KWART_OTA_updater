@@ -21,10 +21,9 @@ import java.io.File;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import static com.ota.updates.utils.Config.*;
 
-import com.ota.updates.utils.Constants;
-
-public class RomUpdate implements Constants {
+public class RomUpdate {
     
     public final String TAG = this.getClass().getSimpleName();
     

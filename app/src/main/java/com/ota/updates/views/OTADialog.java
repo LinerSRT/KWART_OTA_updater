@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ota.updates.R;
 
+import static com.ota.updates.utils.Config.*;
 import java.util.Objects;
 
 public class OTADialog {
@@ -25,7 +25,11 @@ public class OTADialog {
         this.context = context;
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.ota_dialog);
+        if(AMOLED_VERSION) {
+            dialog.setContentView(R.layout.ota_dialog_amoled);
+        } else {
+            dialog.setContentView(R.layout.ota_dialog);
+        }
         dialogTitle = (TextView) dialog.findViewById(R.id.dialog_title);
         dialogText = (TextView) dialog.findViewById(R.id.dialog_text);
         dialogOtaVersion = (TextView) dialog.findViewById(R.id.ota_version);

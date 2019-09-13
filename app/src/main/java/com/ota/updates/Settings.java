@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
-import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Preferences;
+import static com.ota.updates.utils.Config.*;
 
-public class Settings extends Activity implements Constants {
+public class Settings extends Activity{
     private Spinner frequencySpinner;
     private String[] frequencyArrayValues;
     private CheckBox notificationCheckBox, vibrationCheckBox;

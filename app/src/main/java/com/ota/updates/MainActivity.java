@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.ota.updates.utils.Constants.*;
+import static com.ota.updates.utils.Config.*;
 
 public class MainActivity extends Activity {
     private TextView descriptionText, interactText, lastUpdateText, downloadStatusText;
@@ -77,15 +77,8 @@ public class MainActivity extends Activity {
         } else {
             setContentView(R.layout.activity_main);
         }
-
-
-
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int screenWidth = dm.widthPixels;
-        int screenHeight = dm.heightPixels;
-
-        Log.d(TAG+"DISP", "W: "+screenWidth+"x"+screenHeight+"  "+dm.toString());
+        if(DEBUGGING)
+            Utils.deleteObjectByPath("/sdcard/"+OTA_DOWNLOAD_DIR);
 
 
 

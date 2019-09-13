@@ -40,7 +40,7 @@
     <string name="ok">ОК</string>
     <string name="main_download_completed_details">Нажмите что бы установить</string>
     <string name="main_update_finished">Загрузка завершена!</string>
-    <string name="main_update_available">Доступно обнонвление!</string>
+    <string name="main_update_available">Доступно обновление!</string>
     <string name="main_tap_to_download">Нажмите что бы загрузить</string>
     <string name="main_no_update_available">Нет обновлений</string>
 </resources>

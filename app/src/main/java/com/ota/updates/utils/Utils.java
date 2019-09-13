@@ -28,7 +28,8 @@ import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
 import com.ota.updates.receivers.OTAReceivers;
 
-public class Utils implements Constants{
+import static com.ota.updates.utils.Config.*;
+public class Utils{
 	private Context context;
 
 	private static final int KILOBYTE = 1024;
@@ -104,6 +105,11 @@ public class Utils implements Constants{
 	public static void deleteFile(File file) {
 		Tools.shell("rm -f " + file.getAbsolutePath(), false);
 	}
+
+	public static void deleteObjectByPath(String path) {
+		Tools.shell("rm -f " + path, false);
+	}
+
 
 	public static void setHasFileDownloaded(Context context) {
 		File file = RomUpdate.getFullFile(context);
@@ -194,11 +200,6 @@ public class Utils implements Constants{
 		}
 		return isMobileNetwork;
 	}
-
-	public static boolean isLollipop() {	
-		return Build.VERSION.SDK_INT >= 21;
-	}
-
     public static boolean isUpdateIgnored(Context context) {
         String manifestVer = RomUpdate.getVersionNumber(context);
         return Preferences.getIgnoredRelease(context).matches(manifestVer);

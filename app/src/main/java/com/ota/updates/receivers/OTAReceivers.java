@@ -15,12 +15,12 @@ import android.support.v4.app.NotificationCompat.Builder;
 import com.ota.updates.MainActivity;
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
-import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Utils;
+import static com.ota.updates.utils.Config.*;
 
-public class OTAReceivers extends BroadcastReceiver implements Constants{
+public class OTAReceivers extends BroadcastReceiver {
 
 
 

@@ -31,8 +31,9 @@ import android.util.Log;
 
 import com.stericson.RootTools.BuildConfig;
 import com.stericson.RootTools.RootTools;
+import static com.ota.updates.utils.Config.*;
 
-public class Tools implements Constants{
+public class Tools{
     
     public final String TAG = this.getClass().getSimpleName();
 

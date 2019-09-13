@@ -17,10 +17,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.ota.updates.RomUpdate;
-import com.ota.updates.utils.Constants;
 import com.ota.updates.utils.Utils;
 
-public class RomXmlParser extends DefaultHandler implements Constants {
+import static com.ota.updates.utils.Config.*;
+public class RomXmlParser extends DefaultHandler {
 	public final String TAG = "OTATAG";
 	private StringBuffer value = new StringBuffer();
 	private Context mContext;

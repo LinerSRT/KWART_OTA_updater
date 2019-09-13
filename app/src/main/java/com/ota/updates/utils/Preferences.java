@@ -20,8 +20,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import com.ota.updates.R;
+import static com.ota.updates.utils.Config.*;
 
-public class Preferences implements Constants{
+public class Preferences{
 
     public static final String TAG = "Preferences";
 

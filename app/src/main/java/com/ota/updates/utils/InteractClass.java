@@ -13,10 +13,12 @@ import android.os.AsyncTask;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.ota.updates.R;
 import com.ota.updates.RomUpdate;
 import com.ota.updates.tasks.RomXmlParser;
+import com.ota.updates.views.LinerProgressDialog;
 import com.ota.updates.views.OTADialog;
 
 import java.io.BufferedInputStream;
@@ -28,8 +30,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Objects;
 
-import static com.ota.updates.utils.Constants.OTA_DOWNLOAD_DIR;
-import static com.ota.updates.utils.Constants.WIFI_ONLY;
+import static com.ota.updates.utils.Config.*;
 
 public class InteractClass{
     private OTADialog installDialog;
@@ -149,7 +150,7 @@ public class InteractClass{
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class DownloadProgress extends AsyncTask<Long, Integer, Void> implements Constants {
+    private class DownloadProgress extends AsyncTask<Long, Integer, Void> {
         private Context mContext;
         private DownloadManager mDownloadManager;
 
@@ -220,23 +221,17 @@ public class InteractClass{
             }
         }
     }
-////////////////////////////////////////////////DOWNLOAD PART END/////////////////////////////////////////
-////////////////////////////////////////////////MD5 CHECK/////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////MD5 END/////////////////////////////////////////////////
-////////////////////////////////////////////////MANIFEST CHECK//////////////////////////////////////////
 
    @SuppressLint("StaticFieldLeak")
-   private class GetManifest extends AsyncTask<Void, Void, Void> implements Constants{
+   private class GetManifest extends AsyncTask<Void, Void, Void> {
        public final String TAG = this.getClass().getSimpleName();
 
        private Context mContext;
 
        private static final String MANIFEST = "update_manifest.xml";
 
-       private ProgressDialog mLoadingDialog;
+       //private ProgressDialog mLoadingDialog;
+       private LinerProgressDialog progressDialog;
 
        // Did this come from the BackgroundReceiver class?
        boolean shouldUpdateForegroundApp;
@@ -249,11 +244,8 @@ public class InteractClass{
        @Override
        protected void onPreExecute() {
            if (!shouldUpdateForegroundApp) {
-               mLoadingDialog = new ProgressDialog(mContext);
-               mLoadingDialog.setIndeterminate(true);
-               mLoadingDialog.setCancelable(false);
-               mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));
-               mLoadingDialog.show();
+               progressDialog = new LinerProgressDialog(mContext, "Проверка...", 1200);
+               progressDialog.show();
            }
 
            File manifest = new File(mContext.getFilesDir().getPath(), MANIFEST);
@@ -295,13 +287,13 @@ public class InteractClass{
        protected void onPostExecute(Void result) {
            Intent intent;
            if (!shouldUpdateForegroundApp) {
-               mLoadingDialog.cancel();
-               intent = new Intent(MANIFEST_LOADED);
+               progressDialog.close();
+               //intent = new Intent(MANIFEST_LOADED);
            } else {
                intent = new Intent(MANIFEST_CHECK_BACKGROUND);
+               mContext.sendBroadcast(intent);
            }
 
-           mContext.sendBroadcast(intent);
            interactInterface.onManifestUpdated();
            super.onPostExecute(result);
        }
