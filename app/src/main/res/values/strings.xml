@@ -44,6 +44,13 @@
     <string name="main_update_available">New update available!</string>
     <string name="main_tap_to_download">Tap to install</string>
     <string name="main_no_update_available">No OTA available</string>
+    <string name="close_app">Close</string>
+    <string name="settings_btn">Settings</string>
+    <string name="tap_check_updates">Tap to check</string>
+    <string name="last_checked">Last checked:</string>
+    <string name="kwart_watch">Smartwatch KWART</string>
+    <string name="install_it">Install?</string>
+    <string name="checking_text">Checking… </string>
 
 
 </resources>

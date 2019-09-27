@@ -43,4 +43,11 @@
     <string name="main_update_available">Доступно обновление!</string>
     <string name="main_tap_to_download">Нажмите что бы загрузить</string>
     <string name="main_no_update_available">Нет обновлений</string>
+    <string name="close_app">Закрыть</string>
+    <string name="settings_btn">Настройки</string>
+    <string name="tap_check_updates">Нажмите что бы проверить</string>
+    <string name="last_checked">Последняя проверка:</string>
+    <string name="kwart_watch">Часы KWART </string>
+    <string name="install_it">Установить?</string>
+    <string name="checking_text">Проверка…</string>
 </resources>

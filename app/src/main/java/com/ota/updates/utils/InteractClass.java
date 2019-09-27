@@ -11,6 +11,7 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.PowerManager;
+import android.os.RecoverySystem;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.ota.updates.views.OTADialog;
 import java.io.BufferedInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -50,7 +52,7 @@ public class InteractClass{
 
 
     public void installOTA(final boolean backup, final boolean wipeCache, final boolean wipeData){
-        installDialog = new OTADialog(context, RomUpdate.getVersionNumber(context),"Установить?",
+        installDialog = new OTADialog(context, RomUpdate.getVersionNumber(context),context.getResources().getString(R.string.install_it),
                 RomUpdate.getChangelog(context),101,
                 context.getString(R.string.cancel), " ",
                 context.getString(R.string.install));
@@ -58,6 +60,7 @@ public class InteractClass{
             @Override
             public void onClick(View view) {
                 @SuppressLint("SdCardPath") String filename = "/sdcard/"+OTA_DOWNLOAD_DIR+"/"+RomUpdate.getFilename(context)+".zip";
+                //installUpdate(context, filename);
                 flashFiles(context, filename, backup, wipeCache, wipeData);
             }
         });
@@ -92,6 +95,10 @@ public class InteractClass{
     }
 
 ///////////////////////////////INSTALL PART////////////////////////////////////////
+
+
+
+
     private static void flashFiles(Context context, String file, boolean backup, boolean wipeCache, boolean wipeData) {
         try {
             Process p = Runtime.getRuntime().exec("su");
@@ -245,7 +252,7 @@ public class InteractClass{
        @Override
        protected void onPreExecute() {
            if (!shouldUpdateForegroundApp) {
-               progressDialog = new LinerProgressDialog(mContext, "Проверка...", 1200);
+               progressDialog = new LinerProgressDialog(mContext, context.getString(R.string.checking_text), 1200);
                progressDialog.show();
            }
 
@@ -261,9 +268,14 @@ public class InteractClass{
 
            try {
                InputStream input;
-               //String toBase64 = Base64.encodeToString(Utils.getProp("ro.ota.manifest").trim().getBytes(), Base64.DEFAULT);
-               byte[] byteArray = Base64.decode(Utils.getProp("ro.ota.manifest").trim(), Base64.DEFAULT);
-               String manifestUrl = new String(byteArray, "UTF-8");
+               String manifestUrl;
+               if (CRYPTED_VERSION) {
+                   //String toBase64 = Base64.encodeToString(Utils.getProp("ro.ota.manifest").trim().getBytes(), Base64.DEFAULT);
+                   byte[] byteArray = Base64.decode(Utils.getProp("ro.ota.manifest").trim(), Base64.DEFAULT);
+                   manifestUrl = new String(byteArray, "UTF-8");
+               } else {
+                   manifestUrl = Utils.getProp("ro.ota.manifest").trim();
+               }
                URL url = new URL(manifestUrl);
                URLConnection connection = url.openConnection();
                connection.connect();

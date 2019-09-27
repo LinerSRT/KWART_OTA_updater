@@ -5,7 +5,8 @@ import android.os.Environment;
 public class Config {
     public static boolean DEBUGGING 								= true;
     public static boolean DEBUG_NOTIFICATIONS 					    = false;
-    public static boolean AMOLED_VERSION							= true;
+    public static boolean AMOLED_VERSION							= false;
+    public static boolean CRYPTED_VERSION                           = true;
     public static String TAG										= "LINEROTA";
     public static String LANGUAGE = "lang";
 

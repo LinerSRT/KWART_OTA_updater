@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
@@ -23,6 +24,8 @@ import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.InteractInterface;
 import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Utils;
+import com.ota.updates.views.LinerDialog;
+import com.ota.updates.views.OTADialog;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -44,12 +47,13 @@ public class MainActivity extends Activity {
     private boolean canInstall = false;
     private boolean canDownload = true;
     private boolean haveUpdates = false;
+    private LinerDialog linerDialog;
     public static InteractClass getInteractClass(){
         return interactClass;
     }
 
     private void initTheme(){
-        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 0)){
+        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 4)){
             case 0:
                 setTheme(R.style.AppTheme);
                 break;
@@ -99,16 +103,30 @@ public class MainActivity extends Activity {
         interactClass = new InteractClass(MainActivity.this);
 
         if (!Utils.isConnected(this)) {
-            AlertDialog.Builder notConnectedDialog = new AlertDialog.Builder(this);
-            notConnectedDialog.setTitle(R.string.main_not_connected_title)
-                    .setMessage(R.string.main_not_connected_message)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            (MainActivity.this).finish();
-                        }
-                    })
-                    .show();
+            linerDialog = new LinerDialog(this, getResources().getString(R.string.main_not_connected_title),
+                    getResources().getString(R.string.main_not_connected_message), false, true);
+            linerDialog.setupCancelBtn(getResources().getString(R.string.close_app), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    linerDialog.close();
+                    (MainActivity.this).finish();
+                }
+            });
+            linerDialog.setupOkBtn(getResources().getString(R.string.settings_btn), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(android.os.Build.VERSION.SDK_INT < 24){
+                        Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+                        settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(settings);
+                    } else {
+                        Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+                        startActivity(settings);
+                        (MainActivity.this).finish();
+                    }
+                }
+            });
+            linerDialog.show();
         } else {
             interactClass.updateManifest(false);
         }
@@ -243,7 +261,7 @@ public class MainActivity extends Activity {
             smile.setImageDrawable(getDrawable(R.drawable.ic_update_not_available));
             descriptionText.setText(getString(R.string.main_no_update_available));
             downloadLayout.setVisibility(View.GONE);
-            interactText.setText("Нажмите что бы проверить");
+            interactText.setText(getResources().getString(R.string.tap_check_updates));
             interactIcon.setImageDrawable(getDrawable(R.drawable.ic_check));
 
             boolean is24 = DateFormat.is24HourFormat(this);
@@ -257,7 +275,7 @@ public class MainActivity extends Activity {
             }
             Preferences.setUpdateLastChecked(this, time);
 
-            lastUpdateText.setText("Последняя проверка: " + time);
+            lastUpdateText.setText(getResources().getString(R.string.last_checked) + time);
         }
     }
 
@@ -272,7 +290,7 @@ public class MainActivity extends Activity {
         descriptionText = (TextView) findViewById(R.id.description);
         interactText = (TextView) findViewById(R.id.interact_text);
         lastUpdateText = (TextView) findViewById(R.id.last_update_text);
-        lastUpdateText.setText("Последняя проверка: "+Preferences.getUpdateLastChecked(this, "Нет данных"));
+        lastUpdateText.setText(getResources().getString(R.string.last_checked)+Preferences.getUpdateLastChecked(this, "Нет данных"));
         downloadStatusText = (TextView) findViewById(R.id.download_status);
 
         smile = (ImageView) findViewById(R.id.smile);
@@ -283,7 +301,7 @@ public class MainActivity extends Activity {
         interact_layout = (LinearLayout) findViewById(R.id.interact_layout);
 
         TextView aboutDevice = (TextView) findViewById(R.id.about_device_text);
-        aboutDevice.setText("Часы KWART "+RomUpdate.getRomName(this));
+        aboutDevice.setText(getResources().getString(R.string.kwart_watch)+RomUpdate.getRomName(this));
         aboutRomLastUpdate = (TextView) findViewById(R.id.about_rom_last_update);
         aboutRomVersion = (TextView) findViewById(R.id.about_rom_version);
         toSettingsBtn = (ImageButton) findViewById(R.id.to_settings_btn);
