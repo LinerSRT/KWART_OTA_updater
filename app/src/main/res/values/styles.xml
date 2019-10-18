@@ -95,4 +95,13 @@
         <item name="colorPrimaryDark">#616161</item>
     </style>
 
+
+    <style name="AdvanceTheme" parent="@android:style/Theme.NoTitleBar">
+        <item name="backgroundColor">@color/advance_color</item>
+        <item name="backgroundColorDark">@color/advance_color</item>
+        <item name="textColor">@color/text_white</item>
+        <item name="colorPrimary">@color/advance_color_dark</item>
+        <item name="textColorDark">@color/text_white</item>
+        <item name="colorPrimaryDark">@color/advance_color</item>
+    </style>
 </resources>

@@ -7,8 +7,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.wifi.WifiManager;
+import android.os.NetworkOnMainThreadException;
+import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -20,6 +25,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
+import com.github.thunder413.netrequest.NetError;
+import com.github.thunder413.netrequest.NetRequest;
+import com.github.thunder413.netrequest.NetRequestManager;
+import com.github.thunder413.netrequest.NetResponse;
+import com.github.thunder413.netrequest.OnNetResponse;
+import com.github.thunder413.netrequest.RequestMethod;
 import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.InteractInterface;
 import com.ota.updates.utils.Preferences;
@@ -27,10 +38,23 @@ import com.ota.updates.utils.Utils;
 import com.ota.updates.views.LinerDialog;
 import com.ota.updates.views.OTADialog;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+
+import javax.net.ssl.HttpsURLConnection;
 
 import static com.ota.updates.utils.Config.*;
 
@@ -48,12 +72,13 @@ public class MainActivity extends Activity {
     private boolean canDownload = true;
     private boolean haveUpdates = false;
     private LinerDialog linerDialog;
-    public static InteractClass getInteractClass(){
+
+    public static InteractClass getInteractClass() {
         return interactClass;
     }
 
-    private void initTheme(){
-        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 4)){
+    private void initTheme() {
+        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 4)) {
             case 0:
                 setTheme(R.style.AppTheme);
                 break;
@@ -72,20 +97,18 @@ public class MainActivity extends Activity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTheme();
-        if(AMOLED_VERSION){
+        if (AMOLED_VERSION) {
             setContentView(R.layout.activity_main_amoled);
         } else {
             setContentView(R.layout.activity_main);
         }
-        if(DEBUGGING)
-            Utils.deleteObjectByPath("/sdcard/"+OTA_DOWNLOAD_DIR);
-
-
-
+        if (DEBUGGING)
+            Utils.deleteObjectByPath("/sdcard/" + OTA_DOWNLOAD_DIR);
 
         initViews();
         checkPermissions();
@@ -129,6 +152,28 @@ public class MainActivity extends Activity {
             linerDialog.show();
         } else {
             interactClass.updateManifest(false);
+                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+                @SuppressLint("MissingPermission") String deviceId = telephonyManager.getDeviceId();
+                String deviceName = RomUpdate.getRomName(this);
+                String osVersion = Utils.getProp(OTA_VERSION);
+                NetRequest netRequest = new NetRequest(this);
+                netRequest.addParameter("device_id",String.valueOf(deviceId));
+                netRequest.addParameter("device_name",String.valueOf(deviceName));
+                netRequest.addParameter("os_version",String.valueOf(osVersion));
+                netRequest.setRequestMethod(RequestMethod.GET);
+                netRequest.setOnResponseListener(new OnNetResponse() {
+                    @Override
+                    public void onNetResponseCompleted(NetResponse netResponse) {
+
+                    }
+
+                    @Override
+                    public void onNetResponseError(NetError netError) {
+
+                    }
+                });
+                netRequest.setRequestUri("http://18.222.210.219/index.php");
+                netRequest.load();
         }
 
 

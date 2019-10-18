@@ -52,4 +52,7 @@
     <color name="backgroundColorLight">#eee</color>
     <color name="backgroundColorLightSecond">#D1D1D1</color>
 
+    <color name="advance_color">#1d1f29</color>
+    <color name="advance_color_dark">#0E0E14</color>
+
 </resources>

@@ -21,9 +21,9 @@
     <string name="sound_and_vibrate_text">Звуки и вибрация</string>
     <string name="vibrate_on_notice_text">Вибрировать при уведомлении</string>
     <string name="notification_melody_text">Звук уведомления</string>
-    <string name="device_text">Устройство:</string>
-    <string name="version_text">Версия прошивки:</string>
-    <string name="update_time_text">Обновлено:</string>
+    <string name="device_text">Устройство: </string>
+    <string name="version_text">Версия прошивки: </string>
+    <string name="update_time_text">Обновлено: </string>
     <string name="downloading_title">Выполняется загрузка</string>
     <string name="reboot_warn">После подтверждения установки, ваши часы будут немедленно перезагружены!</string>
     <string name="changes_text">Изменения в версии:</string>
@@ -46,7 +46,7 @@
     <string name="close_app">Закрыть</string>
     <string name="settings_btn">Настройки</string>
     <string name="tap_check_updates">Нажмите что бы проверить</string>
-    <string name="last_checked">Последняя проверка:</string>
+    <string name="last_checked">Последняя проверка: </string>
     <string name="kwart_watch">Часы KWART </string>
     <string name="install_it">Установить?</string>
     <string name="checking_text">Проверка…</string>

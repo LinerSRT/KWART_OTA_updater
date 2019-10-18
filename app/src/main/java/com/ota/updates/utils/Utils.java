@@ -206,17 +206,11 @@ public class Utils{
     }
 
     private static boolean compareVersion(String current, String manifest){
-		String[] currentDevice = current.split("\\.", 2);
-		String[] currentManifest = manifest.split("\\.", 2);
-		int sumCurrent = 0;
-		int sumManifest = 0;
-        for (String c : currentDevice) {
-            sumCurrent += Integer.parseInt(c);
-        }
-        for (String m : currentManifest) {
-            sumManifest += Integer.parseInt(m);
-        }
-		return sumManifest > sumCurrent;
+		int versionCurrent = Integer.valueOf(current.split("\\.",2)[0]);
+		int versionManifest = Integer.valueOf(manifest.split("\\.",2)[0]);
+		int subVersionCurrent = Integer.valueOf(current.split("\\.",2)[1]);
+		int subVersionManifest = Integer.valueOf(current.split("\\.",2)[1]);
+		return versionCurrent < versionManifest || subVersionCurrent < subVersionManifest;
 	}
 
 	public static void setUpdateAvailability(Context context) {

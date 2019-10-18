@@ -47,8 +47,8 @@
     <string name="close_app">Close</string>
     <string name="settings_btn">Settings</string>
     <string name="tap_check_updates">Tap to check</string>
-    <string name="last_checked">Last checked:</string>
-    <string name="kwart_watch">Smartwatch KWART</string>
+    <string name="last_checked">Last checked: </string>
+    <string name="kwart_watch">Smartwatch KWART </string>
     <string name="install_it">Install?</string>
     <string name="checking_text">Checking… </string>
 

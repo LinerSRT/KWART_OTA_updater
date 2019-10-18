@@ -106,6 +106,17 @@ public class Preferences{
         editor.commit();
     }
 
+    public static void deviceRegistered(Context context, boolean value){
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putBoolean("device_registered", value);
+        editor.commit();
+    }
+
+    public static boolean isDeviceRegistered(Context context) {
+        return getPrefs(context).getBoolean("device_registered", false);
+    }
+
+
     public static String getRingtone(Context context){
         String def = android.provider.Settings.System.DEFAULT_NOTIFICATION_URI.toString();
         return getPrefs(context).getString(NOTIFICATIONS_SOUND, def);
