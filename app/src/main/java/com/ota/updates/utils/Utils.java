@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -22,6 +24,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
+import android.util.TypedValue;
 
 import com.ota.updates.MainActivity;
 import com.ota.updates.R;
@@ -209,20 +212,14 @@ public class Utils{
 		int versionCurrent = Integer.valueOf(current.split("\\.",2)[0]);
 		int versionManifest = Integer.valueOf(manifest.split("\\.",2)[0]);
 		int subVersionCurrent = Integer.valueOf(current.split("\\.",2)[1]);
-		int subVersionManifest = Integer.valueOf(current.split("\\.",2)[1]);
+		int subVersionManifest = Integer.valueOf(manifest.split("\\.",2)[1]);
 		return versionCurrent < versionManifest || subVersionCurrent < subVersionManifest;
 	}
 
 	public static void setUpdateAvailability(Context context) {
 		String currentVer = Utils.getProp("ro.ota.version");
 		String manifestVer = RomUpdate.getVersionNumber(context);
-        boolean available;
-        if (Preferences.getIgnoredRelease(context).matches(manifestVer)) {
-            available = false;
-        } else {
-            available =	compareVersion(currentVer, manifestVer);
-        }
-
+        boolean available =	compareVersion(currentVer, manifestVer);
 		RomUpdate.setUpdateAvailable(context, available);
 		if (DEBUGGING)
 			Log.d(TAG, "Update Availability is " + available);
@@ -283,5 +280,49 @@ public class Utils{
 	
 	public static String getRemovableMediaPath() {
 		return Tools.shell("echo ${SECONDARY_STORAGE%%:*}", false);		
+	}
+
+	public static int getAttrColor(Activity activity, int attrColor) {
+		TypedValue themeBackgroundColor = new TypedValue();
+		int parsedColor;
+
+		if (activity.getTheme().resolveAttribute(attrColor,
+				themeBackgroundColor, true)) {
+			switch (themeBackgroundColor.type) {
+				case TypedValue.TYPE_INT_COLOR_ARGB4:
+					parsedColor = Color.argb(
+							(themeBackgroundColor.data & 0xf000) >> 8,
+							(themeBackgroundColor.data & 0xf00) >> 4,
+							themeBackgroundColor.data & 0xf0,
+							(themeBackgroundColor.data & 0xf) << 4);
+					break;
+
+				case TypedValue.TYPE_INT_COLOR_RGB4:
+					parsedColor = Color.rgb(
+							(themeBackgroundColor.data & 0xf00) >> 4,
+							themeBackgroundColor.data & 0xf0,
+							(themeBackgroundColor.data & 0xf) << 4);
+					break;
+
+				case TypedValue.TYPE_INT_COLOR_ARGB8:
+					parsedColor = themeBackgroundColor.data;
+					break;
+
+				case TypedValue.TYPE_INT_COLOR_RGB8:
+					parsedColor = Color.rgb(
+							(themeBackgroundColor.data & 0xff0000) >> 16,
+							(themeBackgroundColor.data & 0xff00) >> 8,
+							themeBackgroundColor.data & 0xff);
+					break;
+
+				default:
+					throw new RuntimeException("ClassName: couldn't parse theme " +
+							"background color attribute " + themeBackgroundColor.toString());
+			}
+		} else {
+			throw new RuntimeException("ClassName: couldn't find background color in " +
+					"theme");
+		}
+		return parsedColor;
 	}
 }

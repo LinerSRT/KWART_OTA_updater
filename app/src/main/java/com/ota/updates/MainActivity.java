@@ -3,19 +3,14 @@ package com.ota.updates;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.wifi.WifiManager;
-import android.os.NetworkOnMainThreadException;
-import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -27,36 +22,29 @@ import android.widget.TextView;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.github.thunder413.netrequest.NetError;
 import com.github.thunder413.netrequest.NetRequest;
-import com.github.thunder413.netrequest.NetRequestManager;
 import com.github.thunder413.netrequest.NetResponse;
 import com.github.thunder413.netrequest.OnNetResponse;
 import com.github.thunder413.netrequest.RequestMethod;
+import com.nabinbhandari.android.permissions.PermissionHandler;
+import com.nabinbhandari.android.permissions.Permissions;
 import com.ota.updates.utils.InteractClass;
 import com.ota.updates.utils.InteractInterface;
 import com.ota.updates.utils.Preferences;
 import com.ota.updates.utils.Utils;
 import com.ota.updates.views.LinerDialog;
-import com.ota.updates.views.OTADialog;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
-import javax.net.ssl.HttpsURLConnection;
-
-import static com.ota.updates.utils.Config.*;
+import static com.ota.updates.utils.Config.AMOLED_VERSION;
+import static com.ota.updates.utils.Config.DEBUGGING;
+import static com.ota.updates.utils.Config.INSTALL_AFTER_FLASH_DIR;
+import static com.ota.updates.utils.Config.OTA_DOWNLOAD_DIR;
+import static com.ota.updates.utils.Config.OTA_VERSION;
+import static com.ota.updates.utils.Config.SD_CARD;
+import static com.ota.updates.utils.Config.TAG;
 
 public class MainActivity extends Activity {
     private TextView descriptionText, interactText, lastUpdateText, downloadStatusText;
@@ -78,25 +66,30 @@ public class MainActivity extends Activity {
     }
 
     private void initTheme() {
-        switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 4)) {
-            case 0:
-                setTheme(R.style.AppTheme);
-                break;
-            case 1:
-                setTheme(R.style.BlueDeepTheme);
-                break;
-            case 2:
-                setTheme(R.style.RedDeepTheme);
-                break;
-            case 3:
-                setTheme(R.style.GreenDeepTheme);
-                break;
-            case 4:
-                setTheme(R.style.DarkTheme);
-                break;
+        if (RomUpdate.getRomName(this).equals("Advance")) {
+            setTheme(R.style.AdvanceTheme);
+        } else {
+            switch (android.provider.Settings.Global.getInt(getContentResolver(), "system_theme", 4)) {
+                case 0:
+                    setTheme(R.style.AppTheme);
+                    break;
+                case 1:
+                    setTheme(R.style.BlueDeepTheme);
+                    break;
+                case 2:
+                    setTheme(R.style.RedDeepTheme);
+                    break;
+                case 3:
+                    setTheme(R.style.GreenDeepTheme);
+                    break;
+                case 4:
+                    setTheme(R.style.DarkTheme);
+                    break;
+            }
         }
     }
 
+    private boolean permissionGranted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,14 +104,27 @@ public class MainActivity extends Activity {
             Utils.deleteObjectByPath("/sdcard/" + OTA_DOWNLOAD_DIR);
 
         initViews();
-        checkPermissions();
-        File installAfterFlashDir = new File(SD_CARD
-                + File.separator
-                + OTA_DOWNLOAD_DIR
-                + File.separator
-                + INSTALL_AFTER_FLASH_DIR);
-        //noinspection ResultOfMethodCallIgnored
-        installAfterFlashDir.mkdirs();
+
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE};
+        Permissions.check(this, permissions, null, null, new PermissionHandler() {
+            @Override
+            public void onGranted() {
+                permissionGranted = true;
+            }
+        });
+
+        if(!permissionGranted){
+            linerDialog = new LinerDialog(this, "Нет разрешений",
+                    getResources().getString(R.string.main_not_connected_message), false, false);
+            linerDialog.setupOkBtn(getResources().getString(R.string.ok), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+            linerDialog.show();
+        }
+
         Utils.setHasFileDownloaded(this);
 
         updateValues();
@@ -138,7 +144,7 @@ public class MainActivity extends Activity {
             linerDialog.setupOkBtn(getResources().getString(R.string.settings_btn), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(android.os.Build.VERSION.SDK_INT < 24){
+                    if (Build.VERSION.SDK_INT < 24) {
                         Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
                         settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(settings);
@@ -152,28 +158,32 @@ public class MainActivity extends Activity {
             linerDialog.show();
         } else {
             interactClass.updateManifest(false);
-                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-                @SuppressLint("MissingPermission") String deviceId = telephonyManager.getDeviceId();
-                String deviceName = RomUpdate.getRomName(this);
-                String osVersion = Utils.getProp(OTA_VERSION);
-                NetRequest netRequest = new NetRequest(this);
-                netRequest.addParameter("device_id",String.valueOf(deviceId));
-                netRequest.addParameter("device_name",String.valueOf(deviceName));
-                netRequest.addParameter("os_version",String.valueOf(osVersion));
-                netRequest.setRequestMethod(RequestMethod.GET);
-                netRequest.setOnResponseListener(new OnNetResponse() {
-                    @Override
-                    public void onNetResponseCompleted(NetResponse netResponse) {
+            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+            assert telephonyManager != null;
+            @SuppressLint({"MissingPermission", "HardwareIds"}) String deviceId = telephonyManager.getDeviceId();
+            String deviceName = RomUpdate.getRomName(this);
+            if(deviceName == null){
+                deviceName = Utils.getProp("ro.product.device");
+            }
+            String osVersion = Utils.getProp(OTA_VERSION);
+            NetRequest netRequest = new NetRequest(this);
+            netRequest.addParameter("device_id",String.valueOf(deviceId));
+            netRequest.addParameter("device_name",String.valueOf(deviceName));
+            netRequest.addParameter("os_version",String.valueOf(osVersion));
+            netRequest.setRequestMethod(RequestMethod.GET);
+            netRequest.setOnResponseListener(new OnNetResponse() {
+                @Override
+                public void onNetResponseCompleted(NetResponse netResponse) {
 
-                    }
+                }
 
-                    @Override
-                    public void onNetResponseError(NetError netError) {
+                @Override
+                public void onNetResponseError(NetError netError) {
 
-                    }
-                });
-                netRequest.setRequestUri("http://18.222.210.219/index.php");
-                netRequest.load();
+                }
+            });
+            netRequest.setRequestUri("http://18.222.210.219/index.php");
+            netRequest.load();
         }
 
 
@@ -196,7 +206,7 @@ public class MainActivity extends Activity {
         toSettingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(android.os.Build.VERSION.SDK_INT < 24) {
+                if(Build.VERSION.SDK_INT < 24) {
                     Intent intent = new Intent(MainActivity.this, Settings.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
@@ -298,12 +308,12 @@ public class MainActivity extends Activity {
                 descriptionText.setText(getResources().getString(R.string.main_update_available));
                 interactIcon.setImageDrawable(getDrawable(R.drawable.ic_download));
                 interactText.setText(getResources().getString(R.string.main_tap_to_download));
-                int color = getResources().getColor(R.color.text_color);
-                descriptionText.setTextColor(color);
+                descriptionText.setTextColor(Color.GREEN);
 
             }
         } else {
             smile.setImageDrawable(getDrawable(R.drawable.ic_update_not_available));
+            descriptionText.setTextColor(Utils.getAttrColor(this, R.attr.textColor));
             descriptionText.setText(getString(R.string.main_no_update_available));
             downloadLayout.setVisibility(View.GONE);
             interactText.setText(getResources().getString(R.string.tap_check_updates));
@@ -326,35 +336,30 @@ public class MainActivity extends Activity {
 
     private void getInformation(){
         String romUpdateTime = RomUpdate.getUpdateDate(this);
-        aboutRomLastUpdate.setText(romUpdateTime);
+        aboutRomLastUpdate.setText(" "+romUpdateTime);
         String romVersionActual = Utils.getProp(OTA_VERSION);
-        aboutRomVersion.setText(romVersionActual);
+        aboutRomVersion.setText(" "+romVersionActual);
     }
 
     private void initViews(){
-        descriptionText = (TextView) findViewById(R.id.description);
-        interactText = (TextView) findViewById(R.id.interact_text);
-        lastUpdateText = (TextView) findViewById(R.id.last_update_text);
-        lastUpdateText.setText(getResources().getString(R.string.last_checked)+Preferences.getUpdateLastChecked(this, "Нет данных"));
-        downloadStatusText = (TextView) findViewById(R.id.download_status);
+        descriptionText = findViewById(R.id.description);
+        interactText = findViewById(R.id.interact_text);
+        lastUpdateText = findViewById(R.id.last_update_text);
+        lastUpdateText.setText(getResources().getString(R.string.last_checked)+" "+Preferences.getUpdateLastChecked(this, "Нет данных"));
+        downloadStatusText = findViewById(R.id.download_status);
 
-        smile = (ImageView) findViewById(R.id.smile);
-        interactIcon = (ImageView) findViewById(R.id.interact_img);
+        smile = findViewById(R.id.smile);
+        interactIcon = findViewById(R.id.interact_img);
 
-        downloadProgressBar = (NumberProgressBar) findViewById(R.id.download_progress_bar);
-        downloadLayout = (RelativeLayout) findViewById(R.id.download_layout);
-        interact_layout = (LinearLayout) findViewById(R.id.interact_layout);
+        downloadProgressBar = findViewById(R.id.download_progress_bar);
+        downloadLayout = findViewById(R.id.download_layout);
+        interact_layout = findViewById(R.id.interact_layout);
 
-        TextView aboutDevice = (TextView) findViewById(R.id.about_device_text);
-        aboutDevice.setText(getResources().getString(R.string.kwart_watch)+RomUpdate.getRomName(this));
-        aboutRomLastUpdate = (TextView) findViewById(R.id.about_rom_last_update);
-        aboutRomVersion = (TextView) findViewById(R.id.about_rom_version);
-        toSettingsBtn = (ImageButton) findViewById(R.id.to_settings_btn);
+        TextView aboutDevice = findViewById(R.id.about_device_text);
+        aboutDevice.setText(getResources().getString(R.string.kwart_watch)+" "+RomUpdate.getRomName(this));
+        aboutRomLastUpdate = findViewById(R.id.about_rom_last_update);
+        aboutRomVersion = findViewById(R.id.about_rom_version);
+        toSettingsBtn = findViewById(R.id.to_settings_btn);
     }
 
-    private void checkPermissions(){
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                1);
-    }
 }

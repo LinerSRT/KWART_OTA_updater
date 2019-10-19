@@ -269,8 +269,7 @@ public class InteractClass{
            try {
                InputStream input;
                String manifestUrl;
-               if (CRYPTED_VERSION) {
-                   //String toBase64 = Base64.encodeToString(Utils.getProp("ro.ota.manifest").trim().getBytes(), Base64.DEFAULT);
+               if (!Utils.getProp("ro.ota.manifest").trim().contains("http")) {
                    byte[] byteArray = Base64.decode(Utils.getProp("ro.ota.manifest").trim(), Base64.DEFAULT);
                    manifestUrl = new String(byteArray, "UTF-8");
                } else {
