@@ -17,13 +17,12 @@
 -->
 <resources>
 
-    <color name="background">#eeeeee</color>
-    <color name="background_dark">#A83D00</color>
-    <color name="background_sdark">#B3C4C4</color>
-    <color name="text_color">#393d46</color>
-    <color name="text_highlight">#212832</color>
+    <color name="background">#000000</color>
+    <color name="background_sdark">#444444</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="text_highlight">#B9C7E0</color>
     <color name="text_white">#FFF</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#fff</color>
 
 
 
@@ -46,11 +45,10 @@
     <!-- Dark Mode -->
     <color name="backgroundColorDark">#000</color>
     <color name="backgroundColorDarkSecond">#0E0E0E</color>
-    <color name="dark_accent">#838383</color>
 
     <!-- Light Mode -->
     <color name="backgroundColorLight">#eee</color>
-    <color name="backgroundColorLightSecond">#D1D1D1</color>
+    <color name="backgroundColorLightSecond">#B3C4C4</color>
 
     <color name="advance_color">#1d1f29</color>
     <color name="advance_color_dark">#0E0E14</color>

@@ -46,7 +46,6 @@
         android:uiOptions="splitActionBarWhenNarrow"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".Settings" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

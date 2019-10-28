@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center">
 
 
         <ImageView
@@ -35,31 +35,47 @@
         <LinearLayout
             android:id="@+id/interact_layout"
             android:layout_width="350dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:background="@drawable/button_background_shape"
-            android:backgroundTint="?attr/backgroundColor"
+            android:backgroundTint="?attr/colorPrimary"
             android:elevation="4dp">
 
             <ImageView
                 android:id="@+id/interact_img"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/ic_check"
-                android:tint="?attr/colorPrimary" />
+                android:tint="@color/white" />
 
-            <TextView
-                android:id="@+id/interact_text"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:textSize="18sp"
-                android:textColor="?attr/textColor"
-                android:text="@string/tap_to_check_updates"
-                android:gravity="center"
-                android:lines="2"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/interact_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="@string/tap_to_check_updates"
+                    android:textColor="?attr/textColor"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="(Зажмите что бы очистить)"
+                    android:textColor="?attr/textColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -85,24 +101,6 @@
             android:visibility="visible"
             android:layout_marginTop="5dp"
             layout="@layout/device_info_layout_amoled"/>
-
-
-
-
-
-
-        <ImageButton
-            android:id="@+id/to_settings_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/circle_btn_qs_bg"
-            android:src="@drawable/ic_settings"
-            android:scaleType="fitCenter"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:tint="@color/white" />
-
-
 
     </LinearLayout>
 

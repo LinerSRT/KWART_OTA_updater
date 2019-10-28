@@ -3,13 +3,18 @@
 
     <style name="AppTheme" parent="@android:style/Theme.Holo.NoActionBar">
         <item name="android:alertDialogTheme">@style/YourAlertDialogTheme</item>
-        <item name="backgroundColor">@color/backgroundColorLight</item>
-        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
+        <item name="android:windowBackground">?backgroundColor</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="backgroundColor">@color/backgroundColorDark</item>
+        <item name="backgroundColorDark">@color/backgroundColorDarkSecond</item>
+        <item name="background">@color/background</item>
         <item name="textColor">@color/text_color</item>
-        <item name="colorPrimary">@color/accent_color</item>
         <item name="textColorDark">@color/text_highlight</item>
+        <item name="colorPrimary">@color/accent_color</item>
         <item name="colorPrimaryDark">@color/accent_color_dark</item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="YourAlertDialogTheme">
@@ -50,46 +55,26 @@
         <item name="android:colorAccent">?attr/colorPrimary</item>
     </style>
 
-    <style name="OrangeDeepTheme" parent="@android:style/Theme.NoTitleBar" >
-        <item name="backgroundColor">@color/backgroundColorLight</item>
-        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
-        <item name="textColor">@color/text_color</item>
-        <item name="colorPrimary">@color/accent_color</item>
-        <item name="textColorDark">@color/text_highlight</item>
-        <item name="colorPrimaryDark">@color/accent_color_dark</item>
-    </style>
 
-    <style name="BlueDeepTheme" parent="@android:style/Theme.NoTitleBar" >
-        <item name="backgroundColor">@color/backgroundColorLight</item>
-        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
-        <item name="textColor">@color/text_color</item>
+    <style name="BlueDeepTheme" parent="AppTheme" >
         <item name="colorPrimary">@color/blue_accent</item>
         <item name="textColorDark">@color/text_highlight</item>
         <item name="colorPrimaryDark">@color/blue_accent_dark</item>
     </style>
 
-    <style name="RedDeepTheme" parent="@android:style/Theme.NoTitleBar" >
-        <item name="backgroundColor">@color/backgroundColorLight</item>
-        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
-        <item name="textColor">@color/text_color</item>
+    <style name="RedDeepTheme" parent="AppTheme" >
         <item name="colorPrimary">@color/red_accent_color</item>
         <item name="textColorDark">@color/text_highlight</item>
         <item name="colorPrimaryDark">@color/red_accent_color_dark</item>
     </style>
 
-    <style name="GreenDeepTheme" parent="@android:style/Theme.NoTitleBar" >
-        <item name="backgroundColor">@color/backgroundColorLight</item>
-        <item name="backgroundColorDark">@color/backgroundColorLightSecond</item>
-        <item name="textColor">@color/text_color</item>
+    <style name="GreenDeepTheme" parent="AppTheme" >
         <item name="colorPrimary">@color/green_accent_color</item>
         <item name="textColorDark">@color/text_highlight</item>
         <item name="colorPrimaryDark">@color/green_accent_color_dark</item>
     </style>
 
-    <style name="DarkTheme" parent="@android:style/Theme.NoTitleBar" >
-        <item name="backgroundColor">@color/backgroundColorDark</item>
-        <item name="backgroundColorDark">@color/backgroundColorDarkSecond</item>
-        <item name="textColor">@color/text_white</item>
+    <style name="DarkTheme" parent="AppTheme" >
         <item name="colorPrimary">#838383</item>
         <item name="textColorDark">@color/text_white</item>
         <item name="colorPrimaryDark">#616161</item>
