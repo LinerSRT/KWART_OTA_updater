@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,6 +32,7 @@ public class OTADownloadActivity extends Activity {
     private boolean isOTAManagerCanDownload = false;
     private boolean isOTAManagerCanInstallOTA = false;
     private boolean isOTAHasAlreadyDownloadAndCanInstall = false;
+    private boolean MD5Status = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,7 +115,15 @@ public class OTADownloadActivity extends Activity {
 
             @Override
             public void MD5Status(boolean passed) {
-
+                if(!passed)
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AnimationUtils.toggleViewAnimation(downloadLayout, false, true, "circle", 10);
+                        AnimationUtils.toggleViewAnimation(downloadFinishText, false ,true, "circle", 500);
+                        updateViews();
+                    }
+                });
             }
 
             @Override
@@ -155,13 +165,23 @@ public class OTADownloadActivity extends Activity {
         boolean systemHaveUpdates = ota.isOTAUpdateAvailable();
         isOTADownloading = ota.getDownloadRunningStatus();
         isOTADownloadFinish = ota.getDownloadFinishStatus();
+        MD5Status = ota.getMD5Status();
         isOTAManagerCanDownload = systemHaveUpdates && !isOTADownloading && !otaManager.getOTAFile(ota.getOTAFilename()).exists();
-        isOTAManagerCanInstallOTA = systemHaveUpdates && isOTADownloadFinish && !isOTADownloading && ota.getMD5Status();
+        isOTAManagerCanInstallOTA = systemHaveUpdates && isOTADownloadFinish && !isOTADownloading && MD5Status;
         isOTAHasAlreadyDownloadAndCanInstall = isOTAManagerCanInstallOTA && otaManager.getOTAFile(ota.getOTAFilename()).exists();
+        Log.d("StatusV", "\n" +
+                "isOTADownloading: "+isOTADownloading+"\n" +
+                "isOTADownloadFinish: "+isOTADownloadFinish+"\n" +
+                "isOTAManagerCanDownload: "+isOTAManagerCanDownload+"\n" +
+                "isOTAManagerCanInstallOTA: "+isOTAManagerCanInstallOTA+"\n" +
+                "isOTAHasAlreadyDownloadAndCanInstall: "+isOTAHasAlreadyDownloadAndCanInstall+"\n" +
+                "OTA exist : "+otaManager.getOTAFile(ota.getOTAFilename()).exists()+"\n" +
+                "OTA MD5: "+ota.getMD5Status()+"\n");
     }
 
     private void updateViews(){
         refreshStatusValues();
+
         if(isOTAManagerCanDownload){
             downloadActionBtn.setText("Загрузить");
             downloadActionBtn.setOnClickListener(new View.OnClickListener() {
@@ -212,6 +232,19 @@ public class OTADownloadActivity extends Activity {
                 public void onClick(View view) {
                     otaManager.cancelDownloadOTA();
                     otaManager.deleteOTA(ota.getOTAFilename());
+                }
+            });
+        } else if(!isOTADownloading && isOTADownloadFinish && !MD5Status){
+            downloadActionBtn.setText("Удалить ОТА");
+            downloadActionBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    otaManager.reset();
+                    AnimationUtils.toggleViewAnimation(downloadLayout, false, true, "circle", 500);
+                    AnimationUtils.toggleViewAnimation(downloadFinishText, false ,true, "circle", 500);
+                    downloadProgressBar.setProgress(0);
+                    downloadTextProgress.setText(" ");
+                    updateViews();
                 }
             });
         }

@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.ota.updates.R;
 import com.ota.updates.utils.Utils;
@@ -170,6 +171,7 @@ public class OTAManager {
                 otaItem.setDownloadRunningStatus(false);
                 otaItem.setDownloadFinishStatus(false);
                 interfaceOTA.onDownloadFailed();
+                Toast.makeText(context, "Ошибка проверки Хеш-сумм, обратитесь в теххподдержку.", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG, "MD5Status, file= "+OTAFile+" |MD5Server: "+MD5OTAServer+" MD5Local: "+MD5OTALocal);
         }
