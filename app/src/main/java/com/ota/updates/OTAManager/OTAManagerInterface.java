@@ -9,9 +9,6 @@ public interface OTAManagerInterface {
     void onDownloadFinished();
     void onDownloadFailed();
     void onDownloading(int progress, String downloadedSize, String totalSize);
-
     void MD5Status(boolean passed);
-
-
     void noInternet();
 }

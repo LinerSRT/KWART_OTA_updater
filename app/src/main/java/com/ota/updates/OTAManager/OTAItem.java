@@ -1,9 +1,10 @@
 package com.ota.updates.OTAManager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 public class OTAItem {
-    private Context context;
+    @SuppressLint("StaticFieldLeak")
     private static OTAItem otaItem;
     private OTAPreferenceManager otaPreferenceManager;
 
@@ -33,127 +34,126 @@ public class OTAItem {
     }
 
     private OTAItem(Context context){
-        this.context = context;
         this.otaPreferenceManager = OTAPreferenceManager.getInstance(context);
     }
 
-    public void setUpdateAvailable(boolean available){
+    void setUpdateAvailable(boolean available){
         otaPreferenceManager.saveBoolean(TAG_OTA_AVAILABLE, available);
     }
 
-    public void setOTADeviceName(String deviceName){
+    void setOTADeviceName(String deviceName){
         otaPreferenceManager.saveString(TAG_OTA_DEVICE_NAME, deviceName);
     }
 
-    public void setOTAVersion(int version){
+    void setOTAVersion(int version){
         otaPreferenceManager.saveInt(TAG_OTA_VERSION, version);
     }
 
-    public void setOTASubVersion(int subversion){
+    void setOTASubVersion(int subversion){
         otaPreferenceManager.saveInt(TAG_OTA_SUBVERSION, subversion);
     }
 
-    public void setOTAExtraVersion(int extraVersion){
+    void setOTAExtraVersion(int extraVersion){
         otaPreferenceManager.saveInt(TAG_OTA_EXTRAVERSION, extraVersion);
     }
 
-    public void setOTAUpdateDate(String updateDate){
+    void setOTAUpdateDate(String updateDate){
         otaPreferenceManager.saveString(TAG_OTA_UPDATE_DATE, updateDate);
     }
 
-    public void setOTAFilename(String filename){
+    void setOTAFilename(String filename){
         otaPreferenceManager.saveString(TAG_OTA_FILENAME, filename);
     }
 
-    public void setOTAFilesize(int otaFilesize){
+    void setOTAFilesize(int otaFilesize){
         otaPreferenceManager.saveInt(TAG_OTA_FILESIZE, otaFilesize);
     }
 
-    public void setOTAMD5(String otamd5){
+    void setOTAMD5(String otamd5){
         otaPreferenceManager.saveString(TAG_OTA_FILEMD5, otamd5);
     }
 
-    public void setOTADownloadURL(String otaDownloadURL){
+    void setOTADownloadURL(String otaDownloadURL){
         otaPreferenceManager.saveString(TAG_OTA_DOWNLOAD_URL, otaDownloadURL);
     }
 
-    public void setOTAChangelog(String changelog){
+    void setOTAChangelog(String changelog){
         otaPreferenceManager.saveString(TAG_OTA_CHANGELOG, changelog);
     }
 
-    public boolean isOTAUpdateAvailable(){
+    boolean isOTAUpdateAvailable(){
         return otaPreferenceManager.getBoolean(TAG_OTA_AVAILABLE, false);
     }
 
-    public String getOTADeviceName(){
+    String getOTADeviceName(){
         return otaPreferenceManager.getString(TAG_OTA_DEVICE_NAME, "null");
     }
 
-    public int getOTAVersion(){
+    int getOTAVersion(){
         return otaPreferenceManager.getInt(TAG_OTA_VERSION, 0);
     }
-    public int getOTASubVersion(){
+    int getOTASubVersion(){
         return otaPreferenceManager.getInt(TAG_OTA_SUBVERSION, 0);
     }
-    public int getOTAExtraVersion(){
+    int getOTAExtraVersion(){
         return otaPreferenceManager.getInt(TAG_OTA_EXTRAVERSION, 0);
     }
-    public String getOTAUpdateDate(){
+    String getOTAUpdateDate(){
         return otaPreferenceManager.getString(TAG_OTA_UPDATE_DATE, "null");
     }
-    public String getOTAFilename(){
+    String getOTAFilename(){
         return otaPreferenceManager.getString(TAG_OTA_FILENAME, "null");
     }
-    public int getOTAFileSize(){
+    int getOTAFileSize(){
         return otaPreferenceManager.getInt(TAG_OTA_FILESIZE, 0);
     }
-    public String getOTAMD5(){
+    String getOTAMD5(){
         return otaPreferenceManager.getString(TAG_OTA_FILEMD5, "null");
     }
-    public String getOTADownloadURL(){
+    String getOTADownloadURL(){
         return otaPreferenceManager.getString(TAG_OTA_DOWNLOAD_URL, "null");
     }
-    public String getOTAChangelog(){
+    String getOTAChangelog(){
         return otaPreferenceManager.getString(TAG_OTA_CHANGELOG, "null");
     }
 
-    public void setDownloadRunningStatus(boolean isDownloading){
+    void setDownloadRunningStatus(boolean isDownloading){
         otaPreferenceManager.saveBoolean(TAG_OTA_DOWNLOADING, isDownloading);
     }
 
-    public boolean getDownloadRunningStatus(){
+    boolean getDownloadRunningStatus(){
         return otaPreferenceManager.getBoolean(TAG_OTA_DOWNLOADING, false);
     }
 
-    public void setDownloadFinishStatus(boolean isDownloading){
+    void setDownloadFinishStatus(boolean isDownloading){
         otaPreferenceManager.saveBoolean(TAG_OTA_DOWNLOAD_FINISHED, isDownloading);
     }
 
-    public boolean getDownloadFinishStatus(){
+    boolean getDownloadFinishStatus(){
         return otaPreferenceManager.getBoolean(TAG_OTA_DOWNLOAD_FINISHED, false);
     }
 
-    public void setDownloadID(long downloadID){
+    void setDownloadID(long downloadID){
         otaPreferenceManager.saveLong(TAG_OTA_DOWNLOAD_ID, downloadID);
     }
 
-    public long getDownloadID(){
+    long getDownloadID(){
         return  otaPreferenceManager.getLong(TAG_OTA_DOWNLOAD_ID, 0);
     }
 
-    public void setMD5Status(boolean passed){
+    void setMD5Status(boolean passed){
         otaPreferenceManager.saveBoolean(TAG_OTA_MD5PASS, passed);
     }
 
-    public boolean getMD5Status(){
+    boolean getMD5Status(){
         return otaPreferenceManager.getBoolean(TAG_OTA_MD5PASS, false);
     }
 
-    public void setLastCheckedTime(String time){
+    void setLastCheckedTime(String time){
         otaPreferenceManager.saveString(TAG_OTA_LAST_CHECKED_TIME, time);
     }
 
-    public String getLastCheckedTime(){
+    String getLastCheckedTime(){
         return otaPreferenceManager.getString(TAG_OTA_LAST_CHECKED_TIME, "Нет данных");
     }
 }

@@ -38,30 +38,21 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
-        android:name=".OtaUpdates"
+        android:name=".OTAManager.OtaUpdates"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/BlueDeepTheme"
         android:uiOptions="splitActionBarWhenNarrow"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".OTAManager.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <receiver
-            android:name=".receivers.OTAReceivers"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="com.ota.update.MANIFEST_CHECK_BACKGROUND" />
-                <action android:name="com.ota.update.START_UPDATE_CHECK" />
-            </intent-filter>
-        </receiver>
+        <activity android:name=".OTAManager.OTADownloadActivity" />
+
     </application>
 
 </manifest>

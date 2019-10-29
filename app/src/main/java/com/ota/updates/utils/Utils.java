@@ -1,14 +1,21 @@
 package com.ota.updates.utils;
 
-import java.text.DecimalFormat;
-
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.TypedValue;
+import android.os.Bundle;
+import android.util.Log;
 
+import com.stericson.RootTools.BuildConfig;
+import com.stericson.RootTools.RootTools;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Utils{
 
@@ -21,6 +28,79 @@ public class Utils{
 	static {
 		decimalFormat.setMaximumIntegerDigits(3);
 		decimalFormat.setMaximumFractionDigits(1);
+	}
+
+	public static String shell(String cmd, boolean root) {
+		String out = "";
+		ArrayList<String> r = system(root ? getSuBin() : "sh",cmd).getStringArrayList("out");
+		for(String l: r) {
+			out += l+"\n";
+		}
+		return out;
+	}
+
+	private static String getSuBin() {
+		if (new File("/system/xbin","su").exists()) {
+			return "/system/xbin/su";
+		}
+		if (RootTools.isRootAvailable()) {
+			return "su";
+		}
+		return "sh";
+	}
+
+	private static Bundle system(String shell, String command) {
+		ArrayList<String> res = new ArrayList<String>();
+		ArrayList<String> err = new ArrayList<String>();
+		boolean success = false;
+		try {
+			Process process = Runtime.getRuntime().exec(shell);
+			DataOutputStream STDIN = new DataOutputStream(process.getOutputStream());
+			BufferedReader STDOUT = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			BufferedReader STDERR = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+			if (BuildConfig.DEBUG) Log.i(shell, command);
+			STDIN.writeBytes(command + "\n");
+			STDIN.flush();
+			STDIN.writeBytes("exit\n");
+			STDIN.flush();
+
+			process.waitFor();
+			if (process.exitValue() == 255) {
+				if (BuildConfig.DEBUG) Log.e(shell,"SU was probably denied! Exit value is 255");
+				err.add("SU was probably denied! Exit value is 255");
+			}
+
+			while (STDOUT.ready()) {
+				String read = STDOUT.readLine();
+				if (BuildConfig.DEBUG) Log.d(shell, read);
+				res.add(read);
+			}
+			while (STDERR.ready()) {
+				String read = STDERR.readLine();
+				if (BuildConfig.DEBUG) Log.e(shell, read);
+				err.add(read);
+			}
+
+			process.destroy();
+			success = true;
+			if (err.size() > 0) {
+				success = false;
+			}
+		} catch (IOException e) {
+			if (BuildConfig.DEBUG) Log.e(shell,"IOException: "+e.getMessage());
+			err.add("IOException: "+e.getMessage());
+		} catch (InterruptedException e) {
+			if (BuildConfig.DEBUG) Log.e(shell,"InterruptedException: "+e.getMessage());
+			err.add("InterruptedException: "+e.getMessage());
+		}
+		if (BuildConfig.DEBUG) Log.d(shell,"END");
+		Bundle r = new Bundle();
+		r.putBoolean("success", success);
+		r.putString("cmd", command);
+		r.putString("binary", shell);
+		r.putStringArrayList("out", res);
+		r.putStringArrayList("error", err);
+		return r;
 	}
 
 	public static String formatDataFromBytes(long size) {
@@ -45,8 +125,7 @@ public class Utils{
 		if(cm != null) {
 			NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 			if(activeNetwork != null) {
-				isConnected = activeNetwork != null &&
-						activeNetwork.isConnectedOrConnecting();
+				isConnected = activeNetwork.isConnectedOrConnecting();
 			}
 		}
 		return isConnected;
@@ -65,48 +144,17 @@ public class Utils{
 		return isMobileNetwork;
 	}
 
-
-	public static int getAttrColor(Activity activity, int attrColor) {
-		TypedValue themeBackgroundColor = new TypedValue();
-		int parsedColor;
-
-		if (activity.getTheme().resolveAttribute(attrColor,
-				themeBackgroundColor, true)) {
-			switch (themeBackgroundColor.type) {
-				case TypedValue.TYPE_INT_COLOR_ARGB4:
-					parsedColor = Color.argb(
-							(themeBackgroundColor.data & 0xf000) >> 8,
-							(themeBackgroundColor.data & 0xf00) >> 4,
-							themeBackgroundColor.data & 0xf0,
-							(themeBackgroundColor.data & 0xf) << 4);
-					break;
-
-				case TypedValue.TYPE_INT_COLOR_RGB4:
-					parsedColor = Color.rgb(
-							(themeBackgroundColor.data & 0xf00) >> 4,
-							themeBackgroundColor.data & 0xf0,
-							(themeBackgroundColor.data & 0xf) << 4);
-					break;
-
-				case TypedValue.TYPE_INT_COLOR_ARGB8:
-					parsedColor = themeBackgroundColor.data;
-					break;
-
-				case TypedValue.TYPE_INT_COLOR_RGB8:
-					parsedColor = Color.rgb(
-							(themeBackgroundColor.data & 0xff0000) >> 16,
-							(themeBackgroundColor.data & 0xff00) >> 8,
-							themeBackgroundColor.data & 0xff);
-					break;
-
-				default:
-					throw new RuntimeException("ClassName: couldn't parse theme " +
-							"background color attribute " + themeBackgroundColor.toString());
-			}
-		} else {
-			throw new RuntimeException("ClassName: couldn't find background color in " +
-					"theme");
+	public static void requestRoot(){
+		try {
+			Process p = Runtime.getRuntime().exec("su");
+			DataOutputStream os = new DataOutputStream(p.getOutputStream());
+			os.writeBytes("ls\n");
+			os.writeBytes("sync\n");
+			os.writeBytes("exit\n");
+			os.flush();
+			p.waitFor();
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
 		}
-		return parsedColor;
 	}
 }

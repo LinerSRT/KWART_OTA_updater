@@ -11,13 +11,9 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 
 import com.ota.updates.R;
-import com.ota.updates.utils.Tools;
 import com.ota.updates.utils.Utils;
-import com.ota.updates.views.LinerProgressDialog;
-import com.ota.updates.views.OTADialog;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -31,9 +27,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -43,41 +39,30 @@ import javax.xml.parsers.SAXParserFactory;
 public class OTAManager {
     private String TAG = "OTAManager";
     private Context context;
-    private OTAPreferenceManager otaPreferenceManager;
-    private LinerProgressDialog linerProgressDialog;
     private OTAItem otaItem;
     private OTAManagerInterface interfaceOTA;
 
-    private String SERVER_URL = "aHR0cDovLzE4LjIyMi4yMTAuMjE5";
     private String OTA_MANIFEST_URL;
     private String OTA_MANIFEST_NAME = "update_manifest.xml";
     private File OTA_MANIFEST_FILE;
     private String OTA_DIR = "OTA_packages";
     private String OTA_DOWNLOAD_DIR = Environment.getExternalStorageDirectory().getPath() + File.separator+OTA_DIR+File.separator;
 
+
     public void setInterface(OTAManagerInterface otaManagerInterface){
         this.interfaceOTA = otaManagerInterface;
     }
 
-    public OTAItem getOtaItem(){
-        return this.otaItem;
-    }
 
     public OTAManager(Context context) {
         this.context = context;
-        this.otaPreferenceManager = OTAPreferenceManager.getInstance(context);
         this.otaItem = OTAItem.getInstance(context);
         this.OTA_MANIFEST_FILE = new File(context.getFilesDir().getPath(),OTA_MANIFEST_NAME);
         this.OTA_MANIFEST_URL = "";
         if(getProp("ro.manifest.url").trim().contains("http")){
             OTA_MANIFEST_URL = getProp("ro.manifest.url").trim();
         } else {
-            //OTA_MANIFEST_URL = "http://18.222.210.219/leo/ota2.xml"; // ONLY FOR TEST
-            try {
-                this.OTA_MANIFEST_URL = new String(Base64.decode(getProp("ro.manifest.url").trim(), Base64.DEFAULT), "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            this.OTA_MANIFEST_URL = new String(Base64.decode(getProp("ro.manifest.url").trim(), Base64.DEFAULT), StandardCharsets.UTF_8);
         }
         createOTADirectory();
     }
@@ -105,7 +90,7 @@ public class OTAManager {
         }
     }
 
-    public void cancelDownloadOTA(Context context) {
+    public void cancelDownloadOTA() {
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         assert downloadManager != null;
         downloadManager.remove(otaItem.getDownloadID());
@@ -115,23 +100,7 @@ public class OTAManager {
     }
 
     public void installOTA(final boolean backup, final boolean wipeCache, final boolean wipeData){
-        final OTADialog installDialog = new OTADialog(context, getManifestVersion(),context.getResources().getString(R.string.install_it),
-               otaItem.getOTAChangelog(),101,
-                context.getString(R.string.cancel), " ",
-                context.getString(R.string.install));
-        installDialog.setOkBtn(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                flashFiles(context, OTA_DOWNLOAD_DIR+File.separator+otaItem.getOTAFilename(), backup, wipeCache, wipeData);
-            }
-        });
-        installDialog.setNegativeBtn(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                installDialog.close();
-            }
-        });
-        installDialog.show();
+        flashFiles(context, OTA_DOWNLOAD_DIR+File.separator+otaItem.getOTAFilename(), backup, wipeCache, wipeData);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -187,7 +156,7 @@ public class OTAManager {
             String OTAFile, MD5OTAServer, MD5OTALocal;
             OTAFile = getOTAFile(otaItem.getOTAFilename()).getPath();
             MD5OTAServer = otaItem.getOTAMD5().trim();
-            MD5OTALocal = Tools.shell("md5sum " + OTAFile + " | cut -d ' ' -f 1", false).trim();
+            MD5OTALocal = Utils.shell("md5sum " + OTAFile + " | cut -d ' ' -f 1", false).trim();
 
             if(MD5OTALocal.equalsIgnoreCase(MD5OTAServer)) {
                 interfaceOTA.MD5Status(true);
@@ -245,7 +214,7 @@ public class OTAManager {
         }
     }
 
-    public void deleteAllOTA(){
+    private void deleteAllOTA(){
         File otaDir = new File(OTA_DOWNLOAD_DIR);
         for(File otafile:otaDir.listFiles()){
             otafile.delete();
@@ -257,8 +226,6 @@ public class OTAManager {
 
         @Override
         protected void onPreExecute() {
-            linerProgressDialog = new LinerProgressDialog(context, context.getString(R.string.checking_text), 1200);
-            linerProgressDialog.show();
             if(OTA_MANIFEST_FILE.exists()){
                 OTA_MANIFEST_FILE.delete();
             }
@@ -293,7 +260,6 @@ public class OTAManager {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            linerProgressDialog.close();
             generateDownloadUrl();
             interfaceOTA.onManifestDownloaded();
             otaItem.setUpdateAvailable(haveUpdate());
@@ -442,13 +408,9 @@ public class OTAManager {
     }
 
     private void generateDownloadUrl(){
+        String SERVER_URL = "aHR0cDovLzE4LjIyMi4yMTAuMjE5";
         byte[] byteArray = Base64.decode(SERVER_URL, Base64.DEFAULT);
-        String serverUrl = "null";
-        try {
-            serverUrl = new String(byteArray, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String serverUrl = new String(byteArray, StandardCharsets.UTF_8);
         String downloadOTAUrl = serverUrl+File.separator+otaItem.getOTADeviceName().toLowerCase()+File.separator+"updates"+File.separator+otaItem.getOTAFilename();
         otaItem.setOTADownloadURL(downloadOTAUrl);
     }
@@ -493,13 +455,13 @@ public class OTAManager {
         }
     }
 
-    public String getProp(String propName) {
-        Process p = null;
+    private String getProp(String propName) {
+        Process p;
         String result = "";
         try {
             p = new ProcessBuilder("/system/bin/getprop", propName).redirectErrorStream(true).start();
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line = "";
+            String line;
             while ((line=br.readLine()) != null) {
                 result = line;
             }
@@ -519,16 +481,5 @@ public class OTAManager {
 
     public String getDeviceName(){
         return getProp("ro.ota.device").trim();
-    }
-
-    public String getDecodedServerURL(){
-        byte[] byteArray = Base64.decode(SERVER_URL, Base64.DEFAULT);
-        String url = "null";
-        try {
-            url = new String(byteArray, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return url;
     }
 }

@@ -12,40 +12,31 @@ import com.ota.updates.R;
 
 import java.util.Objects;
 
-import static com.ota.updates.utils.Config.AMOLED_VERSION;
-
 public class LinerDialog {
     private final Dialog dialog;
-    private Context context;
     private Button dialogCancelBtn, dialogOkBtn, dialogMiddleBtn;
-    private TextView liner_dialogTitle, liner_dialogText;
     private boolean isCancelable, haveMiddleBtn;
 
     @SuppressLint("SetTextI18n")
     public LinerDialog(final Context context, String title, String text, boolean haveMiddleBtn, boolean isCancelable){
-        this.context = context;
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.isCancelable = isCancelable;
         this.haveMiddleBtn = haveMiddleBtn;
-        if(AMOLED_VERSION) {
-            dialog.setContentView(R.layout.liner_dialog_amoled);
-        } else {
-            dialog.setContentView(R.layout.liner_dialog);
-        }
-        liner_dialogTitle = (TextView) dialog.findViewById(R.id.liner_dialog_title);
-        liner_dialogText = (TextView) dialog.findViewById(R.id.liner_dialog_text);
+        dialog.setContentView(R.layout.liner_dialog);
+        TextView liner_dialogTitle = dialog.findViewById(R.id.liner_dialog_title);
+        TextView liner_dialogText = dialog.findViewById(R.id.liner_dialog_text);
 
         if(haveMiddleBtn){
-            dialogMiddleBtn = (Button) dialog.findViewById(R.id.liner_middle_button);
+            dialogMiddleBtn = dialog.findViewById(R.id.liner_middle_button);
             dialogMiddleBtn.setVisibility(View.VISIBLE);
         }
         if(isCancelable){
-            dialogCancelBtn = (Button) dialog.findViewById(R.id.liner_cancel_button);
+            dialogCancelBtn = dialog.findViewById(R.id.liner_cancel_button);
             dialogCancelBtn.setVisibility(View.VISIBLE);
         }
 
-        dialogOkBtn = (Button) dialog.findViewById(R.id.liner_ok_button);
+        dialogOkBtn = dialog.findViewById(R.id.liner_ok_button);
         dialogOkBtn.setVisibility(View.VISIBLE);
 
         liner_dialogTitle.setText(title);

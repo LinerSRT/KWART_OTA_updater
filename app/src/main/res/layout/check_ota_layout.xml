@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom|center">
+
+    <ImageView
+        android:id="@+id/logo_view"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/kwart_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/update_check_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Проверка обновлений..."
+        android:textColor="?textColor"
+        android:textSize="22sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_view" />
+
+    <LinearLayout
+        android:id="@+id/noUpdateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_view"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Обновления не найдены"
+            android:textColor="?textColor"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/device_modelversion_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="KWART Leo 1.0.1"
+            android:textColor="?colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/haveUpdateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_view"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Доступно обновление"
+            android:textColor="#208F20"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/versionAvailableText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Версия 1.0.2"
+            android:textColor="?textColor"
+            android:textSize="22sp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="доступна к загрузке"
+            android:textColor="?textColor"
+            android:textSize="22sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/check_for_ota"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/button_background_shape"
+        android:backgroundTint="?colorPrimary"
+        android:text="Проверить"
+        android:textColor="#fff"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
