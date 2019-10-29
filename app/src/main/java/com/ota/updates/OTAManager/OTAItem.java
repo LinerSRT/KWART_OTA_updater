@@ -81,7 +81,7 @@ public class OTAItem {
         otaPreferenceManager.saveString(TAG_OTA_CHANGELOG, changelog);
     }
 
-    boolean isOTAUpdateAvailable(){
+    public boolean isOTAUpdateAvailable(){
         return otaPreferenceManager.getBoolean(TAG_OTA_AVAILABLE, false);
     }
 

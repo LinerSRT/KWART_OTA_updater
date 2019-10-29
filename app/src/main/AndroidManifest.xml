@@ -46,7 +46,7 @@
         android:uiOptions="splitActionBarWhenNarrow"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator">
 
-        <activity android:name=".OTAManager.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

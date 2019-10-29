@@ -1,4 +1,4 @@
-package com.ota.updates.OTAManager;
+package com.ota.updates;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ota.updates.R;
+import com.ota.updates.OTAManager.OTADownloadActivity;
+import com.ota.updates.OTAManager.OTAItem;
+import com.ota.updates.OTAManager.OTAManager;
+import com.ota.updates.OTAManager.OTAManagerInterface;
 import com.ota.updates.utils.AnimationUtils;
 import com.ota.updates.utils.ThemeManager;
 import com.ota.updates.utils.Utils;
