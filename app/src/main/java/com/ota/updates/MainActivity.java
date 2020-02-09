@@ -1,11 +1,13 @@
 package com.ota.updates;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,6 +21,9 @@ import com.ota.updates.utils.AnimationUtils;
 import com.ota.updates.utils.ThemeManager;
 import com.ota.updates.utils.Utils;
 import com.ota.updates.views.LinerDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity {
     private TextView updateCheckingText, systemVersionText, availableOTAVersionText;
@@ -34,6 +39,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         ThemeManager.initTheme(this);
         setContentView(R.layout.check_ota_layout);
+        List<String> permissionsRequired = new ArrayList<>();
+        permissionsRequired.add(Manifest.permission.INTERNET);
+        permissionsRequired.add(Manifest.permission.ACCESS_NETWORK_STATE);
+        permissionsRequired.add(Manifest.permission.ACCESS_WIFI_STATE);
+        permissionsRequired.add(Manifest.permission.CHANGE_WIFI_STATE);
+        permissionsRequired.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        permissionsRequired.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        permissionsRequired.add(Manifest.permission.READ_PHONE_STATE);
+        ActivityCompat.requestPermissions(this, permissionsRequired.toArray(new String[0]), 120);
         Utils.requestRoot();
         otaManager = new OTAManager(this);
         ota = OTAItem.getInstance(this);

@@ -13,6 +13,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ota.updates.MainActivity;
 import com.ota.updates.R;
 import com.ota.updates.utils.Utils;
 
@@ -80,7 +81,12 @@ public class OTAManager {
             deleteAllOTA();
             DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
             assert downloadManager != null;
-            long downloadID = downloadManager.enqueue(request);
+            long downloadID = -1;
+            try {
+                downloadID = downloadManager.enqueue(request);
+            } catch (SecurityException e){
+                e.printStackTrace();
+            }
             otaItem.setDownloadID(downloadID);
             otaItem.setDownloadRunningStatus(true);
             otaItem.setMD5Status(false);
