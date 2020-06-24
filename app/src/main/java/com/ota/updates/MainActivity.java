@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,15 +18,30 @@ import com.ota.updates.OTAManager.OTADownloadActivity;
 import com.ota.updates.OTAManager.OTAItem;
 import com.ota.updates.OTAManager.OTAManager;
 import com.ota.updates.OTAManager.OTAManagerInterface;
+import com.ota.updates.updater.AESCrypt;
+import com.ota.updates.updater.API;
+import com.ota.updates.updater.Constants;
+import com.ota.updates.updater.NetworkUtils;
+import com.ota.updates.updater.data.OTAPackage;
 import com.ota.updates.utils.AnimationUtils;
 import com.ota.updates.utils.ThemeManager;
 import com.ota.updates.utils.Utils;
 import com.ota.updates.views.LinerDialog;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 public class MainActivity extends Activity {
+    private static final String TAG = "TAGTAG";
     private TextView updateCheckingText, systemVersionText, availableOTAVersionText;
     private Button checkUpdates;
     private LinearLayout OTANoUpdateLayout, OTAUpdateLayout;
@@ -48,176 +64,202 @@ public class MainActivity extends Activity {
         permissionsRequired.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         permissionsRequired.add(Manifest.permission.READ_PHONE_STATE);
         ActivityCompat.requestPermissions(this, permissionsRequired.toArray(new String[0]), 120);
-        Utils.requestRoot();
-        otaManager = new OTAManager(this);
-        ota = OTAItem.getInstance(this);
 
-        final OTAManagerInterface interfaceOTA = new OTAManagerInterface() {
+        final API api = new API();
+        api.getOTA(new API.OTA<OTAPackage>() {
             @Override
-            public void onManifestDownloaded() {
-
-            }
-
-            @Override
-            public void onManifestDownloadStart() {
-
-            }
-
-            @Override
-            public void updateAvailable(boolean available) {
-                if(!available){
-                    runOnUiThread(new Runnable() {
-                        @SuppressLint("SetTextI18n")
-                        @Override
-                        public void run() {
-                            AnimationUtils.toggleViewAnimation(OTAUpdateLayout, false, true, "circle", 1);
-                            AnimationUtils.toggleViewAnimation(updateCheckingText, false ,false, "circle", 1);
-                            AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, true, true, "circle", 300);
-                            AnimationUtils.toggleViewAnimation(checkUpdates, true, true, "circle", 1000);
-                            systemVersionText.setText("KWART "+otaManager.getDeviceName()+" "+otaManager.getSystemVersion());
-                            checkUpdates.setText("Проверить");
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @SuppressLint("SetTextI18n")
-                        @Override
-                        public void run() {
-                            AnimationUtils.toggleViewAnimation(updateCheckingText, false ,false, "circle", 1);
-                            AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, false, true, "circle", 1);
-                            AnimationUtils.toggleViewAnimation(checkUpdates, true, true, "circle", 1000);
-                            AnimationUtils.toggleViewAnimation(OTAUpdateLayout, true, true, "circle", 300);
-                            availableOTAVersionText.setText("Версия "+otaManager.getManifestVersion());
-                            checkUpdates.setText("Детали");
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onDownloadStarted() {
-
-            }
-
-            @Override
-            public void onDownloadStopped() {
-
-            }
-
-            @Override
-            public void onDownloadFinished() {
-
-            }
-
-            @Override
-            public void onDownloadFailed() {
-
-            }
-
-            @Override
-            public void onDownloading(int progress, String downloadedSize, String totalSize) {
-
-            }
-
-            @Override
-            public void MD5Status(boolean passed) {
-
-            }
-
-            @Override
-            public void noInternet() {
-                haveInetAcces = false;
-                runOnUiThread(new Runnable() {
-                    @SuppressLint("SetTextI18n")
+            public void onSuccess(OTAPackage result) {
+                Log.d(TAG, "onSuccess: "+result.getPackage().toString());
+                api.downloadOTA(result.getDevice(), result.getPackage().getFile(), new API.OTA<File>() {
                     @Override
-                    public void run() {
-                        AnimationUtils.toggleViewAnimation(OTAUpdateLayout, false, true, "circle", 1);
-                        AnimationUtils.toggleViewAnimation(updateCheckingText, false ,false, "circle", 1);
-                        AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, true, true, "circle", 300);
-                        AnimationUtils.toggleViewAnimation(checkUpdates, true, true, "circle", 1000);
-                        systemVersionText.setText("KWART "+otaManager.getDeviceName()+" "+otaManager.getSystemVersion());
-                        checkUpdates.setText("Проверить");
+                    public void onSuccess(File result) {
+                        Log.d(TAG, "onSuccess: load finished "+result.getAbsolutePath());
+                    }
+
+                    @Override
+                    public void onFail() {
+
                     }
                 });
-                final LinerDialog linerDialog = new LinerDialog(MainActivity.this, getResources().getString(R.string.main_not_connected_title),
-                        getResources().getString(R.string.main_not_connected_message), false, true);
-                linerDialog.setupCancelBtn(getResources().getString(R.string.close_app), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        linerDialog.close();
-                    }
-                });
-                linerDialog.setupOkBtn(getResources().getString(R.string.settings_btn), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (Build.VERSION.SDK_INT < 24) {
-                            Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
-                            settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(settings);
-                            (MainActivity.this).finish();
-                        } else {
-                            Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
-                            startActivity(settings);
-                            (MainActivity.this).finish();
-                        }
-                    }
-                });
-                linerDialog.show();
             }
-        };
-        otaManager.setInterface(interfaceOTA);
-        updateCheckingText = findViewById(R.id.update_check_text);
-        systemVersionText = findViewById(R.id.device_modelversion_text);
-        availableOTAVersionText = findViewById(R.id.versionAvailableText);
-        OTANoUpdateLayout = findViewById(R.id.noUpdateLayout);
-        OTAUpdateLayout = findViewById(R.id.haveUpdateLayout);
-        checkUpdates = findViewById(R.id.check_for_ota);
-        AnimationUtils.toggleViewAnimation(updateCheckingText, true, true, "circle", 300);
-        otaManager.updateManifest();
 
-        checkUpdates.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {
-                if(haveInetAcces) {
-                    if (!ota.isOTAUpdateAvailable()) {
-                        AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, false, true, "circle", 1);
-                        AnimationUtils.toggleViewAnimation(OTAUpdateLayout, false, true, "circle", 1);
-                        AnimationUtils.toggleViewAnimation(updateCheckingText, true, false, "circle", 300);
-                        otaManager.updateManifest();
-                    } else {
-                        Intent downloadActivity = new Intent(MainActivity.this, OTADownloadActivity.class);
-                        downloadActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(downloadActivity);
-                    }
-                } else {
-                    final LinerDialog linerDialog = new LinerDialog(MainActivity.this, getResources().getString(R.string.main_not_connected_title),
-                            getResources().getString(R.string.main_not_connected_message), false, true);
-                    linerDialog.setupCancelBtn(getResources().getString(R.string.close_app), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            linerDialog.close();
-                        }
-                    });
-                    linerDialog.setupOkBtn(getResources().getString(R.string.settings_btn), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (Build.VERSION.SDK_INT < 24) {
-                                Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
-                                settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(settings);
-                                (MainActivity.this).finish();
-                            } else {
-                                Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
-                                startActivity(settings);
-                                (MainActivity.this).finish();
-                            }
-                        }
-                    });
-                    linerDialog.show();
-                }
+            public void onFail() {
+
             }
         });
+
+
+//        Utils.requestRoot();
+//        otaManager = new OTAManager(this);
+//        ota = OTAItem.getInstance(this);
+//
+//        final OTAManagerInterface interfaceOTA = new OTAManagerInterface() {
+//            @Override
+//            public void onManifestDownloaded() {
+//
+//            }
+//
+//            @Override
+//            public void onManifestDownloadStart() {
+//
+//            }
+//
+//            @Override
+//            public void updateAvailable(boolean available) {
+//                if(!available){
+//                    runOnUiThread(new Runnable() {
+//                        @SuppressLint("SetTextI18n")
+//                        @Override
+//                        public void run() {
+//                            AnimationUtils.toggleViewAnimation(OTAUpdateLayout, false, true, "circle", 1);
+//                            AnimationUtils.toggleViewAnimation(updateCheckingText, false ,false, "circle", 1);
+//                            AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, true, true, "circle", 300);
+//                            AnimationUtils.toggleViewAnimation(checkUpdates, true, true, "circle", 1000);
+//                            systemVersionText.setText("KWART "+otaManager.getDeviceName()+" "+otaManager.getSystemVersion());
+//                            checkUpdates.setText("Проверить");
+//                        }
+//                    });
+//                } else {
+//                    runOnUiThread(new Runnable() {
+//                        @SuppressLint("SetTextI18n")
+//                        @Override
+//                        public void run() {
+//                            AnimationUtils.toggleViewAnimation(updateCheckingText, false ,false, "circle", 1);
+//                            AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, false, true, "circle", 1);
+//                            AnimationUtils.toggleViewAnimation(checkUpdates, true, true, "circle", 1000);
+//                            AnimationUtils.toggleViewAnimation(OTAUpdateLayout, true, true, "circle", 300);
+//                            availableOTAVersionText.setText("Версия "+otaManager.getManifestVersion());
+//                            checkUpdates.setText("Детали");
+//                        }
+//                    });
+//                }
+//            }
+//
+//            @Override
+//            public void onDownloadStarted() {
+//
+//            }
+//
+//            @Override
+//            public void onDownloadStopped() {
+//
+//            }
+//
+//            @Override
+//            public void onDownloadFinished() {
+//
+//            }
+//
+//            @Override
+//            public void onDownloadFailed() {
+//
+//            }
+//
+//            @Override
+//            public void onDownloading(int progress, String downloadedSize, String totalSize) {
+//
+//            }
+//
+//            @Override
+//            public void MD5Status(boolean passed) {
+//
+//            }
+//
+//            @Override
+//            public void noInternet() {
+//                haveInetAcces = false;
+//                runOnUiThread(new Runnable() {
+//                    @SuppressLint("SetTextI18n")
+//                    @Override
+//                    public void run() {
+//                        AnimationUtils.toggleViewAnimation(OTAUpdateLayout, false, true, "circle", 1);
+//                        AnimationUtils.toggleViewAnimation(updateCheckingText, false ,false, "circle", 1);
+//                        AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, true, true, "circle", 300);
+//                        AnimationUtils.toggleViewAnimation(checkUpdates, true, true, "circle", 1000);
+//                        systemVersionText.setText("KWART "+otaManager.getDeviceName()+" "+otaManager.getSystemVersion());
+//                        checkUpdates.setText("Проверить");
+//                    }
+//                });
+//                final LinerDialog linerDialog = new LinerDialog(MainActivity.this, getResources().getString(R.string.main_not_connected_title),
+//                        getResources().getString(R.string.main_not_connected_message), false, true);
+//                linerDialog.setupCancelBtn(getResources().getString(R.string.close_app), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        linerDialog.close();
+//                    }
+//                });
+//                linerDialog.setupOkBtn(getResources().getString(R.string.settings_btn), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        if (Build.VERSION.SDK_INT < 24) {
+//                            Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+//                            settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            startActivity(settings);
+//                            (MainActivity.this).finish();
+//                        } else {
+//                            Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+//                            startActivity(settings);
+//                            (MainActivity.this).finish();
+//                        }
+//                    }
+//                });
+//                linerDialog.show();
+//            }
+//        };
+//        otaManager.setInterface(interfaceOTA);
+//        updateCheckingText = findViewById(R.id.update_check_text);
+//        systemVersionText = findViewById(R.id.device_modelversion_text);
+//        availableOTAVersionText = findViewById(R.id.versionAvailableText);
+//        OTANoUpdateLayout = findViewById(R.id.noUpdateLayout);
+//        OTAUpdateLayout = findViewById(R.id.haveUpdateLayout);
+//        checkUpdates = findViewById(R.id.check_for_ota);
+//        AnimationUtils.toggleViewAnimation(updateCheckingText, true, true, "circle", 300);
+//        otaManager.updateManifest();
+//
+//        checkUpdates.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onClick(View view) {
+//                if(haveInetAcces) {
+//                    if (!ota.isOTAUpdateAvailable()) {
+//                        AnimationUtils.toggleViewAnimation(OTANoUpdateLayout, false, true, "circle", 1);
+//                        AnimationUtils.toggleViewAnimation(OTAUpdateLayout, false, true, "circle", 1);
+//                        AnimationUtils.toggleViewAnimation(updateCheckingText, true, false, "circle", 300);
+//                        otaManager.updateManifest();
+//                    } else {
+//                        Intent downloadActivity = new Intent(MainActivity.this, OTADownloadActivity.class);
+//                        downloadActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(downloadActivity);
+//                    }
+//                } else {
+//                    final LinerDialog linerDialog = new LinerDialog(MainActivity.this, getResources().getString(R.string.main_not_connected_title),
+//                            getResources().getString(R.string.main_not_connected_message), false, true);
+//                    linerDialog.setupCancelBtn(getResources().getString(R.string.close_app), new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            linerDialog.close();
+//                        }
+//                    });
+//                    linerDialog.setupOkBtn(getResources().getString(R.string.settings_btn), new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            if (Build.VERSION.SDK_INT < 24) {
+//                                Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+//                                settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                startActivity(settings);
+//                                (MainActivity.this).finish();
+//                            } else {
+//                                Intent settings = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+//                                startActivity(settings);
+//                                (MainActivity.this).finish();
+//                            }
+//                        }
+//                    });
+//                    linerDialog.show();
+//                }
+//            }
+//        });
 
 
 
